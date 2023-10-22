@@ -55,6 +55,8 @@ class ScraperService {
                                 for (element in reviews) {
                                     val author = element.asJsonObject.get("author").asJsonObject.get("name")
                                     val review = element.asJsonObject.get("reviewBody")
+                                    println("Author: $author")
+                                    println("Review: $review")
                                 }
                             }
                         }
