@@ -1,4 +1,4 @@
 package com.cookbyte.backend.service
 
-class Recipes {
+interface UserService {
 }

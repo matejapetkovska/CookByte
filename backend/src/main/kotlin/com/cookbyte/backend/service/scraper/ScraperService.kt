@@ -2,6 +2,8 @@
 
 package com.cookbyte.backend.service.scraper
 
+import com.cookbyte.backend.domain.*
+import com.cookbyte.backend.repository.*
 import com.google.gson.JsonElement
 import com.google.gson.JsonParser
 import org.jsoup.Jsoup
@@ -11,8 +13,19 @@ import org.springframework.stereotype.Service
 import java.time.Duration
 
 @Service
-class ScraperService {
-    @Scheduled(fixedRate = 10000)
+class ScraperService(
+    val recipeRepository: RecipeRepository,
+    val ingredientRepository: IngredientRepository,
+    val userRepository: UserRepository,
+    val reviewRepository: ReviewRepository,
+    val categoryRepository: CategoryRepository
+) {
+
+    private val MAX_RECIPE_LIMIT = 50
+    var scrapedSimpleRecipesCount = 0
+    var scrapedDelishRecipesCount = 0
+
+    @Scheduled(cron = "0 0 1 * * ?")
     fun getSimpleRecipes() {
         val url = "https://www.simplyrecipes.com/recipes-5090746"
         try {
@@ -36,17 +49,19 @@ class ScraperService {
                     val jsonArray = jsonParser.parse(scriptElement?.data()).asJsonArray
                     for (element in jsonArray) {
                         createRecipeModel(element)
+                        scrapedSimpleRecipesCount++
                     }
                 }
             }
-
+            if (scrapedSimpleRecipesCount >= MAX_RECIPE_LIMIT) {
+                return
+            }
         } catch (e: Exception) {
             e.printStackTrace()
         }
     }
 
-
-    @Scheduled(fixedRate = 10000)
+    @Scheduled(cron = "0 0 1 * * ?")
     fun getDelishRecipes() {
         val url = "https://www.delish.com/cooking/recipe-ideas/"
         try {
@@ -65,6 +80,10 @@ class ScraperService {
                 val jsonParser = JsonParser()
                 val element = jsonParser.parse(scriptElement?.data()).asJsonObject
                 createRecipeModel(element)
+                scrapedDelishRecipesCount++
+            }
+            if (scrapedDelishRecipesCount >= MAX_RECIPE_LIMIT) {
+                return
             }
         } catch (e: Exception) {
             e.printStackTrace()
@@ -75,7 +94,8 @@ class ScraperService {
         val title = element.asJsonObject.get("headline").toString().replace("\"", "")
         var author = ""
         if (element.asJsonObject.get("author").isJsonArray) {
-            author = element.asJsonObject.get("author").asJsonArray.get(0).asJsonObject.get("name").toString().replace("\"", "")
+            author = element.asJsonObject.get("author").asJsonArray.get(0).asJsonObject.get("name").toString()
+                .replace("\"", "")
         } else if (element.asJsonObject.get("author").isJsonObject) {
             author = element.asJsonObject.get("author").asJsonObject.get("name").toString().replace("\"", "")
         }
@@ -83,7 +103,8 @@ class ScraperService {
         val description = element.asJsonObject.get("description").toString().replace("\"", "")
         var imageUrl = ""
         if (element.asJsonObject.get("image").isJsonArray) {
-            imageUrl = element.asJsonObject.get("image").asJsonArray.get(0).asJsonObject.get("url").toString().replace("\"", "") //!!!
+            imageUrl = element.asJsonObject.get("image").asJsonArray.get(0).asJsonObject.get("url").toString()
+                .replace("\"", "") //!!!
         } else if (element.asJsonObject.get("image").isJsonObject) {
             imageUrl = element.asJsonObject.get("image").asJsonObject.get("url").toString().replace("\"", "")
         }
@@ -93,50 +114,68 @@ class ScraperService {
         val carbohydrates = nutrition?.get("carbohydrateContent")?.toString()?.replace("\"", "") ?: ""
         val fats = nutrition?.get("fatContent")?.toString()?.replace("\"", "") ?: ""
         val proteins = nutrition?.get("proteinContent")?.toString()?.replace("\"", "") ?: ""
-        val categories = element.asJsonObject.get("recipeCategory").asJsonArray
-        for (element in categories) {
-            val category = element.asString.replace("\"", "")
-            println("Category: $category")
+        val jsonCategories = element.asJsonObject.get("recipeCategory").asJsonArray
+        val categoryEntities = mutableListOf<Category>()
+        for (element in jsonCategories) {
+            val jsonCategory = element.asString.replace("\"", "")
+            val category = Category(0, jsonCategory)
+            categoryEntities.add(category)
         }
-        val ingredients = element.asJsonObject.get("recipeIngredient").asJsonArray
-        for (element in ingredients) {
-            val ingredient = element.asString.replace("\"", "")
-            println("Ingredient: $ingredient")
+        //TODO: Check duplicate categories
+        categoryRepository.saveAll(categoryEntities)
+        val jsonIngredients = element.asJsonObject.get("recipeIngredient").asJsonArray
+        var ingredient = Ingredient(0, "")
+        for (element in jsonIngredients) {
+            ingredient = Ingredient(0, element.asString.replace("\"", ""))
+            ingredientRepository.save(ingredient)
         }
-        val instructions = element.asJsonObject.get("recipeInstructions").asJsonArray
-        for (element in instructions) {
+        val jsonInstructions = element.asJsonObject.get("recipeInstructions").asJsonArray
+        val instructions = StringBuilder()
+        for (element in jsonInstructions) {
             var instruction = ""
             if (element.asJsonObject.has("itemListElement")) {
                 val elementList = element.asJsonObject.get("itemListElement").asJsonArray
                 for (item in elementList) {
                     instruction = item.asJsonObject.get("text").toString().replace("\"", "")
-                    println("Instruction in IF: $instruction")
+                    instructions.append(instruction)
                 }
             } else {
                 instruction = element.asJsonObject.get("text").toString().replace("\"", "")
-                println("Instruction in ELSE: $instruction")
+                instructions.append(instruction)
             }
         }
+        val user = User(0, author, null, null, null, null, null)
+        userRepository.save(user)
+        val recipe = Recipe(
+            0,
+            title,
+            user,
+            datePublished,
+            description,
+            imageUrl,
+            cookTime,
+            calories,
+            carbohydrates,
+            fats,
+            proteins,
+            ingredient,
+            instructions.toString()
+        )
+        recipe.setCategories(categoryEntities)
+        recipeRepository.save(recipe)
         if (element.asJsonObject.has("review")) {
             val reviews = element.asJsonObject.get("review").asJsonArray
+            var review = Review(0, null, null, null)
             for (element in reviews) {
-                val author = element.asJsonObject.get("author").asJsonObject.get("name")
-                val review = element.asJsonObject.get("reviewBody")
-                println("Review Author: $author")
-                println("Review Body: $review")
+                val reviewAuthor =
+                    element.asJsonObject.get("author").asJsonObject.get("name").toString().replace("\"", "")
+                val reviewDescription = element.asJsonObject.get("reviewBody").toString().replace("\"", "")
+                val user = User(0, reviewAuthor, null, null, null, null, null)
+                userRepository.save(user)
+                review = Review(0, reviewDescription, user, recipe)
             }
+            reviewRepository.save(review)
         }
-
-        println("Title: $title")
-        println("Author: $author")
-        println("Date Published: $datePublished")
-        println("Description: $description")
-        println("Image URL: $imageUrl")
-        println("Cook Time: $cookTime")
-        println("Calories: $calories")
-        println("Carbohydrates: $carbohydrates")
-        println("Fats: $fats")
-        println("Proteins: $proteins")
     }
 
     fun isoDurationToTotalMinutes(isoDuration: String): Long {
