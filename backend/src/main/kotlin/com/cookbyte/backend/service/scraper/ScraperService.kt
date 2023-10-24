@@ -6,6 +6,7 @@ import com.cookbyte.backend.domain.*
 import com.cookbyte.backend.repository.*
 import com.google.gson.JsonElement
 import com.google.gson.JsonParser
+import jakarta.persistence.NonUniqueResultException
 import org.jsoup.Jsoup
 import org.jsoup.nodes.Document
 import org.springframework.scheduling.annotation.Scheduled
@@ -22,12 +23,11 @@ class ScraperService(
 ) {
 
     private val MAX_RECIPE_LIMIT = 50
-    var scrapedSimpleRecipesCount = 0
-    var scrapedDelishRecipesCount = 0
 
     @Scheduled(cron = "0 0 1 * * ?")
     fun getSimpleRecipes() {
         val url = "https://www.simplyrecipes.com/recipes-5090746"
+        var scrapedRecipesCount = 0
         try {
             val doc: Document = Jsoup.connect(url).get()
             val scriptElement = doc.select("script[type=application/ld+json]").first()
@@ -48,13 +48,13 @@ class ScraperService(
                     val jsonParser = JsonParser()
                     val jsonArray = jsonParser.parse(scriptElement?.data()).asJsonArray
                     for (element in jsonArray) {
+                        if (scrapedRecipesCount >= MAX_RECIPE_LIMIT)
+                            return
                         createRecipeModel(element)
-                        scrapedSimpleRecipesCount++
+                        scrapedRecipesCount++
                     }
+
                 }
-            }
-            if (scrapedSimpleRecipesCount >= MAX_RECIPE_LIMIT) {
-                return
             }
         } catch (e: Exception) {
             e.printStackTrace()
@@ -64,6 +64,7 @@ class ScraperService(
     @Scheduled(cron = "0 0 1 * * ?")
     fun getDelishRecipes() {
         val url = "https://www.delish.com/cooking/recipe-ideas/"
+        var scrapedRecipesCount = 0
         try {
             val doc: Document = Jsoup.connect(url).get()
             val scriptElement = doc.select("script[type=application/ld+json]").first()
@@ -79,12 +80,12 @@ class ScraperService(
 
                 val jsonParser = JsonParser()
                 val element = jsonParser.parse(scriptElement?.data()).asJsonObject
+                if (scrapedRecipesCount >= MAX_RECIPE_LIMIT)
+                    return
                 createRecipeModel(element)
-                scrapedDelishRecipesCount++
+                scrapedRecipesCount++
             }
-            if (scrapedDelishRecipesCount >= MAX_RECIPE_LIMIT) {
-                return
-            }
+
         } catch (e: Exception) {
             e.printStackTrace()
         }
@@ -117,11 +118,19 @@ class ScraperService(
         val jsonCategories = element.asJsonObject.get("recipeCategory").asJsonArray
         val categoryEntities = mutableListOf<Category>()
         for (element in jsonCategories) {
-            val jsonCategory = element.asString.replace("\"", "")
-            val category = Category(0, jsonCategory)
-            categoryEntities.add(category)
+            val jsonCategory = element.asString.replace("\"", "").toLowerCase()
+            val existingCategory = categoryRepository.findFirstByName(jsonCategory)
+            if (existingCategory == null) {
+                val newCategory = Category(0, jsonCategory)
+                categoryEntities.add(newCategory)
+            } else {
+                try {
+                    categoryEntities.add(existingCategory)
+                } catch (ex: NonUniqueResultException) {
+                    println("Non-unique category found: $jsonCategory")
+                }
+            }
         }
-        //TODO: Check duplicate categories
         categoryRepository.saveAll(categoryEntities)
         val jsonIngredients = element.asJsonObject.get("recipeIngredient").asJsonArray
         var ingredient = Ingredient(0, "")
@@ -129,6 +138,7 @@ class ScraperService(
             ingredient = Ingredient(0, element.asString.replace("\"", ""))
             ingredientRepository.save(ingredient)
         }
+
         val jsonInstructions = element.asJsonObject.get("recipeInstructions").asJsonArray
         val instructions = StringBuilder()
         for (element in jsonInstructions) {
@@ -144,6 +154,7 @@ class ScraperService(
                 instructions.append(instruction)
             }
         }
+
         val user = User(0, author, null, null, null, null, null)
         userRepository.save(user)
         val recipe = Recipe(
