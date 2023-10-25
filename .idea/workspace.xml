@@ -5,30 +5,42 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="75760713-3ba1-4d79-9cc6-88fff86e4ba7" name="Changes" comment="Initial SimpleRecipe scraper">
-      <change afterPath="$PROJECT_DIR$/backend/src/main/kotlin/com/cookbyte/backend/service/CategoryService.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/src/main/kotlin/com/cookbyte/backend/service/implementation/CategoryServiceImpl.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/5e4bca17-facc-4e08-b573-5d7d2c071a07.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/5e4bca17-facc-4e08-b573-5d7d2c071a07/storage_v2/_src_/database/cookbyte.UCxk3w.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/5e4bca17-facc-4e08-b573-5d7d2c071a07/storage_v2/_src_/database/cookbyte.UCxk3w/schema/information_schema.FNRwLQ.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/5e4bca17-facc-4e08-b573-5d7d2c071a07/storage_v2/_src_/database/cookbyte.UCxk3w/schema/pg_catalog.0S1ZNQ.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/5e4bca17-facc-4e08-b573-5d7d2c071a07/storage_v2/_src_/database/cookbyte.UCxk3w/schema/public.abK9xQ.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/6ffc493d-1774-4112-80f5-e6d60f29a6b5.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/6ffc493d-1774-4112-80f5-e6d60f29a6b5/storage_v2/_src_/database/cookbyte.UCxk3w.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/6ffc493d-1774-4112-80f5-e6d60f29a6b5/storage_v2/_src_/database/cookbyte.UCxk3w/schema/information_schema.FNRwLQ.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/6ffc493d-1774-4112-80f5-e6d60f29a6b5/storage_v2/_src_/database/cookbyte.UCxk3w/schema/pg_catalog.0S1ZNQ.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/6ffc493d-1774-4112-80f5-e6d60f29a6b5/storage_v2/_src_/database/cookbyte.UCxk3w/schema/public.abK9xQ.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/c7dbc70c-8f11-4f4e-8c5f-1c7a21b90732.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/c7dbc70c-8f11-4f4e-8c5f-1c7a21b90732/storage_v2/_src_/database/cookbyte.UCxk3w.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/c7dbc70c-8f11-4f4e-8c5f-1c7a21b90732/storage_v2/_src_/database/cookbyte.UCxk3w/schema/information_schema.FNRwLQ.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/c7dbc70c-8f11-4f4e-8c5f-1c7a21b90732/storage_v2/_src_/database/cookbyte.UCxk3w/schema/pg_catalog.0S1ZNQ.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/c7dbc70c-8f11-4f4e-8c5f-1c7a21b90732/storage_v2/_src_/database/cookbyte.UCxk3w/schema/public.abK9xQ.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/e1e7f1fe-c032-41bd-8e9d-8b51ca25016c.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/e1e7f1fe-c032-41bd-8e9d-8b51ca25016c.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/assets/images/logo.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/1713e821-608f-46e6-a2f3-f1a3020e6585.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/1713e821-608f-46e6-a2f3-f1a3020e6585.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/1b5d84bc-11e5-49fc-b92e-342f51693842.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/1b5d84bc-11e5-49fc-b92e-342f51693842/storage_v2/_src_/database/cookbyte.UCxk3w.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/1b5d84bc-11e5-49fc-b92e-342f51693842/storage_v2/_src_/database/cookbyte.UCxk3w/schema/information_schema.FNRwLQ.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/1b5d84bc-11e5-49fc-b92e-342f51693842/storage_v2/_src_/database/cookbyte.UCxk3w/schema/pg_catalog.0S1ZNQ.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/1b5d84bc-11e5-49fc-b92e-342f51693842/storage_v2/_src_/database/cookbyte.UCxk3w/schema/public.abK9xQ.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/70d959a9-8990-47b7-9a48-7c91404ecda3.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/70d959a9-8990-47b7-9a48-7c91404ecda3/storage_v2/_src_/database/cookbyte.UCxk3w.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/70d959a9-8990-47b7-9a48-7c91404ecda3/storage_v2/_src_/database/cookbyte.UCxk3w/schema/information_schema.FNRwLQ.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/70d959a9-8990-47b7-9a48-7c91404ecda3/storage_v2/_src_/database/cookbyte.UCxk3w/schema/pg_catalog.0S1ZNQ.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/70d959a9-8990-47b7-9a48-7c91404ecda3/storage_v2/_src_/database/cookbyte.UCxk3w/schema/public.abK9xQ.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/bd541af0-3942-4ceb-9c1b-401eb61d4393.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/bd541af0-3942-4ceb-9c1b-401eb61d4393/storage_v2/_src_/database/cookbyte.UCxk3w.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/bd541af0-3942-4ceb-9c1b-401eb61d4393/storage_v2/_src_/database/cookbyte.UCxk3w/schema/information_schema.FNRwLQ.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/bd541af0-3942-4ceb-9c1b-401eb61d4393/storage_v2/_src_/database/cookbyte.UCxk3w/schema/pg_catalog.0S1ZNQ.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/bd541af0-3942-4ceb-9c1b-401eb61d4393/storage_v2/_src_/database/cookbyte.UCxk3w/schema/public.abK9xQ.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/d0995267-3c1a-4475-8318-e395606baa83.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/d0995267-3c1a-4475-8318-e395606baa83/storage_v2/_src_/database/cookbyte.UCxk3w.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/d0995267-3c1a-4475-8318-e395606baa83/storage_v2/_src_/database/cookbyte.UCxk3w/schema/information_schema.FNRwLQ.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/d0995267-3c1a-4475-8318-e395606baa83/storage_v2/_src_/database/cookbyte.UCxk3w/schema/pg_catalog.0S1ZNQ.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/d0995267-3c1a-4475-8318-e395606baa83/storage_v2/_src_/database/cookbyte.UCxk3w/schema/public.abK9xQ.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/e1e7f1fe-c032-41bd-8e9d-8b51ca25016c.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/e1e7f1fe-c032-41bd-8e9d-8b51ca25016c/storage_v2/_src_/database/cookbyte.UCxk3w.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/e1e7f1fe-c032-41bd-8e9d-8b51ca25016c/storage_v2/_src_/database/cookbyte.UCxk3w/schema/information_schema.FNRwLQ.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/e1e7f1fe-c032-41bd-8e9d-8b51ca25016c/storage_v2/_src_/database/cookbyte.UCxk3w/schema/pg_catalog.0S1ZNQ.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/e1e7f1fe-c032-41bd-8e9d-8b51ca25016c/storage_v2/_src_/database/cookbyte.UCxk3w/schema/public.abK9xQ.meta" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/kotlin/com/cookbyte/backend/controllers/ScrapeController.kt" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/kotlin/com/cookbyte/backend/controllers/ScraperController.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/kotlin/com/cookbyte/backend/repository/CategoryRepository.kt" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/kotlin/com/cookbyte/backend/repository/CategoryRepository.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/kotlin/com/cookbyte/backend/service/scraper/ScraperService.kt" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/kotlin/com/cookbyte/backend/service/scraper/ScraperService.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/app/app.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/app.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/app/app.component.spec.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/app/app.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/app.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/app/app.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/app.module.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/styles.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -57,6 +69,7 @@
       <list>
         <option value="Kotlin Interface" />
         <option value="Kotlin Class" />
+        <option value="CSS File" />
       </list>
     </option>
   </component>
@@ -74,35 +87,43 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
-    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
-    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
-    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/Mateja/Desktop/mateja/praksa/Final project/EasyEats/EasyEats&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Libraries&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;project.kotlinCompiler&quot;,
-    &quot;spring.configuration.checksum&quot;: &quot;3241ca6184e7e06d7e2313367e60913a&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RequestMappingsPanelOrder0": "0",
+    "RequestMappingsPanelOrder1": "1",
+    "RequestMappingsPanelWidth0": "75",
+    "RequestMappingsPanelWidth1": "75",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "last_opened_file_path": "C:/Users/Mateja/Desktop/mateja/praksa/Final project/EasyEats/EasyEats",
+    "list.type.of.created.stylesheet": "CSS",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Libraries",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
+    "settings.editor.selected.configurable": "project.kotlinCompiler",
+    "spring.configuration.checksum": "3241ca6184e7e06d7e2313367e60913a",
+    "ts.external.directory.path": "C:\\Users\\Mateja\\Desktop\\CookByte\\frontend\\node_modules\\typescript\\lib",
+    "vue.rearranger.settings.migration": "true"
   },
-  &quot;keyToStringList&quot;: {
-    &quot;DatabaseDriversLRU&quot;: [
-      &quot;postgresql&quot;
+  "keyToStringList": {
+    "DatabaseDriversLRU": [
+      "postgresql"
     ]
   }
-}</component>
+}]]></component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Mateja\Desktop\CookByte\frontend\src\assets\images" />
+      <recent name="C:\Users\Mateja\Desktop\CookByte\frontend\src\app\components" />
+    </key>
+  </component>
   <component name="RunManager">
     <configuration name="BackendApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
       <module name="backend.main" />
@@ -125,7 +146,8 @@
       <workItem from="1697976726920" duration="2014000" />
       <workItem from="1697978792662" duration="8161000" />
       <workItem from="1698070557091" duration="15248000" />
-      <workItem from="1698173387751" duration="5288000" />
+      <workItem from="1698173387751" duration="5457000" />
+      <workItem from="1698255530184" duration="7723000" />
     </task>
     <servers />
   </component>
