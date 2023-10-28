@@ -40,20 +40,23 @@ class ScraperService(
                 val itemListElement = element.asJsonObject.get("itemListElement")
                 val list = itemListElement.asJsonArray
                 for (element in list) {
-                    val elementUrl = element.asJsonObject.get("url").toString().replace("\"", "")
+                    try {
+                        val elementUrl = element.asJsonObject.get("url").toString().replace("\"", "")
 
-                    val doc: Document = Jsoup.connect(elementUrl).get()
-                    val scriptElement = doc.select("script[type=application/ld+json]").first()
+                        val doc: Document = Jsoup.connect(elementUrl).get()
+                        val scriptElement = doc.select("script[type=application/ld+json]").first()
 
-                    val jsonParser = JsonParser()
-                    val jsonArray = jsonParser.parse(scriptElement?.data()).asJsonArray
-                    for (element in jsonArray) {
-                        if (scrapedRecipesCount >= MAX_RECIPE_LIMIT)
-                            return
-                        createRecipeModel(element)
-                        scrapedRecipesCount++
+                        val jsonParser = JsonParser()
+                        val jsonArray = jsonParser.parse(scriptElement?.data()).asJsonArray
+                        for (element in jsonArray) {
+                            if (scrapedRecipesCount >= MAX_RECIPE_LIMIT)
+                                return
+                            createRecipeModel(element)
+                            scrapedRecipesCount++
+                        }
+                    } catch (e: Exception) {
+                        e.printStackTrace()
                     }
-
                 }
             }
         } catch (e: Exception) {
@@ -74,18 +77,96 @@ class ScraperService(
 
             val list = jsonElement.asJsonObject.get("itemListElement").asJsonArray
             for (element in list) {
-                val elementUrl = element.asJsonObject.get("url").toString().replace("\"", "")
-                val doc: Document = Jsoup.connect(elementUrl).get()
-                val scriptElement = doc.select("script[type=application/ld+json]").first()
+                try {
+                    val elementUrl = element.asJsonObject.get("url").toString().replace("\"", "")
+                    val doc: Document = Jsoup.connect(elementUrl).get()
+                    val scriptElement = doc.select("script[type=application/ld+json]").first()
 
-                val jsonParser = JsonParser()
-                val element = jsonParser.parse(scriptElement?.data()).asJsonObject
-                if (scrapedRecipesCount >= MAX_RECIPE_LIMIT)
-                    return
-                createRecipeModel(element)
-                scrapedRecipesCount++
+                    val jsonParser = JsonParser()
+                    val element = jsonParser.parse(scriptElement?.data()).asJsonObject
+                    if (scrapedRecipesCount >= MAX_RECIPE_LIMIT)
+                        return
+                    createRecipeModel(element)
+                    scrapedRecipesCount++
+                } catch (e: Exception) {
+                    e.printStackTrace()
+                }
             }
 
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
+    }
+
+    @Scheduled(cron = "0 0 1 * * ?")
+    fun getAllBrunchAndBreakfastRecipes() {
+        val url = "https://www.allrecipes.com/recipes/78/breakfast-and-brunch/"
+        var scrapedRecipesCount = 0
+        try {
+            val doc: Document = Jsoup.connect(url).get()
+            val scriptElement = doc.select("script[type=application/ld+json]").first()
+
+            val jsonParser = JsonParser()
+            val jsonElement = jsonParser.parse(scriptElement?.data())
+
+            val jsonArray = jsonElement.asJsonArray.get(0)
+            val itemsList = jsonArray.asJsonObject.get("itemListElement").asJsonArray
+            for (element in itemsList) {
+                    try {
+                        val elementUrl = element.asJsonObject.get("url").toString().replace("\"", "")
+
+                        val doc: Document = Jsoup.connect(elementUrl).get()
+                        val scriptElement = doc.select("script[type=application/ld+json]").first()
+
+                        val jsonParser = JsonParser()
+                        val jsonArray = jsonParser.parse(scriptElement?.data()).asJsonArray
+                        for (element in jsonArray) {
+                            if (scrapedRecipesCount >= MAX_RECIPE_LIMIT)
+                                return
+                            createRecipeModel(element)
+                            scrapedRecipesCount++
+                        }
+                    } catch (e: Exception) {
+                        e.printStackTrace()
+                    }
+            }
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
+    }
+
+    @Scheduled(cron = "0 0 1 * * ?")
+    fun getAllLunchRecipes() {
+        val url = "https://www.allrecipes.com/recipes/17561/lunch/"
+        var scrapedRecipesCount = 0
+        try {
+            val doc: Document = Jsoup.connect(url).get()
+            val scriptElement = doc.select("script[type=application/ld+json]").first()
+
+            val jsonParser = JsonParser()
+            val jsonElement = jsonParser.parse(scriptElement?.data())
+
+            val jsonArray = jsonElement.asJsonArray.get(0)
+            val itemsList = jsonArray.asJsonObject.get("itemListElement").asJsonArray
+            for (element in itemsList) {
+                try {
+                    val elementUrl = element.asJsonObject.get("url").toString().replace("\"", "")
+
+                    val doc: Document = Jsoup.connect(elementUrl).get()
+                    val scriptElement = doc.select("script[type=application/ld+json]").first()
+
+                    val jsonParser = JsonParser()
+                    val jsonArray = jsonParser.parse(scriptElement?.data()).asJsonArray
+                    for (element in jsonArray) {
+                        if (scrapedRecipesCount >= MAX_RECIPE_LIMIT)
+                            return
+                        createRecipeModel(element)
+                        scrapedRecipesCount++
+                    }
+                } catch (e: Exception) {
+                    e.printStackTrace()
+                }
+            }
         } catch (e: Exception) {
             e.printStackTrace()
         }
@@ -105,7 +186,7 @@ class ScraperService(
         var imageUrl = ""
         if (element.asJsonObject.get("image").isJsonArray) {
             imageUrl = element.asJsonObject.get("image").asJsonArray.get(0).asJsonObject.get("url").toString()
-                .replace("\"", "") //!!!
+                .replace("\"", "")
         } else if (element.asJsonObject.get("image").isJsonObject) {
             imageUrl = element.asJsonObject.get("image").asJsonObject.get("url").toString().replace("\"", "")
         }
@@ -132,13 +213,6 @@ class ScraperService(
             }
         }
         categoryRepository.saveAll(categoryEntities)
-        val jsonIngredients = element.asJsonObject.get("recipeIngredient").asJsonArray
-        var ingredient = Ingredient(0, "")
-        for (element in jsonIngredients) {
-            ingredient = Ingredient(0, element.asString.replace("\"", ""))
-            ingredientRepository.save(ingredient)
-        }
-
         val jsonInstructions = element.asJsonObject.get("recipeInstructions").asJsonArray
         val instructions = StringBuilder()
         for (element in jsonInstructions) {
@@ -149,14 +223,27 @@ class ScraperService(
                     instruction = item.asJsonObject.get("text").toString().replace("\"", "")
                     instructions.append(instruction)
                 }
-            } else {
+            }
+            else {
                 instruction = element.asJsonObject.get("text").toString().replace("\"", "")
                 instructions.append(instruction)
             }
         }
 
-        val user = User(0, author, null, null, null, null, null)
-        userRepository.save(user)
+        var user = userRepository.findByFirstName(author)
+        if(user == null) {
+            val existingUser = userRepository.findByFirstName(author);
+            if (existingUser == null) {
+                user = User(0, author, null, null, null, null, null);
+                userRepository.save(user);
+            } else {
+                try {
+                    user = existingUser;
+                } catch (ex: NonUniqueResultException) {
+                    println("Non-unique user found: $user")
+                }
+            }
+        }
         val recipe = Recipe(
             0,
             title,
@@ -169,11 +256,15 @@ class ScraperService(
             carbohydrates,
             fats,
             proteins,
-            ingredient,
             instructions.toString()
         )
         recipe.setCategories(categoryEntities)
         recipeRepository.save(recipe)
+        val jsonIngredients = element.asJsonObject.get("recipeIngredient").asJsonArray
+        for (element in jsonIngredients) {
+            val ingredient = Ingredient(0, element.asString.replace("\"", ""), recipe)
+            ingredientRepository.save(ingredient)
+        }
         if (element.asJsonObject.has("review")) {
             val reviews = element.asJsonObject.get("review").asJsonArray
             var review = Review(0, null, null, null)
@@ -181,8 +272,20 @@ class ScraperService(
                 val reviewAuthor =
                     element.asJsonObject.get("author").asJsonObject.get("name").toString().replace("\"", "")
                 val reviewDescription = element.asJsonObject.get("reviewBody").toString().replace("\"", "")
-                val user = User(0, reviewAuthor, null, null, null, null, null)
-                userRepository.save(user)
+                var user = userRepository.findByFirstName(author)
+                if(user == null) {
+                    val existingUser = userRepository.findByFirstName(author);
+                    if (existingUser == null) {
+                        user = User(0, author, null, null, null, null, null);
+                        userRepository.save(user);
+                    } else {
+                        try {
+                            user = existingUser;
+                        } catch (ex: NonUniqueResultException) {
+                            println("Non-unique user found: $user")
+                        }
+                    }
+                }
                 review = Review(0, reviewDescription, user, recipe)
             }
             reviewRepository.save(review)

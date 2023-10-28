@@ -27,9 +27,6 @@ class Recipe(
     val fats: String,
     val proteins: String,
 
-    @ManyToOne
-    val ingredients: Ingredient,
-
     @Column(columnDefinition = "TEXT")
     val instructions: String,
 

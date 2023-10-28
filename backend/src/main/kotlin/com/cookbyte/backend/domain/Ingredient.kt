@@ -1,9 +1,6 @@
 package com.cookbyte.backend.domain
 
-import jakarta.persistence.Entity
-import jakarta.persistence.GeneratedValue
-import jakarta.persistence.GenerationType
-import jakarta.persistence.Id
+import jakarta.persistence.*
 
 @Entity
 class Ingredient(
@@ -11,5 +8,8 @@ class Ingredient(
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     val id: Long,
 
-    val name: String
+    val name: String,
+
+    @ManyToOne
+    val recipe: Recipe?
 )
