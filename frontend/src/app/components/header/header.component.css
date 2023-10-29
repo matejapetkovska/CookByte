@@ -1,0 +1,47 @@
+a {
+  text-decoration: none;
+}
+
+.nav-header {
+  background-color: rgba(0, 0, 0, 0.1);
+  box-shadow: 1px 3px 5px rgba(0, 0, 0, 0.2);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  width: 100%;
+}
+
+.nav-links > a,
+.nav-user-container > a {
+  font-size: 2rem;
+}
+.nav-links,
+.user-container {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.nav-links > a,
+.nav-user-container > a {
+  color: white;
+}
+.fa-circle-user {
+  font-size: 1.5rem;
+}
+.nav-user-container > a {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+}
+.nav-profile-picture {
+  display: none;
+  width: 35px;
+  background-color: black;
+  height: 35px;
+  border-radius: 50%;
+}

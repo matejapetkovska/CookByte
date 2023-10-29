@@ -1,18 +1,4 @@
-<nav class="nav-header">
-  <div class="nav-links">
-    <a href="#">Home</a>
-    <a href="#">About</a>
-    <a href="#">Meals</a>
-  </div>
-
-  <div class="nav-user-container">
-    <a href="#"
-    ><i class="fa-solid fa-circle-user"></i
-    ><img src="" alt="" class="nav-profile-picture"/>Login</a
-    >
-  </div>
-</nav>
-
+<app-header></app-header>
 <main>
   <section class="background-section">
     <div class="background-image"></div>
@@ -20,56 +6,25 @@
   <section class="content-section">
     <div class="text-over-image">
       <a href="#"> <img src="../../../assets/images/logo.png" alt="logo" class="logo"/></a>
-      <div class="welcome-text">Textt</div>
-      <button>Kopce</button>
+      <div class="welcome-text">Unlock the flavors of the world with CookByte, your go-to destination for all things
+        food. From gourmet delights to quick and easy meals, we've got something for every taste and skill level.
+        Join our passionate community of food enthusiasts and embark on a culinary journey like no other. Discover,
+        cook, and savor your way through a world of gastronomic wonders with CookByte.
+      </div>
+      <button (click)="onClick()">Get cooking</button>
     </div>
 
     <section class="cards-section">
-      <div class="cards-container">
+      <div class="cards-container" *ngFor="let recipe of recipes">
         <div class="card">
-          <a href="#"> <img src="/" alt="" class="card-img"/></a>
+          <a href="#"> <img src="{{recipe.imageUrl}}" alt="" class="card-img"/></a>
           <div class="card-title-description-container">
-            <a href="#"><h3 class="card-title">title</h3></a>
-            <p class="card-description">description</p>
-          </div>
-        </div>
-<!--        <div class="card">-->
-<!--          <a href="#"> <img src="/" alt="" class="card-img"/></a>-->
-<!--          <div class="card-title-description-container">-->
-<!--            <a href="#"><h3 class="card-title">title</h3></a>-->
-<!--            <p class="card-description">description</p>-->
-<!--          </div>-->
-<!--        </div>-->
-        <div class="card">
-          <a href="#"> <img src="/" alt="" class="card-img"/></a>
-          <div class="card-title-description-container">
-            <a href="#"><h3 class="card-title">title</h3></a>
-            <p class="card-description">description</p>
-          </div>
-        </div>
-        <div class="card">
-          <a href="#"> <img src="/" alt="" class="card-img"/></a>
-          <div class="card-title-description-container">
-            <a href="#"><h3 class="card-title">title</h3></a>
-            <p class="card-description">
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-              Tempore dolor modi voluptatum quisquam quidem incidunt vitae
-              optio, veritatis repudiandae dicta pariatur repellendus velit
-              accusamus sint nobis omnis? Veniam, alias!
-            </p>
+            <a href="#"><h3 class="card-title">{{recipe.title}}</h3></a>
+            <p class="card-description">{{recipe.description}}</p>
           </div>
         </div>
       </div>
     </section>
   </section>
 </main>
-
-<footer>
-  FOOTER
-  <!-- <div class="social-media-container">
-    <a href="#"><i class="fa-brands fa-facebook"></i></a>
-    <a href="#"><i class="fa-brands fa-square-x-twitter"></i></a>
-    <a href="#"> <i class="fa-brands fa-instagram"></i></a>
-    <a href="#"><i class="fa-solid fa-share-nodes"></i></a>
-  </div> -->
-</footer>
+<app-footer></app-footer>

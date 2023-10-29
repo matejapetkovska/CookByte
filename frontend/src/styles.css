@@ -4,6 +4,8 @@
   padding: 0;
   margin: 0;
   box-sizing: border-box;
+  --dark-blue: #02142D;
+  --light-blue: #CEE2FD;
 }
 
 body {

@@ -10,7 +10,9 @@ import org.springframework.web.bind.annotation.RestController
 @RequestMapping("/recipes")
 class RecipeController(val recipeService: RecipeService) {
     @GetMapping
-    fun getAllRecipes(): List<Recipe> {
-        return recipeService.findAll()
-    }
+    fun getAllRecipes(): List<Recipe> = recipeService.findAll()
+
+
+    @GetMapping("/mostFavourite")
+    fun getMostFavouriteRecipes(): List<Recipe> = recipeService.getMostFavouriteRecipes()
 }

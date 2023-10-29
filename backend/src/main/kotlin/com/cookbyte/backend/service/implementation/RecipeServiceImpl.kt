@@ -10,4 +10,10 @@ class RecipeServiceImpl(val recipeRepository: RecipeRepository) : RecipeService 
     override fun findAll(): List<Recipe> {
         return recipeRepository.findAll()
     }
+
+    override fun getMostFavouriteRecipes(): List<Recipe> {
+        val allRecipes = recipeRepository.findAll()
+        allRecipes.shuffle()
+        return allRecipes.take(3)
+    }
 }

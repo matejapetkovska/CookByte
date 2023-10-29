@@ -1,0 +1,14 @@
+<app-header></app-header>
+
+<main>
+  <div class="card-container">
+    <div *ngFor="let recipe of recipes" class="card">
+      <a [routerLink]="['/recipe', recipe.id]">
+        <img src="{{recipe.imageUrl}}"/></a>
+      <div class="category-details">
+        <span class="category-title">{{recipe.title}}</span>
+      </div>
+    </div>
+  </div>
+</main>
+
