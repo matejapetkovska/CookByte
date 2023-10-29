@@ -8,6 +8,7 @@ import {HttpClientModule} from "@angular/common/http";
 import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { AllRecipesComponent } from './components/all-recipes/all-recipes.component';
+import { AboutUsComponent } from './components/about-us/about-us.component';
 
 @NgModule({
   declarations: [
@@ -15,7 +16,8 @@ import { AllRecipesComponent } from './components/all-recipes/all-recipes.compon
     HomepageComponent,
     HeaderComponent,
     FooterComponent,
-    AllRecipesComponent
+    AllRecipesComponent,
+    AboutUsComponent
   ],
   imports: [
     BrowserModule,
