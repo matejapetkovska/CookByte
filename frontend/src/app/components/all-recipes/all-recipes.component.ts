@@ -18,6 +18,9 @@ export class AllRecipesComponent implements OnInit {
     this.recipeService.getAllRecipes().subscribe({
       next: (recipes) => {
         this.recipes = recipes
+        for(const recipe of this.recipes) {
+          recipe.title = this.recipeService.cleanText(recipe.title)
+        }
       }, error: () => {
         console.log("error")
       }
