@@ -8,7 +8,7 @@ class Recipe(
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     val id: Long,
 
-    val title: String,
+    var title: String,
 
     @ManyToOne
     val user: User?,
@@ -16,19 +16,19 @@ class Recipe(
     val datePublished: String,
 
     @Column(columnDefinition = "TEXT")
-    val description: String,
+    var description: String,
 
     @Column(columnDefinition = "TEXT")
-    val imageUrl: String,
+    var imageUrl: String,
 
-    val cookTime: Long,
-    val calories: String,
-    val carbohydrates: String,
-    val fats: String,
-    val proteins: String,
+    var cookTime: Long,
+    var calories: String,
+    var carbohydrates: String,
+    var fats: String,
+    var proteins: String,
 
     @Column(columnDefinition = "TEXT")
-    val instructions: String,
+    var instructions: String,
 
     @ManyToMany
     @JoinTable(

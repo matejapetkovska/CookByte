@@ -10,4 +10,8 @@ class CategoryServiceImpl(val categoryRepository: CategoryRepository): CategoryS
     override fun findFirstByName(name: String): Category? {
        return categoryRepository.findFirstByName(name)
     }
+
+    override fun findAllById(ids: List<Long>): Set<Category>? {
+        return categoryRepository.findAllById(ids)
+    }
 }
