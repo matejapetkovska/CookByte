@@ -8,4 +8,4 @@ spring:
     hibernate:
       ddl-auto: update
 upload:
-  directory: "C:\Users\Mateja\Desktop\CookByte\frontend\src\assets\user-uploaded-images"
+  directory: C:\Users\Mateja\Desktop\CookByte\frontend\src\assets\user-uploaded-images
