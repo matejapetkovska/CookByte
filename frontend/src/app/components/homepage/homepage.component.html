@@ -6,11 +6,6 @@
   <section class="content-section">
     <div class="text-over-image">
       <a href="#"> <img src="../../../assets/images/logo.png" alt="logo" class="logo"/></a>
-      <div class="welcome-text">Unlock the flavors of the world with CookByte, your go-to destination for all things
-        food. From gourmet delights to quick and easy meals, we've got something for every taste and skill level.
-        Join our passionate community of food enthusiasts and embark on a culinary journey like no other. Discover,
-        cook, and savor your way through a world of gastronomic wonders with CookByte.
-      </div>
       <button (click)="onClick()">Get cooking</button>
     </div>
 
@@ -18,10 +13,7 @@
       <div class="cards-container" *ngFor="let recipe of recipes">
         <div class="card">
           <a href="#"> <img src="{{recipe.imageUrl}}" alt="" class="card-img"/></a>
-          <div class="card-title-description-container">
-            <a href="#"><h3 class="card-title">{{recipe.title}}</h3></a>
-            <p class="card-description">{{recipe.description}}</p>
-          </div>
+          <a href="#"><h3 class="card-title">{{recipe.title}}</h3></a>
         </div>
       </div>
     </section>

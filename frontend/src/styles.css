@@ -6,11 +6,11 @@
   box-sizing: border-box;
   --dark-blue: #02142D;
   --light-blue: #CEE2FD;
+  font-family: "Montserrat", sans-serif;
 }
 
 body {
   min-width: 100%;
-  font-family: "Montserrat", sans-serif;
   display: flex;
   flex-direction: column;
 }

@@ -4,5 +4,5 @@ import com.cookbyte.backend.domain.Category
 
 interface CategoryService {
     fun findFirstByName(name: String): Category?
-    fun findAllById(ids: List<Long>): Set<Category>?
+    fun findAllByIds(categoryIds: List<Long>): Set<Category>?
 }

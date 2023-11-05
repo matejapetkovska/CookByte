@@ -11,5 +11,5 @@ class Ingredient(
     val name: String,
 
     @ManyToOne
-    val recipe: Recipe?
+    var recipe: Recipe?
 )

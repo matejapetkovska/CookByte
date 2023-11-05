@@ -7,3 +7,5 @@ spring:
     show-sql: true
     hibernate:
       ddl-auto: update
+upload:
+  directory: "C:\Users\Mateja\Desktop\CookByte\frontend\src\assets\user-uploaded-images"

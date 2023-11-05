@@ -17,10 +17,10 @@ img.logo {
 }
 
 .background-image {
-  background-image: url(https://images.pexels.com/photos/1640774/pexels-photo-1640774.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1);
+  background-image: url(https://images.unsplash.com/photo-1495214783159-3503fd1b572d?auto=format&fit=crop&q=80&w=1470&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D);
   background-size: cover;
   background-position: center top;
-  filter: blur(5px) brightness(70%);
+  filter: blur(5px) brightness(60%);
   width: 100%;
   height: 100%;
 }
@@ -57,7 +57,6 @@ img.logo {
   text-align: center;
   color: white;
   font-size: 1.5rem;
-  font-weight: 550;
 }
 
 .cards-section {
@@ -89,17 +88,17 @@ img.logo {
 }
 .card-title {
   color: white;
-  font-size: 1.5rem;
+  font-size: 1.3rem;
   overflow: auto;
-  height: 80px;
-  text-align: center;
-}
-.card-description {
-  color: white;
   height: 100px;
-  overflow: auto;
-  text-align: justify;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 0.3rem;
 }
+
+
 .card-title-description-container {
   padding: 0.5rem;
 }

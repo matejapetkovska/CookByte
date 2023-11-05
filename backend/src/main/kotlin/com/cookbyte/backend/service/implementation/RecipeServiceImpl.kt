@@ -1,18 +1,26 @@
 package com.cookbyte.backend.service.implementation
 
+import com.cookbyte.backend.domain.Category
 import com.cookbyte.backend.domain.Recipe
 import com.cookbyte.backend.domain.User
 import com.cookbyte.backend.repository.RecipeRepository
 import com.cookbyte.backend.service.CategoryService
 import com.cookbyte.backend.service.IngredientService
 import com.cookbyte.backend.service.RecipeService
+import org.springframework.beans.factory.annotation.Value
 import org.springframework.stereotype.Service
 import org.springframework.web.multipart.MultipartFile
 import java.nio.file.Files
 import java.nio.file.Paths
 
 @Service
-class RecipeServiceImpl(val recipeRepository: RecipeRepository, val categoryService: CategoryService, val ingredientService: IngredientService) : RecipeService {
+class RecipeServiceImpl(val recipeRepository: RecipeRepository,
+                        val categoryService: CategoryService,
+                        val ingredientService: IngredientService) : RecipeService {
+
+    @Value("\${upload.directory}")
+    private lateinit var uploadDirectory: String
+
     override fun findAll(): List<Recipe> {
         return recipeRepository.findAll()
     }
@@ -21,9 +29,11 @@ class RecipeServiceImpl(val recipeRepository: RecipeRepository, val categoryServ
         return recipeRepository.findById(recipeId).get()
     }
 
-    override fun findAllRecipesByCategory(categoryId: Long): List<Recipe>? {
-        return recipeRepository.findRecipesByCategoryId(categoryId)
+    override fun findCategoriesForRecipe(recipeId: Long): Set<Category>? {
+        val recipe = this.findRecipeById(recipeId)
+        return recipe?.categories
     }
+
 
     override fun findAllRecipesByUser(userId: Long): List<Recipe>? {
         return recipeRepository.findRecipesByUserId(userId)
@@ -50,9 +60,10 @@ class RecipeServiceImpl(val recipeRepository: RecipeRepository, val categoryServ
         ingredient: String,
         categoryIds: List<Long>
     ): Recipe? {
-        val categories = categoryService.findAllById(categoryIds).orEmpty()
+        val categories = categoryService.findAllByIds(categoryIds).orEmpty()
         val imagePath = generateRandomName() + ".jpg"
-        Files.copy(image.inputStream, Paths.get("CookByte\\frontend\\src\\assets\\user-uploaded-images", imagePath))
+        val imagePathWithDirectory = Paths.get(uploadDirectory, imagePath)
+        Files.copy(image.inputStream, imagePathWithDirectory)
         val recipe = Recipe(0, title, user, datePublished, description, imagePath, cookTime, calories, carbohydrates, fats, proteins, instructions, categories)
         this.ingredientService.addIngredient(ingredient, recipe)
         return recipeRepository.save(recipe)
@@ -71,7 +82,7 @@ class RecipeServiceImpl(val recipeRepository: RecipeRepository, val categoryServ
         fats: String,
         proteins: String,
         instructions: String,
-        ingredient: String,
+        ingredientIds: List<Long>,
         categoryIds: List<Long>
     ): Recipe? {
         val recipe = this.findRecipeById(id)
@@ -79,7 +90,8 @@ class RecipeServiceImpl(val recipeRepository: RecipeRepository, val categoryServ
             recipe.title = title
             recipe.description = description
             val imagePath = generateRandomName() + ".jpg"
-            Files.copy(image.inputStream, Paths.get("CookByte\\frontend\\src\\assets\\user-uploaded-images", imagePath))
+            val imagePathWithDirectory = Paths.get(uploadDirectory, imagePath)
+            Files.copy(image.inputStream, imagePathWithDirectory)
             recipe.imageUrl = imagePath
             recipe.cookTime = cookTime
             recipe.calories = calories
@@ -87,7 +99,28 @@ class RecipeServiceImpl(val recipeRepository: RecipeRepository, val categoryServ
             recipe.fats = fats
             recipe.proteins = proteins
             recipe.instructions = instructions
-            //TODO: Check categories and ingredients
+
+            val categories = recipe.categories.toMutableSet()
+            val existingCategories = categories.map { it.id }.toSet()
+            val addedCategories = categoryIds.filter { it !in existingCategories }
+            val removedCategories = existingCategories.filter { it !in categoryIds }
+            categories.addAll(categoryService.findAllByIds(addedCategories).orEmpty())
+            categories.removeAll { it.id in removedCategories }
+
+            val ingredients = ingredientService.findByRecipeId(id)
+            if(ingredients != null) {
+                val existingIngredients = ingredients.map { it.id }.toMutableList()
+                val addedIngredients = ingredientIds.filter { it !in existingIngredients }
+                val removedIngredients = existingIngredients.filter { it !in ingredientIds }
+                for (ingredientId in addedIngredients) {
+                    val ingredient = ingredientService.findById(ingredientId)
+                    ingredient?.recipe = recipe
+                    ingredient?.name?.let { ingredientService.addIngredient(it, recipe) }
+                }
+                for(ingredientId in removedIngredients) {
+                    ingredientService.deleteById(ingredientId)
+                }
+            }
             return recipeRepository.save(recipe)
         }
         return null

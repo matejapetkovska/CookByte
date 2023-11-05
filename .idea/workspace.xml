@@ -5,18 +5,18 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="75760713-3ba1-4d79-9cc6-88fff86e4ba7" name="Changes" comment="Initial SimpleRecipe scraper">
-      <change afterPath="$PROJECT_DIR$/backend/src/main/kotlin/com/cookbyte/backend/service/ReviewService.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/src/main/kotlin/com/cookbyte/backend/service/implementation/ReviewServiceImpl.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/kotlin/com/cookbyte/backend/domain/Recipe.kt" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/kotlin/com/cookbyte/backend/domain/Recipe.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/backend/src/main/kotlin/com/cookbyte/backend/repository/CategoryRepository.kt" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/kotlin/com/cookbyte/backend/repository/CategoryRepository.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/backend/src/main/kotlin/com/cookbyte/backend/repository/RecipeRepository.kt" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/kotlin/com/cookbyte/backend/repository/RecipeRepository.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/backend/src/main/kotlin/com/cookbyte/backend/service/CategoryService.kt" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/kotlin/com/cookbyte/backend/service/CategoryService.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/kotlin/com/cookbyte/backend/service/IngredientService.kt" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/kotlin/com/cookbyte/backend/service/IngredientService.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/backend/src/main/kotlin/com/cookbyte/backend/service/RecipeService.kt" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/kotlin/com/cookbyte/backend/service/RecipeService.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/backend/src/main/kotlin/com/cookbyte/backend/service/implementation/CategoryServiceImpl.kt" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/kotlin/com/cookbyte/backend/service/implementation/CategoryServiceImpl.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/kotlin/com/cookbyte/backend/service/implementation/IngredientServiceImpl.kt" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/kotlin/com/cookbyte/backend/service/implementation/IngredientServiceImpl.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/backend/src/main/kotlin/com/cookbyte/backend/service/implementation/RecipeServiceImpl.kt" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/kotlin/com/cookbyte/backend/service/implementation/RecipeServiceImpl.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/resources/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/app/components/header/header.component.css" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/components/header/header.component.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/app/components/homepage/homepage.component.css" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/components/homepage/homepage.component.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/app/components/homepage/homepage.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/components/homepage/homepage.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/styles.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -75,7 +75,7 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "C:/Users/Mateja/Desktop/mateja/praksa/Final project/EasyEats/EasyEats",
+    "last_opened_file_path": "C:/Users/Mateja/Desktop/CookByte",
     "list.type.of.created.stylesheet": "CSS",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
@@ -133,7 +133,8 @@
       <workItem from="1698489506961" duration="10227000" />
       <workItem from="1698576867445" duration="12702000" />
       <workItem from="1698607166158" duration="3748000" />
-      <workItem from="1698779878380" duration="5832000" />
+      <workItem from="1698779878380" duration="6108000" />
+      <workItem from="1699110234471" duration="6084000" />
     </task>
     <servers />
   </component>

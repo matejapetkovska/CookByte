@@ -3,7 +3,7 @@ a {
 }
 
 .nav-header {
-  background-color: rgba(0, 0, 0, 0.1);
+  background-color: rgba(124, 150, 171, 0.5);
   box-shadow: 1px 3px 5px rgba(0, 0, 0, 0.2);
   display: flex;
   justify-content: space-between;

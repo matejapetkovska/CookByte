@@ -6,6 +6,5 @@ import org.springframework.stereotype.Repository
 
 @Repository
 interface RecipeRepository: JpaRepository<Recipe, Long> {
-    fun findRecipesByCategoryId(categoryId: Long): List<Recipe>?
     fun findRecipesByUserId(userId: Long): List<Recipe>?
 }

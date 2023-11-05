@@ -11,7 +11,7 @@ class CategoryServiceImpl(val categoryRepository: CategoryRepository): CategoryS
        return categoryRepository.findFirstByName(name)
     }
 
-    override fun findAllById(ids: List<Long>): Set<Category>? {
-        return categoryRepository.findAllById(ids)
+    override fun findAllByIds(categoryIds: List<Long>): Set<Category>? {
+        return categoryRepository.findAllByIds(categoryIds)
     }
 }
