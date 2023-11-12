@@ -4,13 +4,24 @@
   padding: 0;
   margin: 0;
   box-sizing: border-box;
-  --dark-blue: #02142D;
-  --light-blue: #CEE2FD;
   font-family: "Montserrat", sans-serif;
 }
 
+:root {
+  --olive-green: #bfccb5;
+  --blue: #7c96ab;
+  --gray: #b7b7b7;
+  --peach: #edc6b1;
+  --white-text: #e9e9e9;
+  --dark-blue: #02142D;
+  --light-blue: #CEE2FD;
+}
+
 body {
-  min-width: 100%;
+  min-width: 100vw;
+  min-height: 100vh;
+  font-family: "Montserrat", sans-serif;
+  overflow-x: hidden;
   display: flex;
   flex-direction: column;
 }

@@ -8,6 +8,7 @@ class RegisterRequest(
     val lastName: String,
     val username: String,
     val email: String,
-    val password: String
+    val password: String,
+    val image: String?
 ) {
 }

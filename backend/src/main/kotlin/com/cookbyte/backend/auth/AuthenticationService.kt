@@ -3,6 +3,7 @@ package com.cookbyte.backend.auth
 import com.cookbyte.backend.configurations.JwtService
 import com.cookbyte.backend.domain.User
 import com.cookbyte.backend.repository.UserRepository
+import com.cookbyte.backend.service.UserService
 import lombok.RequiredArgsConstructor
 import org.springframework.security.authentication.AuthenticationManager
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken
@@ -11,32 +12,57 @@ import org.springframework.stereotype.Service
 
 @Service
 @RequiredArgsConstructor
-class AuthenticationService(private final val userRepository: UserRepository,
-    private final val passwordEncoder: PasswordEncoder,
-    private final val jwtService: JwtService,
-    private final val authenticationManager: AuthenticationManager) {
+class AuthenticationService(
+    private val userRepository: UserRepository,
+    private val userService: UserService,
+    private val passwordEncoder: PasswordEncoder,
+    private val jwtService: JwtService,
+    private val authenticationManager: AuthenticationManager
+) {
 
-    fun register(request: RegisterRequest): AuthenticationResponse{
-        val user = User(
-            id = 0,
-            firstName = request.firstName,
-            lastName = request.lastName,
-            email = request.email,
-            username = request.username,
-            password = passwordEncoder.encode(request.password),
-            image = "default_profile_picture.jpg"
-        )
+    fun register(request: RegisterRequest): AuthenticationResponse {
+        var user: User
+        if (request.image != null) {
+            //val userImage = userService.createUserImage(request.image)
+            //TODO: User image
+            user = User(
+                id = 0,
+                firstName = request.firstName,
+                lastName = request.lastName,
+                email = request.email,
+                username = request.username,
+                password = passwordEncoder.encode(request.password),
+                image = request.image
+            )
+        } else {
+            user = User(
+                id = 0,
+                firstName = request.firstName,
+                lastName = request.lastName,
+                email = request.email,
+                username = request.username,
+                password = passwordEncoder.encode(request.password),
+                image = "default-user-image.png"
+            )
+        }
         userRepository.save(user)
         val jwtToken = jwtService.generateToken(user)
         return AuthenticationResponse(jwtToken)
     }
 
-    fun authenticate(request: AuthenticationRequest): AuthenticationResponse{
+    fun authenticate(request: AuthenticationRequest): AuthenticationResponse {
         authenticationManager.authenticate(
             UsernamePasswordAuthenticationToken(request.username, request.password)
         )
         val user = userRepository.findByUsername(request.username) ?: throw NoSuchElementException()
         val jwtToken = jwtService.generateToken(user)
         return AuthenticationResponse(jwtToken)
+    }
+
+    fun generateRandomName(): String {
+        val allowedChars = listOf(('a'..'z'),('A'..'Z'),(0..9))
+        return (1..8)
+            .map { allowedChars.random() }
+            .joinToString("")
     }
 }
