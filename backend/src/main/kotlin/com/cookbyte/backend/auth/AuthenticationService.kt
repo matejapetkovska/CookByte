@@ -9,6 +9,7 @@ import org.springframework.security.authentication.AuthenticationManager
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken
 import org.springframework.security.crypto.password.PasswordEncoder
 import org.springframework.stereotype.Service
+import org.springframework.web.multipart.MultipartFile
 
 @Service
 @RequiredArgsConstructor
@@ -23,8 +24,7 @@ class AuthenticationService(
     fun register(request: RegisterRequest): AuthenticationResponse {
         var user: User
         if (request.image != null) {
-            //val userImage = userService.createUserImage(request.image)
-            //TODO: User image
+            val userImage = userService.createUserImage(request.image)
             user = User(
                 id = 0,
                 firstName = request.firstName,
@@ -32,7 +32,7 @@ class AuthenticationService(
                 email = request.email,
                 username = request.username,
                 password = passwordEncoder.encode(request.password),
-                image = request.image
+                image = userImage
             )
         } else {
             user = User(
@@ -57,12 +57,5 @@ class AuthenticationService(
         val user = userRepository.findByUsername(request.username) ?: throw NoSuchElementException()
         val jwtToken = jwtService.generateToken(user)
         return AuthenticationResponse(jwtToken)
-    }
-
-    fun generateRandomName(): String {
-        val allowedChars = listOf(('a'..'z'),('A'..'Z'),(0..9))
-        return (1..8)
-            .map { allowedChars.random() }
-            .joinToString("")
     }
 }

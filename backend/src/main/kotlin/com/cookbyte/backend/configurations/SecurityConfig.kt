@@ -19,7 +19,9 @@ class SecurityConfig(
 ) {
     @Bean
     fun securityFilterChain(httpSecurity: HttpSecurity): SecurityFilterChain {
-        httpSecurity.csrf { it.disable() }.cors { }
+        httpSecurity
+            .csrf { it.disable() }
+            .cors { }
             .authorizeHttpRequests { authorize ->
                 authorize.requestMatchers("/api/auth/**", "/recipes/mostFavourite", "/recipes").permitAll().anyRequest().authenticated()
             }

@@ -6,5 +6,5 @@ import org.springframework.web.multipart.MultipartFile
 interface UserService {
     fun findByFirstName(firstName: String): User?
     fun findByUsername(username: String): User?
-    fun createUserImage(image: MultipartFile)
+    fun createUserImage(image: MultipartFile): String?
 }

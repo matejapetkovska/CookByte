@@ -23,10 +23,11 @@ class UserServiceImpl(val userRepository: UserRepository): UserService {
         return userRepository.findByUsername(username)
     }
 
-    override fun createUserImage(image: MultipartFile) {
+    override fun createUserImage(image: MultipartFile): String? {
         val imagePath = generateRandomName() + ".jpg"
         val imagePathWithDirectory = Paths.get(uploadDirectory, imagePath)
         Files.copy(image.inputStream, imagePathWithDirectory)
+        return imagePath
     }
 
     fun generateRandomName(): String {

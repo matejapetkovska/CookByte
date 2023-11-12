@@ -1,6 +1,7 @@
 package com.cookbyte.backend.auth
 
 import lombok.Data
+import org.springframework.web.multipart.MultipartFile
 
 @Data
 class RegisterRequest(
@@ -9,6 +10,6 @@ class RegisterRequest(
     val username: String,
     val email: String,
     val password: String,
-    val image: String?
-) {
-}
+    val image: MultipartFile?
+)
+//TODO: Turn this into form-data
