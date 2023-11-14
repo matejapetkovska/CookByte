@@ -1,0 +1,75 @@
+<main>
+  <div class="background-container"></div>
+  <div class="form-img-container">
+    <form class="register-form" enctype="multipart/form-data">
+      <label for="first-name"><input
+        type="text"
+        id="first-name"
+        name="first-name"
+        placeholder="First name"
+        [(ngModel)]="firstName"
+        required/></label>
+      <label for="last-name">
+        <input
+          type="text"
+          id="last-name"
+          name="last-name"
+          placeholder="Last name"
+          [(ngModel)]="lastName"
+          required/>
+      </label>
+      <label for="username">
+        <input
+          type="text"
+          id="username"
+          name="username"
+          placeholder="Username"
+          [(ngModel)]="username"
+          required/>
+      </label>
+      <label for="password">
+        <input
+          type="password"
+          id="password"
+          name="password"
+          placeholder="Password"
+          [(ngModel)]="password"
+          required/>
+      </label>
+      <label for="repeat-password">
+        <input
+          type="password"
+          id="repeat-password"
+          name="repeat-password"
+          placeholder="Repeat password"
+          required/>
+      </label>
+      <label for="email">
+        <input
+          type="email"
+          id="email"
+          name="email"
+          placeholder="Email"
+          [(ngModel)]="email"
+          required/>
+      </label>
+      <label for="image">
+        <input
+          type="file"
+          id="image"
+          name="image"
+          placeholder="Image"
+          accept="image/*"
+          (change)="onFileChange($event)"/>
+      </label>
+
+      <div *ngIf="errorMessage" class="error-message">
+        {{ errorMessage }}
+      </div>
+
+      <p>Already have an account? <a href="/login">Login</a></p>
+      <button type="submit" (click)="onSubmit()">Register</button>
+    </form>
+    <img src="assets/images/kelnerka.png" alt="" class="kelner"/>
+  </div>
+</main>
