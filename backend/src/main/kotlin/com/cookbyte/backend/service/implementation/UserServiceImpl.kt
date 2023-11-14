@@ -31,9 +31,11 @@ class UserServiceImpl(val userRepository: UserRepository): UserService {
     }
 
     fun generateRandomName(): String {
-        val allowedChars = listOf(('a'..'z'),('A'..'Z'),(0..9))
-        return (1..8)
-            .map { allowedChars.random() }
-            .joinToString("")
+        val name = StringBuilder()
+        val allowedChars = listOf(('a'..'z'),('A'..'Z'),(0..9)).flatten().random()
+        for(i in 1..8) {
+            name.append(allowedChars)
+        }
+        return name.toString()
     }
 }

@@ -20,30 +20,19 @@ class AuthenticationService(
     private val jwtService: JwtService,
     private val authenticationManager: AuthenticationManager
 ) {
-
-    fun register(request: RegisterRequest): AuthenticationResponse {
-        var user: User
-        if (request.image != null) {
-            val userImage = userService.createUserImage(request.image)
-            user = User(
-                id = 0,
-                firstName = request.firstName,
-                lastName = request.lastName,
-                email = request.email,
-                username = request.username,
-                password = passwordEncoder.encode(request.password),
-                image = userImage
-            )
+    fun register(
+        firstName: String,
+        lastName: String,
+        username: String,
+        email: String,
+        password: String,
+        image: MultipartFile?
+    ): AuthenticationResponse {
+        val user = if (image != null) {
+            val userImage = userService.createUserImage(image)
+            User(0, firstName, lastName, username, email, passwordEncoder.encode(password), userImage)
         } else {
-            user = User(
-                id = 0,
-                firstName = request.firstName,
-                lastName = request.lastName,
-                email = request.email,
-                username = request.username,
-                password = passwordEncoder.encode(request.password),
-                image = "default-user-image.png"
-            )
+            User(0, firstName, lastName, username, email, passwordEncoder.encode(password), "default-user-image.png")
         }
         userRepository.save(user)
         val jwtToken = jwtService.generateToken(user)
@@ -57,5 +46,22 @@ class AuthenticationService(
         val user = userRepository.findByUsername(request.username) ?: throw NoSuchElementException()
         val jwtToken = jwtService.generateToken(user)
         return AuthenticationResponse(jwtToken)
+    }
+
+    fun isValidEmail(email: String): Boolean {
+        val emailRegex = Regex("^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}\$")
+        return email.matches(emailRegex)
+    }
+
+    fun isValidPassword(password: String): Boolean {
+        val passwordRegex = Regex("^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[!@#\$%^&*()_+]).{8,}\$\n")
+        return password.matches(passwordRegex)
+    }
+    fun usernameAlreadyExists(username: String): Boolean {
+        return userRepository.findByUsername(username) != null
+    }
+
+    fun emailAlreadyExists(email: String): Boolean {
+        return userRepository.findByEmail(email) != null
     }
 }
