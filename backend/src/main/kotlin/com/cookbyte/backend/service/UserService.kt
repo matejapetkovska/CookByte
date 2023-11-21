@@ -7,4 +7,5 @@ interface UserService {
     fun findByFirstName(firstName: String): User?
     fun findByUsername(username: String): User?
     fun createUserImage(image: MultipartFile): String?
+    fun getUserFromToken(token: String): User?
 }

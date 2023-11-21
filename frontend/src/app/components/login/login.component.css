@@ -93,3 +93,7 @@ label > input:focus-visible {
 p {
   font-size: 12px;
 }
+
+.error-message {
+  color: darkred;
+}

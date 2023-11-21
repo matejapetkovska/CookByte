@@ -1,5 +1,6 @@
 package com.cookbyte.backend.service.implementation
 
+import com.cookbyte.backend.configurations.JwtService
 import com.cookbyte.backend.domain.User
 import com.cookbyte.backend.repository.UserRepository
 import com.cookbyte.backend.service.UserService
@@ -10,7 +11,7 @@ import java.nio.file.Files
 import java.nio.file.Paths
 
 @Service
-class UserServiceImpl(val userRepository: UserRepository): UserService {
+class UserServiceImpl(val userRepository: UserRepository, val jwtService: JwtService): UserService {
 
     @Value("\${upload.directory}")
     private lateinit var uploadDirectory: String
@@ -28,6 +29,12 @@ class UserServiceImpl(val userRepository: UserRepository): UserService {
         val imagePathWithDirectory = Paths.get(uploadDirectory, imagePath)
         Files.copy(image.inputStream, imagePathWithDirectory)
         return imagePath
+    }
+
+    override fun getUserFromToken(token: String): User? {
+        println(token)
+        println(userRepository.findByUsername(jwtService.extractUsername(token)))
+        return userRepository.findByUsername(jwtService.extractUsername(token))
     }
 
     fun generateRandomName(): String {

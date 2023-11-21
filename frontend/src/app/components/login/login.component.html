@@ -21,6 +21,10 @@
         required/>
       </label>
 
+      <div *ngIf="errorMessage" class="error-message">
+        {{ errorMessage }}
+      </div>
+
       <p>Don't have an account yet? <a href="/register">Register</a></p>
       <button type="submit" (click)="onSubmit()">Login</button>
 

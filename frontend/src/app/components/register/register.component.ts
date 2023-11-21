@@ -44,6 +44,7 @@ export class RegisterComponent {
         this.router.navigate(['recipes'])
       },
       error: (error: HttpErrorResponse) => {
+        console.log(error)
         this.errorMessage = error.error.message
       }
     })

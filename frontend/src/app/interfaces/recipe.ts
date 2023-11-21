@@ -1,3 +1,5 @@
+import {Category} from "./category";
+
 export interface Recipe {
   id: number,
   title: string,
@@ -11,5 +13,5 @@ export interface Recipe {
   fats: string,
   proteins: string,
   instructions: string,
-  categories: string //change
+  categories: Category[]
 }

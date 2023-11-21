@@ -5,9 +5,25 @@
     <a href="/recipes">Meals</a>
   </div>
 
-  <div class="nav-user-container">
-    <a href="/login">
-      <i class="fa-solid fa-circle-user"></i>
-      <img src="" alt="" class="nav-profile-picture"/>Login</a>
+<!--  <div *ngIf="user." class="nav-user-container">-->
+<!--    <a href="/login">-->
+<!--      <i class="fa-solid fa-circle-user"></i>-->
+<!--      <img src="" alt="" class="nav-profile-picture"/>Login</a>-->
+<!--  </div>-->
+  <div *ngIf="user; else notLoggedIn" class="nav-user-container">
+    <a href="/profile">
+      <img src="user-profile-picture.jpg" alt="User Profile Picture" class="nav-profile-picture"/>
+      {{ user?.userName }}
+    </a>
   </div>
+
+  <ng-template #notLoggedIn>
+    <div class="nav-user-container">
+      <a href="/login">
+        <i class="fa-solid fa-circle-user"></i>
+        <img src="" alt="" class="nav-profile-picture"/>Login
+      </a>
+    </div>
+  </ng-template>
+
 </nav>

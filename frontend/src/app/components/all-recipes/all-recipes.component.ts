@@ -10,6 +10,7 @@ import {Recipe} from "../../interfaces/recipe";
 export class AllRecipesComponent implements OnInit {
 
   recipes: Recipe[] | undefined
+  randomRecipe: Recipe | undefined
 
   constructor(private recipeService: RecipeService) {
   }
@@ -18,6 +19,8 @@ export class AllRecipesComponent implements OnInit {
     this.recipeService.getAllRecipes().subscribe({
       next: (recipes) => {
         this.recipes = recipes
+        this.randomRecipe = this.recipes[Math.floor(Math.random() * this.recipes.length)];
+        console.log(this.randomRecipe)
         for(const recipe of this.recipes) {
           recipe.title = this.recipeService.cleanText(recipe.title)
         }

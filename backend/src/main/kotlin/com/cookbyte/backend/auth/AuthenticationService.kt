@@ -26,14 +26,23 @@ class AuthenticationService(
         username: String,
         email: String,
         password: String,
-        image: MultipartFile?
+        image: MultipartFile
     ): AuthenticationResponse {
-        val user = if (image != null) {
-            val userImage = userService.createUserImage(image)
-            User(0, firstName, lastName, username, email, passwordEncoder.encode(password), userImage)
-        } else {
-            User(0, firstName, lastName, username, email, passwordEncoder.encode(password), "default-user-image.png")
-        }
+        val userImage = userService.createUserImage(image)
+        val user = User(0, firstName, lastName, username, email, passwordEncoder.encode(password), userImage)
+        userRepository.save(user)
+        val jwtToken = jwtService.generateToken(user)
+        return AuthenticationResponse(jwtToken)
+    }
+
+    fun registerWithoutImage(
+        firstName: String,
+        lastName: String,
+        username: String,
+        email: String,
+        password: String
+    ): AuthenticationResponse {
+        val user = User(0, firstName, lastName, username, email, passwordEncoder.encode(password), "default-user-image.png")
         userRepository.save(user)
         val jwtToken = jwtService.generateToken(user)
         return AuthenticationResponse(jwtToken)
@@ -57,6 +66,7 @@ class AuthenticationService(
         val passwordRegex = Regex("^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[!@#\$%^&*()_+]).{8,}\$\n")
         return password.matches(passwordRegex)
     }
+
     fun usernameAlreadyExists(username: String): Boolean {
         return userRepository.findByUsername(username) != null
     }

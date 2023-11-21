@@ -8,6 +8,8 @@ import io.jsonwebtoken.security.Keys
 import org.springframework.security.core.userdetails.UserDetails
 import org.springframework.stereotype.Service
 import java.security.Key
+import java.time.Instant
+import java.time.temporal.ChronoUnit
 import java.util.*
 import java.util.function.Function
 import kotlin.collections.HashMap
@@ -15,14 +17,14 @@ import kotlin.collections.HashMap
 @Service
 class JwtService {
 
-    private final val SECRET_KEY = "32386434666138656233303061623163613465663431636336633936633038303534653464636639323433303136623935333734363839396433343765333330"
+    private final val SECRET_KEY = "563CB9B3E9ED1498C7AC6A6C7D0C37E2F5B16162B54A8981B1599D59B0373A07"
     fun extractUsername(token: String): String {
         return extractClaim(token, Claims::getSubject)
     }
 
-    fun <T> extractClaim(token: String, claimsResolver: Function<Claims, T>): T {
-        val claims = extractAllClaimes(token)
-        return claimsResolver.apply(claims)
+    fun <T> extractClaim(token: String, claimsResolver: (Claims) -> T): T {
+        val claims = extractAllClaims(token)
+        return claimsResolver.invoke(claims)
     }
 
     fun generateToken(userDetails: UserDetails): String {
@@ -34,15 +36,15 @@ class JwtService {
             .builder()
             .setClaims(extraClaims)
             .setSubject(userDetails.username)
-            .setIssuedAt(Date(System.currentTimeMillis()))
-            .setExpiration(Date(System.currentTimeMillis() + 1000 * 60 * 24))
+            .setIssuedAt(Date.from(Instant.now()))
+            .setExpiration(Date.from(Instant.now().plus(3, ChronoUnit.DAYS)))
             .signWith(getSignInKey(), SignatureAlgorithm.HS256)
             .compact()
     }
 
     fun isTokenValid(token: String, userDetails: UserDetails): Boolean {
         val username = extractUsername(token)
-        return (username.equals(userDetails.username)) && !isTokenExpired(token)
+        return username == userDetails.username && !isTokenExpired(token)
     }
 
     private fun isTokenExpired(token: String): Boolean {
@@ -53,13 +55,13 @@ class JwtService {
         return extractClaim(token, Claims::getExpiration)
     }
 
-    private fun extractAllClaimes(token: String): Claims {
+    private fun extractAllClaims(token: String): Claims {
         return Jwts
             .parserBuilder()
             .setSigningKey(getSignInKey())
             .build()
             .parseClaimsJws(token)
-            .getBody()
+            .body
     }
 
     private fun getSignInKey(): Key {

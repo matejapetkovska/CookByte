@@ -16,18 +16,20 @@ export class LoginComponent {
     password: ''
   }
 
+  errorMessage = ''
+
   constructor(private authService: AuthService, private router: Router) {
   }
 
   onSubmit() {
     this.authService.login(this.request).subscribe({
-      next:(response) => {
+      next: (response) => {
         localStorage.setItem('token', response.token)
         this.router.navigate(['recipes'])
       },
-      error:(error: HttpErrorResponse) => {
-        error.error.message = "User not logged in."
-    }
+      error: (error: HttpErrorResponse) => {
+        this.errorMessage = error.error.message
+      }
     })
   }
 }

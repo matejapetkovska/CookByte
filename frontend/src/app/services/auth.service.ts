@@ -30,4 +30,8 @@ export class AuthService {
     this.isAuthenticatedSubject.next(true)
     return this.httpClient.post<AuthenticationResponse>(`${this.url}/authenticate`, request, {headers})
   }
+
+  isAuthenticated$(): Observable<boolean> {
+    return this.isAuthenticatedSubject.asObservable();
+  }
 }
