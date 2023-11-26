@@ -12,6 +12,7 @@ import { AboutUsComponent } from './components/about-us/about-us.component';
 import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
 import {FormsModule} from "@angular/forms";
+import { RecipeDetailsComponent } from './components/recipe-details/recipe-details.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import {FormsModule} from "@angular/forms";
     AllRecipesComponent,
     AboutUsComponent,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    RecipeDetailsComponent
   ],
   imports: [
     BrowserModule,

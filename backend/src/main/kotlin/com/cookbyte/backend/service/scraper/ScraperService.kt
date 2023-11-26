@@ -6,6 +6,7 @@ import com.cookbyte.backend.domain.*
 import com.cookbyte.backend.repository.*
 import com.google.gson.JsonElement
 import com.google.gson.JsonParser
+import com.sun.jdi.IntegerValue
 import jakarta.persistence.NonUniqueResultException
 import org.jsoup.Jsoup
 import org.jsoup.nodes.Document
@@ -112,23 +113,23 @@ class ScraperService(
             val jsonArray = jsonElement.asJsonArray.get(0)
             val itemsList = jsonArray.asJsonObject.get("itemListElement").asJsonArray
             for (element in itemsList) {
-                    try {
-                        val elementUrl = element.asJsonObject.get("url").toString().replace("\"", "")
+                try {
+                    val elementUrl = element.asJsonObject.get("url").toString().replace("\"", "")
 
-                        val doc: Document = Jsoup.connect(elementUrl).get()
-                        val scriptElement = doc.select("script[type=application/ld+json]").first()
+                    val doc: Document = Jsoup.connect(elementUrl).get()
+                    val scriptElement = doc.select("script[type=application/ld+json]").first()
 
-                        val jsonParser = JsonParser()
-                        val jsonArray = jsonParser.parse(scriptElement?.data()).asJsonArray
-                        for (element in jsonArray) {
-                            if (scrapedRecipesCount >= MAX_RECIPE_LIMIT)
-                                return
-                            createRecipeModel(element)
-                            scrapedRecipesCount++
-                        }
-                    } catch (e: Exception) {
-                        e.printStackTrace()
+                    val jsonParser = JsonParser()
+                    val jsonArray = jsonParser.parse(scriptElement?.data()).asJsonArray
+                    for (element in jsonArray) {
+                        if (scrapedRecipesCount >= MAX_RECIPE_LIMIT)
+                            return
+                        createRecipeModel(element)
+                        scrapedRecipesCount++
                     }
+                } catch (e: Exception) {
+                    e.printStackTrace()
+                }
             }
         } catch (e: Exception) {
             e.printStackTrace()
@@ -174,6 +175,13 @@ class ScraperService(
 
     fun createRecipeModel(element: JsonElement) {
         val title = element.asJsonObject.get("headline").toString().replace("\"", "")
+
+        val existingRecipe = recipeRepository.findRecipeByTitle(title)
+        if (existingRecipe != null) {
+            println("Recipe with title '$title' already exists. Skipping...")
+            return
+        }
+
         var author = ""
         if (element.asJsonObject.get("author").isJsonArray) {
             author = element.asJsonObject.get("author").asJsonArray.get(0).asJsonObject.get("name").toString()
@@ -223,15 +231,14 @@ class ScraperService(
                     instruction = item.asJsonObject.get("text").toString().replace("\"", "")
                     instructions.append(instruction)
                 }
-            }
-            else {
+            } else {
                 instruction = element.asJsonObject.get("text").toString().replace("\"", "")
                 instructions.append(instruction)
             }
         }
 
         var user = userRepository.findByFirstName(author)
-        if(user == null) {
+        if (user == null) {
             val existingUser = userRepository.findByFirstName(author);
             if (existingUser == null) {
                 user = User(0, author, null, null, null, null, null);
@@ -265,31 +272,31 @@ class ScraperService(
             val ingredient = Ingredient(0, element.asString.replace("\"", ""), recipe)
             ingredientRepository.save(ingredient)
         }
+        var review = Review(0, "", null, recipe, 0)
         if (element.asJsonObject.has("review")) {
             val reviews = element.asJsonObject.get("review").asJsonArray
-            var review = Review(0, null, null, null)
+            val reviewList = mutableListOf<Review>()
             for (element in reviews) {
-                val reviewAuthor =
-                    element.asJsonObject.get("author").asJsonObject.get("name").toString().replace("\"", "")
+                val reviewAuthor = element.asJsonObject.get("author").asJsonObject.get("name").toString().replace("\"", "")
                 val reviewDescription = element.asJsonObject.get("reviewBody").toString().replace("\"", "")
-                var user = userRepository.findByFirstName(author)
-                if(user == null) {
-                    val existingUser = userRepository.findByFirstName(author);
+                val reviewRating = element.asJsonObject.get("reviewRating")
+                val ratingValue = reviewRating?.asJsonObject?.get("ratingValue")?.asInt ?: 0
+                var user = userRepository.findByFirstName(reviewAuthor)
+                if (user == null) {
+                    val existingUser = userRepository.findByFirstName(reviewAuthor)
                     if (existingUser == null) {
-                        user = User(0, author, null, null, null, null, null);
-                        userRepository.save(user);
+                        user = User(0, reviewAuthor, null, null, null, null, null)
+                        userRepository.save(user)
                     } else {
-                        try {
-                            user = existingUser;
-                        } catch (ex: NonUniqueResultException) {
-                            println("Non-unique user found: $user")
-                        }
+                        user = existingUser
                     }
                 }
-                review = Review(0, reviewDescription, user, recipe)
+                review = Review(0, reviewDescription, user, recipe, ratingValue)
+                reviewList.add(review)
             }
-            reviewRepository.save(review)
+            reviewRepository.saveAll(reviewList)
         }
+        reviewRepository.save(review)
     }
 
     fun isoDurationToTotalMinutes(isoDuration: String): Long {

@@ -1,3 +1,7 @@
 package com.cookbyte.backend.service
 
-interface ReviewService {}
+import com.cookbyte.backend.domain.Review
+
+interface ReviewService {
+    fun findAll(): List<Review>?
+}

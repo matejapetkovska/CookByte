@@ -29,6 +29,10 @@ class RecipeServiceImpl(val recipeRepository: RecipeRepository,
         return recipeRepository.findById(recipeId).get()
     }
 
+    override fun findRecipeByTitle(title: String): Recipe? {
+        return recipeRepository.findRecipeByTitle(title)
+    }
+
     override fun findCategoriesForRecipe(recipeId: Long): Set<Category>? {
         val recipe = this.findRecipeById(recipeId)
         return recipe?.categories

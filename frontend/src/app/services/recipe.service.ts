@@ -19,6 +19,10 @@ export class RecipeService {
     return this.httpClient.get<Recipe[]>(this.url)
   }
 
+  getRecipeDetails(recipeId: number): Observable<Recipe> {
+    return this.httpClient.get<Recipe>(`${this.url}/${recipeId}`)
+  }
+
   cleanText(inputText: string): string {
     return inputText.replace(/\r/g, '')
       .replace(/\n/g, '')

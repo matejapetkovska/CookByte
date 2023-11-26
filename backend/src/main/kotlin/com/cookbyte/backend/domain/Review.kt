@@ -15,5 +15,7 @@ class Review(
     val user: User?,
 
     @ManyToOne
-    val recipe: Recipe?
+    val recipe: Recipe?,
+
+    val ratingValue: Int
 )

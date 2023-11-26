@@ -23,7 +23,7 @@ class SecurityConfig(
             .csrf { it.disable() }
             .cors { }
             .authorizeHttpRequests { authorize ->
-                authorize.requestMatchers("/api/auth/**", "/recipes/mostFavourite", "/recipes").permitAll().anyRequest().authenticated()
+                authorize.requestMatchers("/api/auth/**", "/recipes/mostFavourite", "/recipes", "/reviews", "/initialData/**").permitAll().anyRequest().authenticated()
             }
             .sessionManagement { session ->
                 session.sessionCreationPolicy(SessionCreationPolicy.STATELESS)

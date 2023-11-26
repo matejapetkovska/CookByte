@@ -13,5 +13,6 @@ export interface Recipe {
   fats: string,
   proteins: string,
   instructions: string,
-  categories: Category[]
+  categories: Category[],
+  averageRating: number
 }

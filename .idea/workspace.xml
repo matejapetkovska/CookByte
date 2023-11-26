@@ -5,30 +5,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="75760713-3ba1-4d79-9cc6-88fff86e4ba7" name="Changes" comment="Added error messages on Register">
-      <change afterPath="$PROJECT_DIR$/backend/src/main/kotlin/com/cookbyte/backend/domain/exceptions/InvalidArgumentsException.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/src/main/kotlin/com/cookbyte/backend/domain/exceptions/InvalidPasswordException.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/app/services/user.service.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/main/kotlin/com/cookbyte/backend/controllers/ReviewController.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/app/interfaces/review.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/kotlin/com/cookbyte/backend/auth/AuthenticationController.kt" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/kotlin/com/cookbyte/backend/auth/AuthenticationController.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/kotlin/com/cookbyte/backend/auth/AuthenticationService.kt" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/kotlin/com/cookbyte/backend/auth/AuthenticationService.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/kotlin/com/cookbyte/backend/configurations/ApplicationConfig.kt" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/kotlin/com/cookbyte/backend/configurations/ApplicationConfig.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/kotlin/com/cookbyte/backend/configurations/CorsConfig.kt" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/kotlin/com/cookbyte/backend/configurations/CorsConfig.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/kotlin/com/cookbyte/backend/configurations/JwtAuthenticationFilter.kt" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/kotlin/com/cookbyte/backend/configurations/JwtAuthenticationFilter.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/kotlin/com/cookbyte/backend/configurations/JwtService.kt" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/kotlin/com/cookbyte/backend/configurations/JwtService.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/kotlin/com/cookbyte/backend/controllers/UserController.kt" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/kotlin/com/cookbyte/backend/controllers/UserController.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/kotlin/com/cookbyte/backend/service/UserService.kt" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/kotlin/com/cookbyte/backend/service/UserService.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/kotlin/com/cookbyte/backend/service/implementation/UserServiceImpl.kt" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/kotlin/com/cookbyte/backend/service/implementation/UserServiceImpl.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/kotlin/com/cookbyte/backend/configurations/SecurityConfig.kt" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/kotlin/com/cookbyte/backend/configurations/SecurityConfig.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/kotlin/com/cookbyte/backend/service/ReviewService.kt" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/kotlin/com/cookbyte/backend/service/ReviewService.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/kotlin/com/cookbyte/backend/service/implementation/ReviewServiceImpl.kt" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/kotlin/com/cookbyte/backend/service/implementation/ReviewServiceImpl.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/app/components/all-recipes/all-recipes.component.css" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/components/all-recipes/all-recipes.component.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/app/components/all-recipes/all-recipes.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/components/all-recipes/all-recipes.component.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/app/components/all-recipes/all-recipes.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/components/all-recipes/all-recipes.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/app/components/header/header.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/components/header/header.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/app/components/header/header.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/components/header/header.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/app/components/login/login.component.css" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/components/login/login.component.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/app/components/login/login.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/components/login/login.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/app/components/login/login.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/components/login/login.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/app/components/register/register.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/components/register/register.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/app/interfaces/recipe.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/interfaces/recipe.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/app/services/auth.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/services/auth.service.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -179,7 +163,8 @@
       <workItem from="1699813746283" duration="5857000" />
       <workItem from="1699983150407" duration="9274000" />
       <workItem from="1700418022778" duration="7723000" />
-      <workItem from="1700591703297" duration="9794000" />
+      <workItem from="1700591703297" duration="10127000" />
+      <workItem from="1700991092548" duration="4629000" />
     </task>
     <task id="LOCAL-00001" summary="Security on fe">
       <created>1699805016453</created>

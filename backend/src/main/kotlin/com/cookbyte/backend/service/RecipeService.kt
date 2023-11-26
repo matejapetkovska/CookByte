@@ -8,6 +8,7 @@ import org.springframework.web.multipart.MultipartFile
 interface RecipeService {
     fun findAll(): List<Recipe>
     fun findRecipeById(recipeId: Long): Recipe?
+    fun findRecipeByTitle(title: String): Recipe?
     fun findCategoriesForRecipe(recipeId: Long): Set<Category>?
     fun findAllRecipesByUser(userId: Long): List<Recipe>?
     fun getMostFavouriteRecipes(): List<Recipe>
