@@ -10,4 +10,8 @@ class ReviewServiceImpl(private val reviewRepository: ReviewRepository): ReviewS
     override fun findAll(): List<Review>? {
         return reviewRepository.findAll()
     }
+
+    override fun getReviewByRecipeId(recipeId: Long): List<Review>? {
+        return reviewRepository.getReviewByRecipeId(recipeId)
+    }
 }

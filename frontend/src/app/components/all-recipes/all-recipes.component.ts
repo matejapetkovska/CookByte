@@ -50,7 +50,7 @@ export class AllRecipesComponent implements OnInit {
       next: (recipes) => {
         this.recipes = recipes
         this.randomRecipe = this.recipes[Math.floor(Math.random() * this.recipes.length)];
-        for(const recipe of this.recipes) {
+        for (const recipe of this.recipes) {
           recipe.title = this.recipeService.cleanText(recipe.title)
         }
       }, error: () => {

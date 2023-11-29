@@ -1,1 +1,91 @@
-<p>recipe-details works!</p>
+<section>
+<main *ngIf="recipe">
+  <div class="title">{{recipe.title}}</div>
+
+  <div class="img-description-container">
+    <div class="recipe-image">
+      <img class="image" src="{{recipe.imageUrl}}"/>
+      <div class="user-date-container">
+        <div class="user">
+          <img
+            src="https://images.pexels.com/photos/4927361/pexels-photo-4927361.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+            alt=""
+            class="user-picture" />UserName
+        </div>
+        <div class="date-published">
+          <i class="fa-solid fa-calendar-days"></i>
+          {{recipe.datePublished}}
+        </div>
+      </div>
+    </div>
+    <div class="description-table-container">
+      <div class="description">
+        {{recipe.description}}
+      </div>
+      <table>
+        <tbody>
+        <tr>
+          <th>Calories (kcal)</th>
+          <td>{{recipe.calories}}</td>
+        </tr>
+        <tr>
+          <th>Carbohydrates (g)</th>
+          <td>{{recipe.carbohydrates}}</td>
+        </tr>
+        <tr>
+          <th>Proteins (g)</th>
+          <td>{{recipe.proteins}}</td>
+        </tr>
+        <tr>
+          <th>Fats (g)</th>
+          <td>{{recipe.fats}}</td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="recipe-details-container">
+    <div class="category-rating-container">
+      <div class="categories">
+        <span class="category" *ngFor="let category of recipe.categories">
+          #{{category.name}}
+        </span>
+      </div>
+      <div class="rating"><i class="fa-solid fa-star"></i>{{recipe.averageRating}}</div>
+    </div>
+  </div>
+
+  <div class="cooktime"><i class="fa-regular fa-clock"></i> {{recipe.cookTime}}</div>
+  <div class="ingredients">
+    <h2>Ingredients:</h2>
+    <ul>
+      <li *ngFor="let ingredient of ingredients">{{ingredient.name}}</li>
+    </ul>
+  </div>
+  <div class="instructions-container">
+    {{recipe.instructions}}
+  </div>
+  <br />
+  <hr />
+  <div class="reviews">
+    <div class="reviews-header">
+      <h3>REVIEWS ({{getReviewCount()}})</h3>
+      <button class="add-review-btn"><i class="fa-solid fa-plus"></i></button>
+    </div>
+    <div class="add-review">komentar rating btn</div>
+
+    <div class="review" *ngFor="let review of reviews">
+      <div class="user">
+        <img
+          src="https://images.pexels.com/photos/4927361/pexels-photo-4927361.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+          alt=""
+          class="user-picture" />UserName
+      </div>
+      <p class="rating">Rating: {{review.ratingValue}}/5 <i class="fa-solid fa-star"></i></p>
+      <p>
+        {{review.description}}
+      </p>
+    </div>
+  </div>
+</main>
+</section>

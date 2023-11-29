@@ -1,10 +1,11 @@
 import {Category} from "./category";
+import {User} from "./user";
 
 export interface Recipe {
   id: number,
   title: string,
-  user: string, //change
-  datePublished: Date,
+  user: User,
+  datePublished: string,
   description: string,
   imageUrl: string,
   cookTime: number,

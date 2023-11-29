@@ -6,10 +6,9 @@
     fine dining, our collection of recipes will transport you to different corners of the world.</p>
 </div>
 
-
 <div class="fave-container">
   <div class="big-card" *ngIf="randomRecipe">
-    <a [routerLink]="['/recipes', recipe.id]" class="big-card-link">
+    <a [routerLink]="['/recipes', randomRecipe.id]" class="big-card-link">
       <img src="{{randomRecipe?.imageUrl}}" class="big-card-img"/>
       <h2 class="big-card-title">{{ randomRecipe.title }}</h2>
     </a>
