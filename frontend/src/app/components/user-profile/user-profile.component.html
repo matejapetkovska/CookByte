@@ -1,0 +1,83 @@
+<main>
+  <div class="page-container">
+    <div class="profile" *ngIf="!editBtnContainer">
+      <img src="profile.jpg" id="profile-picture"/>
+      <div class="user-details">
+        <div class="user-detail">
+          <h4>First Name:</h4>
+          <div id="firstName">fName</div>
+        </div>
+        <div class="user-detail">
+          <h4>Last Name:</h4>
+          <p id="lastName">lName</p>
+        </div>
+        <div class="user-detail">
+          <h4>Username:</h4>
+          <p id="username">uName</p>
+        </div>
+        <div class="user-detail">
+          <h4>Email:</h4>
+          <p id="email">e-mail</p>
+        </div>
+        <button id="edit-user-details-btn" (click)="toggleEdit()">Edit</button>
+      </div>
+    </div>
+    <form id="edit-profile-form" *ngIf="editBtnContainer">
+      <div class="upload-image-container">
+        <img
+          src="{{previewUrl}}"
+          id="profile-picture"/>
+        <div class="overlay">
+          <label for="fileInput" class="upload-btn">Choose File</label>
+          <input id="fileInput" class="upload-btn" type="file" style="display: none;" #imageInput (change)="onFileChange($event)"/>
+        </div>
+      </div>
+      <div class="form-details">
+        <label for="editFirstName"
+        >First Name:
+          <input type="text" id="editFirstName" name="editFirstName"
+          /></label>
+
+        <label for="editLastName"
+        >Last Name:
+          <input type="text" id="editLastName" name="editLastName"
+          /></label>
+
+        <label for="editUsername"
+        >Username:
+          <input type="text" id="editUsername" name="editUsername"/>
+        </label>
+        <label for="editEmail"
+        >Email:
+          <input type="text" id="editEmail" name="editEmail"/>
+        </label>
+        <label for="editPassword"
+        >Password:
+          <input type="password" id="editPassword" name="editPassword"/>
+        </label>
+        <button
+          type="button"
+          id="save-user-details-btn"
+          (click)="saveDetails()"
+        >
+          Save
+        </button>
+      </div>
+    </form>
+    <div class="recipes">
+      <h2>Recipes (brojka)</h2>
+      <div id="recipeContainer" class="scrollableContainer">
+        NO RECIPES 🙁
+      </div>
+    </div>
+    <div class="reviews">
+      <h2>Reviews (brojka)</h2>
+      <div id="reviewContainer" class="scrollableContainer">
+        NO REVIEWS 🙁
+      </div>
+    </div>
+    <button id="create-recipe-btn" (click)="openDialog()">Create recipe</button>
+    <app-add-recipe-dialog *ngIf="isDialogVisible"></app-add-recipe-dialog>
+  </div>
+</main>
+

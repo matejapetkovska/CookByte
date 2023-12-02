@@ -73,6 +73,9 @@ main {
 
 .card-category-container {
   display: inline-block;
+}
+
+.card-category > span {
   margin-right: 0.5rem;
 }
 

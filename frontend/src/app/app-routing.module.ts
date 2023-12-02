@@ -7,6 +7,7 @@ import {LoginComponent} from "./components/login/login.component";
 import {RegisterComponent} from "./components/register/register.component";
 import {AuthGuard} from "./auth.guard";
 import {RecipeDetailsComponent} from "./components/recipe-details/recipe-details.component";
+import {UserProfileComponent} from "./components/user-profile/user-profile.component";
 
 const routes: Routes = [
   { path: 'home', component: HomepageComponent},
@@ -16,6 +17,7 @@ const routes: Routes = [
   { path: 'about', component: AboutUsComponent },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
+  { path: 'user-profile', component: UserProfileComponent }
 ]
 
 @NgModule({

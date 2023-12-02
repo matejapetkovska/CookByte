@@ -25,9 +25,9 @@
         <img src="{{ recipe.imageUrl }}" alt="" class="card-img"/>
       </a>
       <div class="category-title-rating">
-        <ng-container *ngFor="let category of recipe.categories">
-          <p class="card-category">#{{ category.name }}</p>
-        </ng-container>
+        <div class="card-category">
+          <span *ngFor="let category of recipe.categories">#{{ category.name }}</span>
+        </div>
         <a href="#" class="card-title"><h4>{{ recipe.title }}</h4></a>
         <p class="rating" *ngIf="recipe.averageRating > 0; else noRating">
           <i class="fa-solid fa-star"></i> {{ recipe.averageRating }}

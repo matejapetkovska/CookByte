@@ -1,0 +1,133 @@
+<main>
+  <div id="recipeModal" class="modal">
+    <div class="modal-content">
+      <span class="close" id="closeModalBtn">&times;</span>
+      <h2 id="modal-title">Upload Recipe</h2>
+      <br />
+
+      <form id="recipeForm">
+        <input
+          type="text"
+          id="title"
+          name="title"
+          placeholder="Title"
+          required
+        />
+
+        <label for="image" class="custom-file-upload">Upload Image</label>
+        <input
+          type="file"
+          id="image"
+          name="image"
+          accept="image/*"
+          required
+          style="display: none"
+        />
+        <div id="image-preview-container">
+          <p id="preview-text">Preview of the image will be shown here</p>
+        </div>
+
+        <textarea
+          id="description"
+          name="description"
+          rows="3"
+          cols="1"
+          placeholder="Description"
+          required
+        ></textarea>
+        <div id="ingredientsContainer">
+          <input
+            type="text"
+            id="ingredientInput"
+            placeholder="Add ingredient"
+          />
+          <button type="button" onclick="addIngredient()">Add</button>
+          <label for="ingredients">Ingredients:</label>
+          <ol id="ingredientsList">
+            <li>ing1</li>
+            <li>ing2</li>
+          </ol>
+        </div>
+
+        <label for="instructions">Instructions:</label>
+
+        <textarea
+          id="instructions"
+          name="instructions"
+          rows="3"
+          placeholder="Instructions"
+          required
+        ></textarea>
+        <input
+          type="number"
+          id="cookTime"
+          name="cookTime"
+          placeholder="Cook time  (minutes)"
+          required
+        />
+        <div class="nutrients-categories-container">
+          <table class="nutrients-table">
+            <tr>
+              <th class="table-head">Nutrients</th>
+            </tr>
+
+            <tr>
+              <td>
+                <input
+                  type="number"
+                  placeholder="Calories(kcal)"
+                  id="calories"
+                  name="calories"
+                  required
+                />
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <input
+                  type="number"
+                  placeholder="Carbs (g)"
+                  id="carbs"
+                  name="carbs"
+                  required
+                />
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <input
+                  type="number"
+                  placeholder="Fats (g)"
+                  id="fats"
+                  name="fats"
+                  required
+                />
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <input
+                  type="number"
+                  placeholder="Proteins (g)"
+                  id="proteins"
+                  name="proteins"
+                  required
+                />
+              </td>
+            </tr>
+          </table>
+          <div>
+            <label for="categories">Categories: </label>
+
+            <select id="categories" name="categories">
+              <option value="breakfast">Breakfast</option>
+              <option value="lunch">Lunch</option>
+              <option value="dinner">Dinner</option>
+            </select>
+          </div>
+        </div>
+        <button id="upload-recipe-btn" type="submit">Upload recipe</button>
+      </form>
+    </div>
+  </div>
+</main>

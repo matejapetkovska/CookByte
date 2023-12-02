@@ -24,6 +24,7 @@ export class RecipeDetailsComponent implements OnInit {
   reviews: Review[] | undefined
   recipeRatingMap = new Map<number, { totalRating: number, count: number }>();
   ingredients: Ingredient[] | undefined
+  showReviewContainer = false
 
   constructor(private recipeService: RecipeService,
               private userService: UserService,
@@ -111,6 +112,14 @@ export class RecipeDetailsComponent implements OnInit {
     const recipeId = this.recipe?.id || 0; // Replace 0 with a default value if needed
     const count = this.recipeRatingMap.get(recipeId)?.count || 0;
     return count;
+  }
+
+  toggleReview() {
+    this.showReviewContainer = true
+  }
+
+  closeReviewDialog() {
+    this.showReviewContainer = false
   }
 
 }

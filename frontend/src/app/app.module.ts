@@ -13,6 +13,8 @@ import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
 import {FormsModule} from "@angular/forms";
 import { RecipeDetailsComponent } from './components/recipe-details/recipe-details.component';
+import { UserProfileComponent } from './components/user-profile/user-profile.component';
+import {AddRecipeDialogComponent} from "./components/dialog/add-recipe-dialog/add-recipe-dialog.component";
 
 @NgModule({
   declarations: [
@@ -24,7 +26,9 @@ import { RecipeDetailsComponent } from './components/recipe-details/recipe-detai
     AboutUsComponent,
     LoginComponent,
     RegisterComponent,
-    RecipeDetailsComponent
+    RecipeDetailsComponent,
+    UserProfileComponent,
+    AddRecipeDialogComponent
   ],
   imports: [
     BrowserModule,
