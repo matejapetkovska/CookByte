@@ -15,8 +15,8 @@ export class UserService {
     return !!user;
   }
 
-  getUserFromToken(token: String | null): Observable<User> {
-    return this.http.get<User>(`http://localhost:8080/user/token?token=${token}`)
+  getUserFromToken(token: string | null): Observable<User> {
+    return this.http.get<User>(`http://localhost:8080/auth/user/token?token=${token}`)
   }
 
   // updateUser(user: User | undefined, token: string | null): Observable<User | null> {

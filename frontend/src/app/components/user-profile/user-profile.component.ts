@@ -1,21 +1,34 @@
-import { Component, ElementRef, ViewChild } from '@angular/core';
+import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {AddRecipeDialogComponent} from "../dialog/add-recipe-dialog/add-recipe-dialog.component";
+import {UserService} from "../../services/user.service";
+import {User} from "../../interfaces/user";
 
 @Component({
   selector: 'app-user-profile',
   templateUrl: './user-profile.component.html',
   styleUrls: ['./user-profile.component.css']
 })
-export class UserProfileComponent {
+export class UserProfileComponent implements OnInit{
 
   editBtnContainer = false
   @ViewChild('imageInput') imageInput: ElementRef | undefined;
   fileName: string = '';
   previewUrl: string = '';
   isDialogVisible = false;
+  user: User | undefined
 
-  constructor() {
+  constructor(private userService: UserService) { }
+
+  ngOnInit(): void {
+    const token = localStorage.getItem('token')
+    this.userService.getUserFromToken(token).subscribe({
+      next: (user) => {
+        this.user = user
+        this.addPathToImage(this.user)
+      }
+    })
   }
+
   toggleEdit() {
     this.editBtnContainer = true;
   }
@@ -43,5 +56,9 @@ export class UserProfileComponent {
 
   openDialog() {
     this.isDialogVisible = true
+  }
+
+  addPathToImage(user: User) {
+    user.image = "../../../assets/images/" + user.image;
   }
 }

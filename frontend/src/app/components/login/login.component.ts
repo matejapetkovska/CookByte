@@ -18,18 +18,19 @@ export class LoginComponent {
 
   errorMessage = ''
 
-  constructor(private authService: AuthService, private router: Router) {
-  }
+  constructor(private authService: AuthService, private router: Router) {  }
 
   onSubmit() {
     this.authService.login(this.request).subscribe({
       next: (response) => {
-        localStorage.setItem('token', response.token)
+        localStorage.setItem('token', response.token);
         this.router.navigate(['recipes'])
       },
       error: (error: HttpErrorResponse) => {
-        this.errorMessage = error.error.message
+        console.log("error in logging in")
+        this.errorMessage = error.error.message;
       }
     })
   }
+
 }

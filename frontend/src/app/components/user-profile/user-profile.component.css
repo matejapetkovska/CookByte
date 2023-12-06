@@ -35,6 +35,11 @@ main {
   height: fit-content;
   width: 80%;
 }
+
+#edit-profile-form {
+  align-items: center;
+}
+
 .form-details {
   display: flex;
   flex-direction: column;

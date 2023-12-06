@@ -1,31 +1,31 @@
 <main>
   <div class="page-container">
-    <div class="profile" *ngIf="!editBtnContainer">
-      <img src="profile.jpg" id="profile-picture"/>
+    <div class="profile" *ngIf="!editBtnContainer && user">
+      <img src="{{user.image}}" id="profile-picture"/>
       <div class="user-details">
         <div class="user-detail">
           <h4>First Name:</h4>
-          <div id="firstName">fName</div>
+          <div id="firstName">{{user.firstName}}</div>
         </div>
         <div class="user-detail">
           <h4>Last Name:</h4>
-          <p id="lastName">lName</p>
+          <p id="lastName">{{user.lastName}}</p>
         </div>
         <div class="user-detail">
           <h4>Username:</h4>
-          <p id="username">uName</p>
+          <p id="username">{{user.username}}</p>
         </div>
         <div class="user-detail">
           <h4>Email:</h4>
-          <p id="email">e-mail</p>
+          <p id="email">{{user.email}}</p>
         </div>
         <button id="edit-user-details-btn" (click)="toggleEdit()">Edit</button>
       </div>
     </div>
-    <form id="edit-profile-form" *ngIf="editBtnContainer">
+    <form id="edit-profile-form" *ngIf="editBtnContainer && user">
       <div class="upload-image-container">
         <img
-          src="{{previewUrl}}"
+          src="{{user.image}}"
           id="profile-picture"/>
         <div class="overlay">
           <label for="fileInput" class="upload-btn">Choose File</label>
@@ -35,31 +35,27 @@
       <div class="form-details">
         <label for="editFirstName"
         >First Name:
-          <input type="text" id="editFirstName" name="editFirstName"
-          /></label>
+          <input type="text" id="editFirstName" name="editFirstName" [(ngModel)]="user.firstName"/></label>
 
         <label for="editLastName"
         >Last Name:
-          <input type="text" id="editLastName" name="editLastName"
-          /></label>
+          <input type="text" id="editLastName" name="editLastName" [(ngModel)]="user.lastName"/></label>
 
         <label for="editUsername"
         >Username:
-          <input type="text" id="editUsername" name="editUsername"/>
+          <input type="text" id="editUsername" name="editUsername" [(ngModel)]="user.username"/>
         </label>
         <label for="editEmail"
         >Email:
-          <input type="text" id="editEmail" name="editEmail"/>
+          <input type="text" id="editEmail" name="editEmail" [disabled]="true" [(ngModel)]="user.email"/>
         </label>
-        <label for="editPassword"
-        >Password:
-          <input type="password" id="editPassword" name="editPassword"/>
-        </label>
+<!--        <label for="editPassword">Password:-->
+<!--          <input type="password" id="editPassword" name="editPassword" [(ngModel)]="user.password"/>-->
+<!--        </label>-->
         <button
           type="button"
           id="save-user-details-btn"
-          (click)="saveDetails()"
-        >
+          (click)="saveDetails()">
           Save
         </button>
       </div>

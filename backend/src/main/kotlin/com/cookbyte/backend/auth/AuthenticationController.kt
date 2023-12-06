@@ -17,8 +17,6 @@ import com.cookbyte.backend.domain.exceptions.*
 @RequiredArgsConstructor
 class AuthenticationController(private val authenticationService: AuthenticationService) {
 
-    //TODO: Check proper error messages
-
     data class ErrorResponse(val message: String)
 
     @PostMapping("/register")

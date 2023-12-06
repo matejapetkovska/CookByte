@@ -50,6 +50,8 @@ export class RecipeDetailsComponent implements OnInit {
       return;
     this.recipeService.getRecipeDetails(recipeId).subscribe((recipe) => {
         this.recipe = recipe;
+        this.addPathToUserImagesFromRecipes(this.recipe)
+        console.log(recipe.user)
         if (this.recipe && this.recipe.datePublished) {
           const originalDate = new Date(this.recipe.datePublished);
           this.recipe.datePublished = originalDate.toLocaleDateString('en-US', {
@@ -66,6 +68,8 @@ export class RecipeDetailsComponent implements OnInit {
         this.reviewService.getReviewForRecipe(recipeId).subscribe({
           next: (reviews) => {
             this.reviews = reviews
+            console.log(this.reviews)
+            this.addPathToUserImagesFromReviews(this.reviews)
             this.reviews.forEach(review => {
               const recipeId = review.recipe.id;
               const ratingValue = review.ratingValue;
@@ -109,7 +113,7 @@ export class RecipeDetailsComponent implements OnInit {
   }
 
   getReviewCount(): number {
-    const recipeId = this.recipe?.id || 0; // Replace 0 with a default value if needed
+    const recipeId = this.recipe?.id || 0;
     const count = this.recipeRatingMap.get(recipeId)?.count || 0;
     return count;
   }
@@ -120,6 +124,15 @@ export class RecipeDetailsComponent implements OnInit {
 
   closeReviewDialog() {
     this.showReviewContainer = false
+  }
+
+  addPathToUserImagesFromRecipes(recipe: Recipe) {
+    recipe.user.image = "../../../assets/images/" + recipe.user.image;
+  }
+
+  addPathToUserImagesFromReviews(reviews: Review[]) {
+    for (let i = 0; i < reviews.length; i++)
+      reviews[i].user.image = "../../../assets/images/" + reviews[i].user.image;
   }
 
 }

@@ -75,7 +75,7 @@ main {
   gap: 0.2rem;
 }
 .user-picture {
-  width: 20px;
+  width: 30px;
   height: 20px;
   object-fit: cover;
   object-position: center;
@@ -207,4 +207,8 @@ button:hover {
   border: none;
   font-size: 2rem;
   font-weight: 500;
+}
+
+.no-review {
+  padding: 0.5rem;
 }

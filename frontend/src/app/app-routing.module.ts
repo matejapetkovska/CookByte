@@ -10,10 +10,10 @@ import {RecipeDetailsComponent} from "./components/recipe-details/recipe-details
 import {UserProfileComponent} from "./components/user-profile/user-profile.component";
 
 const routes: Routes = [
-  { path: 'home', component: HomepageComponent},
-  { path: '', redirectTo: '/home', pathMatch: 'full'},
-  { path: 'recipes', component: AllRecipesComponent, canActivate: [AuthGuard]},
-  { path: 'recipes/:recipeId', component: RecipeDetailsComponent, canActivate: [AuthGuard]},
+  { path: 'home', component: HomepageComponent },
+  { path: '', redirectTo: '/home', pathMatch: 'full' },
+  { path: 'recipes', component: AllRecipesComponent },
+  { path: 'recipes/:recipeId', component: RecipeDetailsComponent, canActivate: [AuthGuard] },
   { path: 'about', component: AboutUsComponent },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },

@@ -8,9 +8,9 @@
         <div class="user-date-container">
           <div class="user">
             <img
-              src="https://images.pexels.com/photos/4927361/pexels-photo-4927361.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+              src="{{recipe.user.image}}"
               alt=""
-              class="user-picture"/>UserName
+              class="user-picture"/>{{recipe.user.firstName}}
           </div>
           <div class="date-published">
             <i class="fa-solid fa-calendar-days"></i>
@@ -96,18 +96,19 @@
         </div>
       </div>
 
+      <ng-container *ngIf="reviews && reviews.length == 0; else noReview">
       <div class="review" *ngFor="let review of reviews">
-        <div class="user">
-          <img
-            src="https://images.pexels.com/photos/4927361/pexels-photo-4927361.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
-            alt=""
-            class="user-picture"/>UserName
-        </div>
-        <p class="rating">Rating: {{review.ratingValue}}/5 <i class="fa-solid fa-star"></i></p>
-        <p>
-          {{review.description}}
-        </p>
+          <div class="user">
+            <img src="{{review.user.image}}" alt="" class="user-picture" />{{review.user.firstName}}
+          </div>
+          <p class="rating">Rating: {{review.ratingValue}}/5 <i class="fa-solid fa-star"></i></p>
+          <p>{{review.description}}</p>
+
       </div>
+      </ng-container>
     </div>
+    <ng-template #noReview>
+      <p class="no-review">No reviews have been posted yet.</p>
+    </ng-template>
   </main>
 </section>

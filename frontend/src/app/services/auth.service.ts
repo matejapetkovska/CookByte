@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {BehaviorSubject, Observable} from "rxjs";
+import {BehaviorSubject, Observable, tap} from "rxjs";
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {LoginRequest} from "../interfaces/login-request";
 import {AuthenticationResponse} from "../interfaces/authentication-response";
@@ -26,10 +26,23 @@ export class AuthService {
   login(request: LoginRequest): Observable<AuthenticationResponse> {
     const headers = new HttpHeaders({
       'Content-Type': 'application/json'
-    })
-    this.isAuthenticatedSubject.next(true)
-    return this.httpClient.post<AuthenticationResponse>(`${this.url}/authenticate`, request, {headers})
+    });
+
+    return this.httpClient.post<AuthenticationResponse>(`${this.url}/authenticate`, request, { headers })
+      .pipe(
+        tap(response => {
+          // Assuming the server returns a token in the response
+          const token = response.token;
+
+          // Store the token in local storage
+          localStorage.setItem('token', token);
+
+          // Update the authentication state
+          this.isAuthenticatedSubject.next(true);
+        })
+      );
   }
+
 
   isAuthenticated$(): Observable<boolean> {
     return this.isAuthenticatedSubject.asObservable();

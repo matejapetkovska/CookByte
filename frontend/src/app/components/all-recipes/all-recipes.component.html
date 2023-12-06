@@ -9,7 +9,7 @@
 <div class="fave-container">
   <div class="big-card" *ngIf="randomRecipe">
     <a [routerLink]="['/recipes', randomRecipe.id]" class="big-card-link">
-      <img src="{{randomRecipe?.imageUrl}}" class="big-card-img"/>
+      <img src="{{randomRecipe.imageUrl}}" class="big-card-img"/>
       <h2 class="big-card-title">{{ randomRecipe.title }}</h2>
     </a>
   </div>
