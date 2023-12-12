@@ -7,6 +7,10 @@ import org.springframework.stereotype.Service
 
 @Service
 class CategoryServiceImpl(val categoryRepository: CategoryRepository): CategoryService {
+    override fun findAll(): List<Category> {
+        return categoryRepository.findAll()
+    }
+
     override fun findFirstByName(name: String): Category? {
        return categoryRepository.findFirstByName(name)
     }

@@ -17,4 +17,7 @@ class ReviewController(private val reviewService: ReviewService) {
 
     @GetMapping("/{recipeId}")
     fun getReviewByRecipeId(@PathVariable recipeId: Long): List<Review>? = reviewService.getReviewByRecipeId(recipeId)
+
+    @GetMapping("/reviewsByUser/{userId}")
+    fun getReviewsByUserId(@PathVariable userId: Long): List<Review>? = reviewService.getReviewsByUserId(userId)
 }

@@ -11,8 +11,8 @@
     <section class="cards-section">
       <div class="cards-container" *ngFor="let recipe of recipes">
         <div class="card">
-          <a href="#"> <img src="{{recipe.imageUrl}}" alt="" class="card-img"/></a>
-          <a href="#"><h3 class="card-title">{{recipe.title}}</h3></a>
+          <a [routerLink]="['/recipes', recipe.id]"> <img src="{{recipe.imageUrl}}" alt="" class="card-img"/></a>
+          <a [routerLink]="['/recipes', recipe.id]"><h3 class="card-title">{{recipe.title}}</h3></a>
         </div>
       </div>
     </section>

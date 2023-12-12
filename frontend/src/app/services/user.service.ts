@@ -8,6 +8,8 @@ import {User} from "../interfaces/user";
 })
 export class UserService {
 
+  url = 'http://localhost:8080/auth/user'
+
   constructor(private http: HttpClient) { }
 
   public isLoggedIn(): boolean {
@@ -16,19 +18,14 @@ export class UserService {
   }
 
   getUserFromToken(token: string | null): Observable<User> {
-    return this.http.get<User>(`http://localhost:8080/auth/user/token?token=${token}`)
+    return this.http.get<User>(`${this.url}/token?token=${token}`)
   }
 
-  // updateUser(user: User | undefined, token: string | null): Observable<User | null> {
-  //   return this.http.put<User>(`http://localhost:8081/api/user/${user?.id}?token=${token}`, {
-  //     first_name: user?.first_name,
-  //     last_name: user?.last_name,
-  //     email: user?.email,
-  //     userName: user?.userName,
-  //     passw: user?.password,
-  //     role: user?.role,
-  //     image: user?.image,
-  //   });
-  // }
-
+  updateUser(user: User | undefined, token: string | null): Observable<User | null> {
+    return this.http.put<User>(`${this.url}/${user?.id}?token=${token}`, {
+      firstName: user?.firstName,
+      lastName: user?.lastName,
+      username: user?.username
+    });
+  }
 }

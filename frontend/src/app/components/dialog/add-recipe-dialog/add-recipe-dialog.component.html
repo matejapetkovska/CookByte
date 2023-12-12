@@ -1,7 +1,7 @@
 <main>
   <div id="recipeModal" class="modal">
     <div class="modal-content">
-      <span class="close" id="closeModalBtn">&times;</span>
+      <span class="close" id="closeModalBtn" (click)="closeDialog()">&times;</span>
       <h2 id="modal-title">Upload Recipe</h2>
       <br />
 
@@ -12,6 +12,7 @@
           name="title"
           placeholder="Title"
           required
+          [(ngModel)]="title"
         />
 
         <label for="image" class="custom-file-upload">Upload Image</label>
@@ -22,9 +23,12 @@
           accept="image/*"
           required
           style="display: none"
+          (change)="onFileChange($event)"
         />
+
         <div id="image-preview-container">
           <p id="preview-text">Preview of the image will be shown here</p>
+          <img *ngIf="imagePreview" [src]="imagePreview" alt="Image Preview" />
         </div>
 
         <textarea
@@ -34,36 +38,40 @@
           cols="1"
           placeholder="Description"
           required
+          [(ngModel)]="description"
         ></textarea>
         <div id="ingredientsContainer">
+          <label for="ingredients">Ingredients:</label>
           <input
             type="text"
             id="ingredientInput"
             placeholder="Add ingredient"
+            name="ingredientName"
+            [(ngModel)]="ingredient.name"
           />
-          <button type="button" onclick="addIngredient()">Add</button>
-          <label for="ingredients">Ingredients:</label>
           <ol id="ingredientsList">
-            <li>ing1</li>
-            <li>ing2</li>
+            <li *ngFor="let ingredient of ingredients">{{ingredient.name}}</li>
           </ol>
         </div>
+        <button type="button" (click)="onAddIngredient()">Add</button>
+
 
         <label for="instructions">Instructions:</label>
-
         <textarea
           id="instructions"
           name="instructions"
           rows="3"
           placeholder="Instructions"
           required
+          [(ngModel)]="instructions"
         ></textarea>
         <input
           type="number"
           id="cookTime"
           name="cookTime"
-          placeholder="Cook time  (minutes)"
+          placeholder="Cook time (minutes)"
           required
+          [(ngModel)]="cookTime"
         />
         <div class="nutrients-categories-container">
           <table class="nutrients-table">
@@ -75,10 +83,11 @@
               <td>
                 <input
                   type="number"
-                  placeholder="Calories(kcal)"
+                  placeholder="Calories (kcal)"
                   id="calories"
                   name="calories"
                   required
+                  [(ngModel)]="calories"
                 />
               </td>
             </tr>
@@ -90,6 +99,7 @@
                   id="carbs"
                   name="carbs"
                   required
+                  [(ngModel)]="carbohydrates"
                 />
               </td>
             </tr>
@@ -101,6 +111,7 @@
                   id="fats"
                   name="fats"
                   required
+                  [(ngModel)]="fats"
                 />
               </td>
             </tr>
@@ -112,6 +123,7 @@
                   id="proteins"
                   name="proteins"
                   required
+                  [(ngModel)]="proteins"
                 />
               </td>
             </tr>
@@ -119,14 +131,14 @@
           <div>
             <label for="categories">Categories: </label>
 
-            <select id="categories" name="categories">
-              <option value="breakfast">Breakfast</option>
-              <option value="lunch">Lunch</option>
-              <option value="dinner">Dinner</option>
+            <select id="categories" name="categories" [(ngModel)]="selectedCategoryId">
+              <option *ngFor="let category of categories" value="{{category.id}}">
+                {{category.name}}
+              </option>
             </select>
           </div>
         </div>
-        <button id="upload-recipe-btn" type="submit">Upload recipe</button>
+        <button id="upload-recipe-btn" type="submit" (click)="onAddRecipe()">Upload recipe</button>
       </form>
     </div>
   </div>

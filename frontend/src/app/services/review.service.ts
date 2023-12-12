@@ -22,4 +22,8 @@ export class ReviewService {
   getReviewForRecipe(recipeId: number): Observable<Review[]> {
     return this.httpClient.get<Review[]>(`${this.url}/${recipeId}`)
   }
+
+  getReviewsForUser(userId: number | undefined): Observable<Review[]> {
+    return this.httpClient.get<Review[]>(`${this.url}/reviewsByUser/${userId}`)
+  }
 }

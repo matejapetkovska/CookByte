@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service
 import org.springframework.web.multipart.MultipartFile
 import java.nio.file.Files
 import java.nio.file.Paths
+import java.util.*
 
 @Service
 class UserServiceImpl(val userRepository: UserRepository, val jwtService: JwtService): UserService {
@@ -32,9 +33,19 @@ class UserServiceImpl(val userRepository: UserRepository, val jwtService: JwtSer
     }
 
     override fun getUserFromToken(token: String): User? {
-        println(token)
-        println(userRepository.findByUsername(jwtService.extractUsername(token)))
         return userRepository.findByUsername(jwtService.extractUsername(token))
+    }
+
+    override fun updateUser(userId: Long, updatedUser: User): User? {
+        val existingUser = userRepository.findById(userId)
+        if (existingUser.isPresent) {
+            val userToUpdate = existingUser.get()
+            userToUpdate.firstName = updatedUser.firstName
+            userToUpdate.lastName = updatedUser.lastName
+            userToUpdate.username = updatedUser.username
+            return userRepository.save(userToUpdate)
+        }
+        return null
     }
 
     fun generateRandomName(): String {

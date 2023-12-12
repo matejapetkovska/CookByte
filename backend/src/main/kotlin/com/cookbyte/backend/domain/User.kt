@@ -12,11 +12,11 @@ class User(
     val id: Long,
 
     var firstName: String,
-    val lastName: String?,
+    var lastName: String?,
 
     @Column(unique = true)
     @get:JvmName("getUsernameProperty")
-    val username: String?,
+    var username: String?,
 
     @Column(unique = true)
     val email: String?,

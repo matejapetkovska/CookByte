@@ -28,7 +28,7 @@
         <div class="card-category">
           <span *ngFor="let category of recipe.categories">#{{ category.name }}</span>
         </div>
-        <a href="#" class="card-title"><h4>{{ recipe.title }}</h4></a>
+        <a [routerLink]="['/recipes', recipe.id]" class="card-title"><h4>{{ recipe.title }}</h4></a>
         <p class="rating" *ngIf="recipe.averageRating > 0; else noRating">
           <i class="fa-solid fa-star"></i> {{ recipe.averageRating }}
         </p>

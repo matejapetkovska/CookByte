@@ -49,31 +49,28 @@
         >Email:
           <input type="text" id="editEmail" name="editEmail" [disabled]="true" [(ngModel)]="user.email"/>
         </label>
-<!--        <label for="editPassword">Password:-->
-<!--          <input type="password" id="editPassword" name="editPassword" [(ngModel)]="user.password"/>-->
-<!--        </label>-->
         <button
           type="button"
           id="save-user-details-btn"
-          (click)="saveDetails()">
+          (click)="editUserProfile()">
           Save
         </button>
       </div>
     </form>
     <div class="recipes">
-      <h2>Recipes (brojka)</h2>
+      <h2>Recipes ({{totalRecipes}})</h2>
       <div id="recipeContainer" class="scrollableContainer">
         NO RECIPES 🙁
       </div>
     </div>
     <div class="reviews">
-      <h2>Reviews (brojka)</h2>
+      <h2>Reviews ({{totalReviews}})</h2>
       <div id="reviewContainer" class="scrollableContainer">
         NO REVIEWS 🙁
       </div>
     </div>
     <button id="create-recipe-btn" (click)="openDialog()">Create recipe</button>
-    <app-add-recipe-dialog *ngIf="isDialogVisible"></app-add-recipe-dialog>
+    <app-add-recipe-dialog *ngIf="isDialogVisible" (onClose)="isDialogVisible = false"></app-add-recipe-dialog>
   </div>
 </main>
 

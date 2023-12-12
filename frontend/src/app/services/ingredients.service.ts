@@ -14,6 +14,10 @@ export class IngredientsService {
 
   constructor(private httpClient: HttpClient) { }
 
+  getAllIngredients(): Observable<Ingredient[]> {
+    return this.httpClient.get<Ingredient[]>(`${this.url}`)
+  }
+
   getIngredientsForRecipe(recipeId: number): Observable<Ingredient[]> {
     return this.httpClient.get<Ingredient[]>(`${this.url}/${recipeId}`)
   }

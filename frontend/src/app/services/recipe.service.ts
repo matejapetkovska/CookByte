@@ -23,6 +23,19 @@ export class RecipeService {
     return this.httpClient.get<Recipe>(`${this.url}/${recipeId}`)
   }
 
+  getRecipesForUser(userId: number | undefined): Observable<Recipe[]> {
+    return this.httpClient.get<Recipe[]>(`${this.url}/recipesByUser/${userId}`)
+  }
+
+  addRecipe(formData: FormData): Observable<any> {
+    // console.log(formData)
+    return this.httpClient.post<FormData>(`${this.url}/add`, formData);
+  }
+
+  editRecipe(recipe_id: String | null, formData: FormData): Observable<any> {
+    return this.httpClient.put<FormData>(`${this.url}/edit/${recipe_id}`, formData);
+  }
+
   cleanText(inputText: string): string {
     return inputText.replace(/\r/g, '')
       .replace(/\n/g, '')

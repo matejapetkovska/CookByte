@@ -10,6 +10,10 @@ import org.springframework.web.bind.annotation.RestController
 @RestController
 @RequestMapping("/ingredients")
 class IngredientsController(private val ingredientService: IngredientService) {
+
+    @GetMapping
+    fun getAllIngredients(): List<Ingredient> = ingredientService.findAll()
+
     @GetMapping("/{recipeId}")
     fun getAllIngredientsForRecipe(@PathVariable recipeId: Long): List<Ingredient>? = ingredientService.findByRecipeId(recipeId)
 }

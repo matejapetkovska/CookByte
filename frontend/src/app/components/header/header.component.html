@@ -10,14 +10,13 @@
       <img src="{{user.image}}" alt="User Profile Picture" class="nav-profile-picture"/>
       {{ user.username }}
     </a>
-<!--    <button class="log-in-btn" (click)="logout()">Log out</button>-->
+    <button class="log-in-btn" (click)="logout()">Log out</button>
   </div>
 
   <ng-template #notLoggedIn>
     <div class="nav-user-container">
       <a href="/login">
-        <i class="fa-solid fa-circle-user"></i>
-        <img src="" alt="" class="nav-profile-picture"/>Login
+        <i class="fa-solid fa-circle-user"></i>Login
       </a>
     </div>
   </ng-template>

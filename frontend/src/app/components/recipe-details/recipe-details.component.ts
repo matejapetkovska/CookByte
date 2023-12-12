@@ -51,7 +51,6 @@ export class RecipeDetailsComponent implements OnInit {
     this.recipeService.getRecipeDetails(recipeId).subscribe((recipe) => {
         this.recipe = recipe;
         this.addPathToUserImagesFromRecipes(this.recipe)
-        console.log(recipe.user)
         if (this.recipe && this.recipe.datePublished) {
           const originalDate = new Date(this.recipe.datePublished);
           this.recipe.datePublished = originalDate.toLocaleDateString('en-US', {
@@ -68,7 +67,6 @@ export class RecipeDetailsComponent implements OnInit {
         this.reviewService.getReviewForRecipe(recipeId).subscribe({
           next: (reviews) => {
             this.reviews = reviews
-            console.log(this.reviews)
             this.addPathToUserImagesFromReviews(this.reviews)
             this.reviews.forEach(review => {
               const recipeId = review.recipe.id;
@@ -104,7 +102,6 @@ export class RecipeDetailsComponent implements OnInit {
     this.userService.getUserFromToken(token).subscribe({
       next: (user) => {
         this.loggedInUserId = user.id
-        console.log(this.loggedInUserId)
       },
       error: () => {
         console.log("error in getting user from token")

@@ -13,16 +13,17 @@ interface RecipeService {
     fun findAllRecipesByUser(userId: Long): List<Recipe>?
     fun getMostFavouriteRecipes(): List<Recipe>
     fun addRecipe(
-        title: String, user: User, datePublished: String,
+        title: String, user: User,
         description: String,
         image: MultipartFile,
-        cookTime: Long, calories: String,
+        cookTime: Long,
+        calories: String,
         carbohydrates: String,
         fats: String,
         proteins: String,
         instructions: String,
         ingredient: String,
-        categoryIds: List<Long>
+        categoryIds: String
     ): Recipe?
 
     fun editRecipe(

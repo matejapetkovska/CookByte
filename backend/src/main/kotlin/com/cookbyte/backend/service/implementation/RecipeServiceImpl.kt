@@ -1,22 +1,30 @@
 package com.cookbyte.backend.service.implementation
 
 import com.cookbyte.backend.domain.Category
+import com.cookbyte.backend.domain.Ingredient
 import com.cookbyte.backend.domain.Recipe
 import com.cookbyte.backend.domain.User
 import com.cookbyte.backend.repository.RecipeRepository
 import com.cookbyte.backend.service.CategoryService
 import com.cookbyte.backend.service.IngredientService
 import com.cookbyte.backend.service.RecipeService
+import com.fasterxml.jackson.databind.ObjectMapper
 import org.springframework.beans.factory.annotation.Value
 import org.springframework.stereotype.Service
 import org.springframework.web.multipart.MultipartFile
 import java.nio.file.Files
 import java.nio.file.Paths
+import java.time.LocalDate
+import java.util.Date
+import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
+import com.fasterxml.jackson.module.kotlin.readValue
 
 @Service
 class RecipeServiceImpl(val recipeRepository: RecipeRepository,
                         val categoryService: CategoryService,
                         val ingredientService: IngredientService) : RecipeService {
+
+    val objectMapper = ObjectMapper()
 
     @Value("\${upload.directory}")
     private lateinit var uploadDirectory: String
@@ -52,7 +60,6 @@ class RecipeServiceImpl(val recipeRepository: RecipeRepository,
     override fun addRecipe(
         title: String,
         user: User,
-        datePublished: String,
         description: String,
         image: MultipartFile,
         cookTime: Long,
@@ -62,16 +69,19 @@ class RecipeServiceImpl(val recipeRepository: RecipeRepository,
         proteins: String,
         instructions: String,
         ingredient: String,
-        categoryIds: List<Long>
+        categoryIds: String
     ): Recipe? {
-        val categories = categoryService.findAllByIds(categoryIds).orEmpty()
+        val categoryList: List<Long> = objectMapper.readValue(categoryIds)
+        val categories = categoryService.findAllByIds(categoryList).orEmpty()
         val imagePath = generateRandomName() + ".jpg"
         val imagePathWithDirectory = Paths.get(uploadDirectory, imagePath)
         Files.copy(image.inputStream, imagePathWithDirectory)
-        val recipe = Recipe(0, title, user, datePublished, description, imagePath, cookTime, calories, carbohydrates, fats, proteins, instructions, categories)
-        this.ingredientService.addIngredient(ingredient, recipe)
+        val recipe = Recipe(0, title, user, LocalDate.now().toString(), description, imagePath, cookTime, calories, carbohydrates, fats, proteins, instructions, categories)
+        val ingredientsList: List<String> = objectMapper.readValue(ingredient)
+        ingredientService.addIngredients(ingredientsList, recipe)
         return recipeRepository.save(recipe)
     }
+
 
     override fun editRecipe(
         id: Long,
