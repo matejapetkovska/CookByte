@@ -15,6 +15,10 @@ import {FormsModule} from "@angular/forms";
 import { RecipeDetailsComponent } from './components/recipe-details/recipe-details.component';
 import { UserProfileComponent } from './components/user-profile/user-profile.component';
 import {AddRecipeDialogComponent} from "./components/dialog/add-recipe-dialog/add-recipe-dialog.component";
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatSelectModule } from '@angular/material/select';
+import { MatIconModule } from '@angular/material/icon';
 
 @NgModule({
   declarations: [
@@ -34,7 +38,11 @@ import {AddRecipeDialogComponent} from "./components/dialog/add-recipe-dialog/ad
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    BrowserAnimationsModule,
+    MatFormFieldModule,
+    MatSelectModule,
+    MatIconModule
   ],
   providers: [],
   bootstrap: [AppComponent]

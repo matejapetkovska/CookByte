@@ -17,14 +17,14 @@ export class AddRecipeDialogComponent implements OnInit {
   categories: Category[] | undefined
   title: String = ''
   description: String = ''
-  cookTime: String = ''
+  cookTime: number | undefined
   calories: String = ''
   carbohydrates: String = ''
   proteins: String = ''
   fats: String = ''
   instructions: String = ''
   selectedFile: File | null = null
-  selectedCategoryId: Number | undefined
+  selectedCategoryIds: number[] = []
   ingredient: Ingredient = {
     name: ''
   }
@@ -52,10 +52,9 @@ export class AddRecipeDialogComponent implements OnInit {
   }
 
   onFileChange(event: any): void {
-    const file = event.target.files[0];
-
-    if (file) {
-      this.previewImage(file);
+    this.selectedFile = event.target.files[0];
+    if (this.selectedFile) {
+      this.previewImage(this.selectedFile);
     }
   }
   previewImage(file: File): void {
@@ -83,8 +82,10 @@ export class AddRecipeDialogComponent implements OnInit {
   createFormData(): FormData {
     const formData = new FormData();
     const token = localStorage.getItem('token');
-    if (this.title != null && this.description != null && this.categories != null && this.ingredient != null) {
-      //TODO
+    if (this.title != null && this.description != null && this.selectedFile != null &&
+      this.cookTime != undefined && this.calories != undefined && this.carbohydrates != undefined &&
+      this.fats != undefined && this.proteins != undefined && this.instructions != null &&
+      this.selectedCategoryIds != null && this.ingredients != null && token != null) {
       formData.append('title', this.title.toString());
       formData.append('description', this.description.toString());
       formData.append('file', this.selectedFile);
@@ -95,16 +96,14 @@ export class AddRecipeDialogComponent implements OnInit {
       formData.append('proteins', this.proteins.toString());
       formData.append('instructions', this.instructions.toString());
       formData.append('ingredients',  JSON.stringify(this.ingredients));
-      formData.append('categoryIds', JSON.stringify(this.selectedCategoryId));
-      formData.append('token', token);
-      formData.forEach(value => console.log(value))
+      formData.append('categoryIds', JSON.stringify(this.selectedCategoryIds));
+      formData.append('token', token.toString());
     }
     return formData;
   }
 
   onAddRecipe() {
     const formData = this.createFormData()
-    console.log(formData)
     this.recipeService.addRecipe(formData)
       .subscribe({
         next: () => {

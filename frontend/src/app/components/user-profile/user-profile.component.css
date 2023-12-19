@@ -133,3 +133,82 @@ label {
   justify-content: center;
   align-items: center;
 }
+
+.card {
+  border: 1px solid white;
+  border-radius: 10px;
+  box-shadow: 1px 3px 5px rgba(0, 0, 0, 0.3);
+  transition: transform 0.3s ease-in-out;
+}
+
+.card:hover {
+  transform: scale(1.02);
+}
+
+.card-img {
+  width: 100%;
+  height: 250px;
+  object-fit: cover;
+  object-position: center top;
+  border-top-right-radius: 10px;
+  border-top-left-radius: 10px;
+}
+
+.card-title {
+  color: var(--blue);
+  font-size: 1.2rem;
+  height: 80px;
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+}
+
+.category-title-rating {
+  padding: 0.5rem;
+}
+.fa-star {
+  color: #f39c12;
+}
+.card-category {
+  font-size: 1rem;
+  color: var(--dark-blue);
+  display: inline-block;
+  margin-right: 0.5rem;
+  height: 25px;
+}
+
+.card-category-container {
+  display: inline-block;
+}
+
+.card-category > span {
+  margin-right: 0.5rem;
+}
+
+
+.image-cover {
+  height: 250px;
+  width: 100%;
+  object-fit: cover;
+  filter: brightness(60%);
+  z-index: -1;
+}
+
+.text-content {
+  text-align: center;
+  max-width: 800px;
+  margin: 50px auto;
+  padding: 20px;
+  background-color: rgba(255, 255, 255, 0.9);
+  border: none;
+}
+
+.text-content h1 {
+  color: #333;
+  margin-bottom: 20px;
+}
+
+.text-content p {
+  color: #555;
+  line-height: 1.6;
+}

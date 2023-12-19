@@ -22,7 +22,7 @@ interface RecipeService {
         fats: String,
         proteins: String,
         instructions: String,
-        ingredient: String,
+        ingredients: String,
         categoryIds: String
     ): Recipe?
 

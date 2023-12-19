@@ -6,9 +6,9 @@ import {Recipe} from "../../interfaces/recipe";
 import {DatePipe} from '@angular/common';
 import {Review} from "../../interfaces/review";
 import {ReviewService} from "../../services/review.service";
-import {count} from "rxjs";
 import {IngredientsService} from "../../services/ingredients.service";
 import {Ingredient} from "../../interfaces/ingredient";
+import {User} from "../../interfaces/user";
 
 @Component({
   selector: 'app-recipe-details',
@@ -20,11 +20,13 @@ export class RecipeDetailsComponent implements OnInit {
 
   recipe: Recipe | undefined
   userLoggedIn = false
-  loggedInUserId: Number | undefined
+  user: User | undefined
   reviews: Review[] | undefined
   recipeRatingMap = new Map<number, { totalRating: number, count: number }>();
   ingredients: Ingredient[] | undefined
   showReviewContainer = false
+  ratingValue: number | undefined
+  reviewDescription: string = ''
 
   constructor(private recipeService: RecipeService,
               private userService: UserService,
@@ -50,6 +52,9 @@ export class RecipeDetailsComponent implements OnInit {
       return;
     this.recipeService.getRecipeDetails(recipeId).subscribe((recipe) => {
         this.recipe = recipe;
+        if (!this.recipe.imageUrl.startsWith('http://') && !this.recipe.imageUrl.startsWith('https://')) {
+          this.addPathToRecipeImages(recipe);
+        }
         this.addPathToUserImagesFromRecipes(this.recipe)
         if (this.recipe && this.recipe.datePublished) {
           const originalDate = new Date(this.recipe.datePublished);
@@ -67,6 +72,7 @@ export class RecipeDetailsComponent implements OnInit {
         this.reviewService.getReviewForRecipe(recipeId).subscribe({
           next: (reviews) => {
             this.reviews = reviews
+            console.log(this.reviews)
             this.addPathToUserImagesFromReviews(this.reviews)
             this.reviews.forEach(review => {
               const recipeId = review.recipe.id;
@@ -79,7 +85,7 @@ export class RecipeDetailsComponent implements OnInit {
                 this.recipeRatingMap.set(recipeId, {totalRating: ratingValue, count: 1});
               }
             });
-            if(this.recipe) {
+            if (this.recipe) {
               const recipeId = this.recipe.id;
               const ratingData = this.recipeRatingMap.get(recipeId);
               if (ratingData) {
@@ -101,7 +107,8 @@ export class RecipeDetailsComponent implements OnInit {
     const token = localStorage.getItem('token')
     this.userService.getUserFromToken(token).subscribe({
       next: (user) => {
-        this.loggedInUserId = user.id
+        this.user = user
+        this.addPathToUserImage(this.user)
       },
       error: () => {
         console.log("error in getting user from token")
@@ -116,6 +123,8 @@ export class RecipeDetailsComponent implements OnInit {
   }
 
   toggleReview() {
+    if(this.user != undefined)
+      this.user.image = "../../../assets/images/" + this.user.image;
     this.showReviewContainer = true
   }
 
@@ -128,8 +137,36 @@ export class RecipeDetailsComponent implements OnInit {
   }
 
   addPathToUserImagesFromReviews(reviews: Review[]) {
-    for (let i = 0; i < reviews.length; i++)
+    for (let i = 0; i < reviews.length; i++) {
       reviews[i].user.image = "../../../assets/images/" + reviews[i].user.image;
+    }
   }
 
+  addPathToUserImage(user: User) {
+    user.image = "../../../assets/images/" + user.image;
+  }
+
+  addPathToRecipeImages(recipes: Recipe) {
+    recipes.imageUrl = "../../../assets/user-uploaded-images/" + recipes.imageUrl;
+  }
+
+  addReview() {
+    const token = localStorage.getItem('token')
+    const formData = new FormData()
+    if (this.ratingValue != null && this.reviewDescription != null && this.recipe != undefined &&
+      token != null) {
+      formData.append('ratingValue', this.ratingValue.toString())
+      formData.append('reviewDescription', this.reviewDescription.toString())
+      formData.append('recipeId', this.recipe?.id.toString());
+      formData.append('token', token.toString())
+    }
+    this.reviewService.addReview(formData).subscribe({
+      next: (newReview) => {
+        this.reviews?.push(newReview)
+        this.addPathToUserImagesFromReviews(this.reviews!!)
+        this.reviewDescription = ''
+        this.ratingValue = undefined
+      }
+    })
+  }
 }

@@ -97,7 +97,7 @@
                   type="number"
                   placeholder="Carbs (g)"
                   id="carbs"
-                  name="carbs"
+                  name="carbohydrates"
                   required
                   [(ngModel)]="carbohydrates"
                 />
@@ -130,12 +130,11 @@
           </table>
           <div>
             <label for="categories">Categories: </label>
-
-            <select id="categories" name="categories" [(ngModel)]="selectedCategoryId">
-              <option *ngFor="let category of categories" value="{{category.id}}">
-                {{category.name}}
-              </option>
-            </select>
+            <mat-form-field>
+              <mat-select placeholder="Select.." name="categories" [(ngModel)]="selectedCategoryIds" multiple>
+                <mat-option *ngFor="let category of categories" [value]="category.id">{{category.name}}</mat-option>
+              </mat-select>
+            </mat-form-field>
           </div>
         </div>
         <button id="upload-recipe-btn" type="submit" (click)="onAddRecipe()">Upload recipe</button>

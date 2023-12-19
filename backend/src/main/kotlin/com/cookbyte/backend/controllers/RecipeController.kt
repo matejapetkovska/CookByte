@@ -26,7 +26,7 @@ class RecipeController(val recipeService: RecipeService, val userService: UserSe
     fun createRecipe(@RequestParam title: String,
                      @RequestParam file: MultipartFile,
                      @RequestParam description: String,
-                     @RequestParam cookTime: Long,
+                     @RequestParam cookTime: String,
                      @RequestParam calories: String,
                      @RequestParam carbohydrates: String,
                      @RequestParam fats: String,
@@ -36,7 +36,10 @@ class RecipeController(val recipeService: RecipeService, val userService: UserSe
                      @RequestParam ingredients: String,
                      @RequestParam token: String): ResponseEntity<Any> {
         val user = userService.getUserFromToken(token) ?: return ResponseEntity.badRequest().body(Error("Error in saving recipe. Please log in first."))
-        val recipe = recipeService.addRecipe(title, user, description, file, cookTime, calories, carbohydrates, fats, proteins, instructions, ingredients, categoryIds)
+        val recipe = recipeService.addRecipe(title, user, description, file, cookTime.toLong(), calories, carbohydrates, fats, proteins, instructions, ingredients, categoryIds)
         return ResponseEntity.ok(recipe)
     }
+
+    @DeleteMapping("/delete/{recipeId}")
+    fun deleteRecipe(@PathVariable recipeId: Long) = recipeService.deleteRecipe(recipeId)
 }

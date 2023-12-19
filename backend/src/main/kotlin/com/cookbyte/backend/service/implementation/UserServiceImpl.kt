@@ -49,11 +49,11 @@ class UserServiceImpl(val userRepository: UserRepository, val jwtService: JwtSer
     }
 
     fun generateRandomName(): String {
-        val name = StringBuilder()
-        val allowedChars = listOf(('a'..'z'),('A'..'Z'),(0..9)).flatten().random()
-        for(i in 1..8) {
-            name.append(allowedChars)
+        val sb = StringBuilder()
+        for (i in 0..8) {
+            val rand = listOf(('a'..'z'), ('A'..'Z')).flatten().random()
+            sb.append(rand)
         }
-        return name.toString()
+        return sb.toString()
     }
 }

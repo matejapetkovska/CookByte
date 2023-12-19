@@ -58,15 +58,37 @@
       </div>
     </form>
     <div class="recipes">
-      <h2>Recipes ({{totalRecipes}})</h2>
+      <h2>Recipes ({{this.totalRecipes}})</h2>
       <div id="recipeContainer" class="scrollableContainer">
-        NO RECIPES 🙁
+        <div class="card" *ngFor="let recipe of recipes">
+          <a [routerLink]="['/recipes', recipe.id]">
+            <img src="{{ recipe.imageUrl }}" alt="" class="card-img"/>
+          </a>
+          <div class="category-title-rating">
+            <div class="card-category">
+              <span *ngFor="let category of recipe.categories">#{{ category.name }}</span>
+            </div>
+            <a [routerLink]="['/recipes', recipe.id]" class="card-title"><h4>{{ recipe.title }}</h4></a>
+            <mat-icon>edit</mat-icon>
+            <mat-icon (click)="deleteRecipe(recipe.id)">delete_outline</mat-icon>
+            <p class="rating" *ngIf="recipe.averageRating > 0; else noRating">
+              <i class="fa-solid fa-star"></i> {{ recipe.averageRating }}
+            </p>
+            <ng-template #noRating>
+              <p class="rating">
+                <i class="fa-regular fa-star"></i> {{ recipe.averageRating }}
+              </p>
+            </ng-template>
+          </div>
+        </div>
       </div>
     </div>
     <div class="reviews">
       <h2>Reviews ({{totalReviews}})</h2>
-      <div id="reviewContainer" class="scrollableContainer">
-        NO REVIEWS 🙁
+      <div id="reviewContainer" class="scrollableContainer" *ngIf="reviews">
+        <div *ngFor="let review of reviews">
+          {{review.description}}
+        </div>
       </div>
     </div>
     <button id="create-recipe-btn" (click)="openDialog()">Create recipe</button>

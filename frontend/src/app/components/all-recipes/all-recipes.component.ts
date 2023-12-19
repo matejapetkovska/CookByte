@@ -15,8 +15,7 @@ export class AllRecipesComponent implements OnInit {
   randomRecipe: Recipe | undefined
   reviews: Review[] | undefined
 
-  constructor(private recipeService: RecipeService, private reviewService: ReviewService) {
-  }
+  constructor(private recipeService: RecipeService, private reviewService: ReviewService) { }
 
   ngOnInit(): void {
     this.reviewService.getAllReviews().subscribe({
@@ -49,6 +48,11 @@ export class AllRecipesComponent implements OnInit {
     this.recipeService.getAllRecipes().subscribe({
       next: (recipes) => {
         this.recipes = recipes
+        this.recipes.forEach(recipe => {
+          if (!recipe.imageUrl.startsWith('http://') && !recipe.imageUrl.startsWith('https://')) {
+            this.addPathToRecipeImages(recipe);
+          }
+        });
         this.randomRecipe = this.recipes[Math.floor(Math.random() * this.recipes.length)];
         for (const recipe of this.recipes) {
           recipe.title = this.recipeService.cleanText(recipe.title)
@@ -57,5 +61,10 @@ export class AllRecipesComponent implements OnInit {
         console.log("error")
       }
     })
+  }
+
+  addPathToRecipeImages(recipes: Recipe) {
+    recipes.imageUrl = "../../../assets/user-uploaded-images/" + recipes.imageUrl;
+    console.log(recipes.imageUrl)
   }
 }

@@ -28,12 +28,15 @@ export class RecipeService {
   }
 
   addRecipe(formData: FormData): Observable<any> {
-    // console.log(formData)
     return this.httpClient.post<FormData>(`${this.url}/add`, formData);
   }
 
-  editRecipe(recipe_id: String | null, formData: FormData): Observable<any> {
-    return this.httpClient.put<FormData>(`${this.url}/edit/${recipe_id}`, formData);
+  editRecipe(recipeId: string | null, formData: FormData): Observable<any> {
+    return this.httpClient.put<FormData>(`${this.url}/edit/${recipeId}`, formData);
+  }
+
+  deleteRecipe(recipeId: string | null): Observable<any> {
+    return this.httpClient.delete(`${this.url}/delete/${recipeId}`)
   }
 
   cleanText(inputText: string): string {

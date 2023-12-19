@@ -12,4 +12,6 @@ class Ingredient(
 
     @ManyToOne
     var recipe: Recipe?
-)
+){
+    constructor(): this(0, "", null)
+}

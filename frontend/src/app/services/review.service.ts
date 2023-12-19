@@ -1,7 +1,8 @@
 import {Injectable} from '@angular/core';
-import {HttpClient} from "@angular/common/http";
+import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {Review} from "../interfaces/review";
 import {Observable} from "rxjs";
+import {Recipe} from "../interfaces/recipe";
 
 @Injectable({
   providedIn: 'root'
@@ -24,6 +25,11 @@ export class ReviewService {
   }
 
   getReviewsForUser(userId: number | undefined): Observable<Review[]> {
-    return this.httpClient.get<Review[]>(`${this.url}/reviewsByUser/${userId}`)
+    return this.httpClient.get<Review[]>(`${this.url}/reviewsByUser/${userId}`);
+  }
+  addReview(formData: FormData): Observable<any> {
+    const headers = new HttpHeaders();
+    headers.set('Content-Type', 'multipart/form-data');
+    return this.httpClient.post<any>(`${this.url}/addReview`, formData)
   }
 }

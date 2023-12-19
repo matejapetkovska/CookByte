@@ -16,8 +16,8 @@ class IngredientServiceImpl(val ingredientRepository: IngredientRepository): Ing
         return ingredientRepository.save(Ingredient(0, name, recipe))
     }
 
-    override fun addIngredients(names: List<String>, recipe: Recipe): List<Ingredient>? {
-        val ingredients = names.map { Ingredient(0, it, recipe) }
+    override fun addIngredients(ingredients: List<Ingredient>, recipe: Recipe): List<Ingredient>? {
+        ingredients.forEach { it.recipe = recipe }
         return ingredientRepository.saveAll(ingredients)
     }
 

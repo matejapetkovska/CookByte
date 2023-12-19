@@ -4,10 +4,14 @@ import com.cookbyte.backend.domain.Category
 import com.cookbyte.backend.domain.Ingredient
 import com.cookbyte.backend.domain.Recipe
 import com.cookbyte.backend.domain.User
+import com.cookbyte.backend.repository.IngredientRepository
 import com.cookbyte.backend.repository.RecipeRepository
+import com.cookbyte.backend.repository.ReviewRepository
 import com.cookbyte.backend.service.CategoryService
 import com.cookbyte.backend.service.IngredientService
 import com.cookbyte.backend.service.RecipeService
+import com.cookbyte.backend.service.ReviewService
+import com.fasterxml.jackson.core.type.TypeReference
 import com.fasterxml.jackson.databind.ObjectMapper
 import org.springframework.beans.factory.annotation.Value
 import org.springframework.stereotype.Service
@@ -18,11 +22,17 @@ import java.time.LocalDate
 import java.util.Date
 import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
 import com.fasterxml.jackson.module.kotlin.readValue
+import jakarta.transaction.Transactional
 
 @Service
-class RecipeServiceImpl(val recipeRepository: RecipeRepository,
-                        val categoryService: CategoryService,
-                        val ingredientService: IngredientService) : RecipeService {
+class RecipeServiceImpl(
+    val recipeRepository: RecipeRepository,
+    val categoryService: CategoryService,
+    val ingredientService: IngredientService,
+    val reviewService: ReviewService,
+//    val ingredientRepository: IngredientRepository,
+    val reviewRepository: ReviewRepository
+) : RecipeService {
 
     val objectMapper = ObjectMapper()
 
@@ -68,18 +78,34 @@ class RecipeServiceImpl(val recipeRepository: RecipeRepository,
         fats: String,
         proteins: String,
         instructions: String,
-        ingredient: String,
+        ingredients: String,
         categoryIds: String
     ): Recipe? {
-        val categoryList: List<Long> = objectMapper.readValue(categoryIds)
-        val categories = categoryService.findAllByIds(categoryList).orEmpty()
+        val categoryList: List<Long> = objectMapper.readValue(categoryIds, object : TypeReference<List<Long>>() {})
+        val categories: Set<Category> = categoryService.findAllByIds(categoryList).orEmpty().toSet()
+        categories.forEach { category -> println(category.name) }
         val imagePath = generateRandomName() + ".jpg"
         val imagePathWithDirectory = Paths.get(uploadDirectory, imagePath)
         Files.copy(image.inputStream, imagePathWithDirectory)
-        val recipe = Recipe(0, title, user, LocalDate.now().toString(), description, imagePath, cookTime, calories, carbohydrates, fats, proteins, instructions, categories)
-        val ingredientsList: List<String> = objectMapper.readValue(ingredient)
+        val recipe = Recipe(
+            0,
+            title,
+            user,
+            LocalDate.now().toString(),
+            description,
+            imagePath,
+            cookTime,
+            calories,
+            carbohydrates,
+            fats,
+            proteins,
+            instructions,
+            categories
+        )
+        val savedRecipe = recipeRepository.save(recipe)
+        val ingredientsList: List<Ingredient> = objectMapper.readValue(ingredients)
         ingredientService.addIngredients(ingredientsList, recipe)
-        return recipeRepository.save(recipe)
+        return savedRecipe
     }
 
 
@@ -100,7 +126,7 @@ class RecipeServiceImpl(val recipeRepository: RecipeRepository,
         categoryIds: List<Long>
     ): Recipe? {
         val recipe = this.findRecipeById(id)
-        if(recipe != null) {
+        if (recipe != null) {
             recipe.title = title
             recipe.description = description
             val imagePath = generateRandomName() + ".jpg"
@@ -122,7 +148,7 @@ class RecipeServiceImpl(val recipeRepository: RecipeRepository,
             categories.removeAll { it.id in removedCategories }
 
             val ingredients = ingredientService.findByRecipeId(id)
-            if(ingredients != null) {
+            if (ingredients != null) {
                 val existingIngredients = ingredients.map { it.id }.toMutableList()
                 val addedIngredients = ingredientIds.filter { it !in existingIngredients }
                 val removedIngredients = existingIngredients.filter { it !in ingredientIds }
@@ -131,7 +157,7 @@ class RecipeServiceImpl(val recipeRepository: RecipeRepository,
                     ingredient?.recipe = recipe
                     ingredient?.name?.let { ingredientService.addIngredient(it, recipe) }
                 }
-                for(ingredientId in removedIngredients) {
+                for (ingredientId in removedIngredients) {
                     ingredientService.deleteById(ingredientId)
                 }
             }
@@ -140,14 +166,27 @@ class RecipeServiceImpl(val recipeRepository: RecipeRepository,
         return null
     }
 
+    @Transactional
     override fun deleteRecipe(recipeId: Long) {
+        val ingredients = ingredientService.findByRecipeId(recipeId)
+        val reviews = reviewService.getReviewByRecipeId(recipeId)
+
+        ingredients?.forEach { ingredient ->
+            ingredientService.deleteById(ingredient.id)
+        }
+        reviews?.forEach { review ->
+            review.recipe = null
+            reviewRepository.save(review)
+        }
         recipeRepository.deleteById(recipeId)
     }
 
     fun generateRandomName(): String {
-        val allowedChars = listOf(('a'..'z'),('A'..'Z'),(0..9))
-        return (1..8)
-            .map { allowedChars.random() }
-            .joinToString("")
+        val sb = StringBuilder()
+        for (i in 0..8) {
+            val rand = listOf(('a'..'z'), ('A'..'Z')).flatten().random()
+            sb.append(rand)
+        }
+        return sb.toString()
     }
 }

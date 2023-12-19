@@ -69,48 +69,51 @@
     <hr/>
     <div class="reviews">
       <div class="reviews-header">
-        <h3>REVIEWS ({{getReviewCount()}})</h3>
-        <button class="add-review-btn" (click)="toggleReview()" *ngIf="loggedInUserId != undefined">
+        <h3>REVIEWS ({{reviews?.length}})</h3>
+        <button class="add-review-btn" (click)="toggleReview()" *ngIf="user != undefined">
           <i class="fa-solid fa-plus"></i>
         </button>
       </div>
-      <div class="add-review" *ngIf="showReviewContainer">
+      <div class="add-review" *ngIf="showReviewContainer && user">
         <div class="review add-review-container">
           <div class="user">
             <img
-              src="https://images.pexels.com/photos/4927361/pexels-photo-4927361.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+              src="{{user.image}}"
               alt=""
-              class="user-picture"/>UserName
+              class="user-picture"/>
+            {{user.username}}
           </div>
+          <form enctype="multipart/form-data">
           <p class="rating">Rating:
-            <select>
+            <select [(ngModel)]="ratingValue" name="ratingValue">
               <option value="1">1</option>
               <option value="2">2</option>
               <option value="3">3</option>
               <option value="4">4</option>
               <option value="5">5</option>
             </select>/5 <i class="fa-solid fa-star"></i></p>
-          <textarea class="review-description"></textarea>
+          <textarea class="review-description" name="reviewDescription" [(ngModel)]="reviewDescription"></textarea>
           <div class="add-btn-container">
-            <button class="add-btn">Add</button>
+            <button class="add-btn" (click)="addReview()">Add</button>
           </div>
+          </form>
           <button class="cancel-btn" (click)="closeReviewDialog()">&times;</button>
         </div>
       </div>
 
-      <ng-container *ngIf="reviews && (getReviewCount() > 0); else noReview">
-      <div class="review" *ngFor="let review of reviews">
+      <div *ngIf="reviews && reviews.length > 0" class="reviews">
+        <div class="review" *ngFor="let review of reviews">
           <div class="user">
             <img src="{{review.user.image}}" alt="" class="user-picture" />{{review.user.firstName}}
           </div>
           <p class="rating">Rating: {{review.ratingValue}}/5 <i class="fa-solid fa-star"></i></p>
           <p>{{review.description}}</p>
-
+        </div>
       </div>
-      </ng-container>
+
+<!--      <ng-template #noReview>-->
+<!--        <p class="no-review">No reviews have been posted yet.</p>-->
+<!--      </ng-template>-->
     </div>
-    <ng-template #noReview>
-      <p class="no-review">No reviews have been posted yet.</p>
-    </ng-template>
   </main>
 </section>

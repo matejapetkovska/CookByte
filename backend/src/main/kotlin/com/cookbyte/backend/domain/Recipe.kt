@@ -1,5 +1,6 @@
 package com.cookbyte.backend.domain
 
+import com.fasterxml.jackson.annotation.JsonSetter
 import jakarta.persistence.*
 
 @Entity
@@ -38,7 +39,8 @@ class Recipe(
     )
     var categories: Set<Category> = emptySet()
 ) {
-    fun setCategories(newCategories: MutableList<Category>) {
+    @JsonSetter("categories")
+    fun setCategories(newCategories: List<Category>) {
         this.categories = newCategories.toSet()
     }
 }
