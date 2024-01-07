@@ -9,6 +9,7 @@ footer {
   align-items: center;
   color: white;
   font-weight: 500;
+  z-index: 2;
 }
 footer > div {
   width: 100vw;

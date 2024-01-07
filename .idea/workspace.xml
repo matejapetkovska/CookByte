@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="75760713-3ba1-4d79-9cc6-88fff86e4ba7" name="Changes" comment="Add recipe modal">
+    <list default="true" id="75760713-3ba1-4d79-9cc6-88fff86e4ba7" name="Changes" comment="Implemented all functionalities for recipe">
       <change afterPath="$PROJECT_DIR$/frontend/src/assets/user-uploaded-images/0..9A..Za..z0..9a..zA..Za..z0..9.jpg" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/frontend/src/assets/user-uploaded-images/0..9A..Za..zA..Z0..9a..z0..9a..z.jpg" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/frontend/src/assets/user-uploaded-images/0..9a..z0..9a..z0..90..90..90..9.jpg" afterDir="false" />
@@ -12,6 +12,7 @@
       <change afterPath="$PROJECT_DIR$/frontend/src/assets/user-uploaded-images/0..9a..zA..ZA..Z0..9A..ZA..ZA..Z.jpg" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/frontend/src/assets/user-uploaded-images/A..Za..zA..Z0..90..9A..ZA..Z0..9.jpg" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/frontend/src/assets/user-uploaded-images/A..Za..zA..Za..z0..9A..Z0..9a..z.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/assets/user-uploaded-images/AresmUMOm.jpg" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/frontend/src/assets/user-uploaded-images/a..z0..9A..Za..za..z0..9A..Z0..9.jpg" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/frontend/src/assets/user-uploaded-images/a..z0..9a..z0..9A..Za..za..za..z.jpg" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/frontend/src/assets/user-uploaded-images/a..zA..Z0..90..90..9A..Z0..90..9.jpg" afterDir="false" />
@@ -19,39 +20,13 @@
       <change afterPath="$PROJECT_DIR$/frontend/src/assets/user-uploaded-images/a..zA..Za..zA..Z0..9A..ZA..Za..z.jpg" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/frontend/src/assets/user-uploaded-images/a..zA..Za..zA..ZA..Za..zA..Za..z.jpg" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/frontend/src/assets/user-uploaded-images/a..za..zA..Za..z0..90..9A..ZA..Z.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/assets/user-uploaded-images/qaqnLlKEx.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/assets/user-uploaded-images/gJwdrznXq.jpg" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/kotlin/com/cookbyte/backend/configurations/SecurityConfig.kt" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/kotlin/com/cookbyte/backend/configurations/SecurityConfig.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/kotlin/com/cookbyte/backend/controllers/RecipeController.kt" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/kotlin/com/cookbyte/backend/controllers/RecipeController.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/kotlin/com/cookbyte/backend/controllers/ReviewController.kt" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/kotlin/com/cookbyte/backend/controllers/ReviewController.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/kotlin/com/cookbyte/backend/domain/Ingredient.kt" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/kotlin/com/cookbyte/backend/domain/Ingredient.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/kotlin/com/cookbyte/backend/domain/Recipe.kt" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/kotlin/com/cookbyte/backend/domain/Recipe.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/kotlin/com/cookbyte/backend/domain/Review.kt" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/kotlin/com/cookbyte/backend/domain/Review.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/kotlin/com/cookbyte/backend/service/IngredientService.kt" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/kotlin/com/cookbyte/backend/service/IngredientService.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/kotlin/com/cookbyte/backend/service/RecipeService.kt" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/kotlin/com/cookbyte/backend/service/RecipeService.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/kotlin/com/cookbyte/backend/service/ReviewService.kt" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/kotlin/com/cookbyte/backend/service/ReviewService.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/kotlin/com/cookbyte/backend/service/implementation/IngredientServiceImpl.kt" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/kotlin/com/cookbyte/backend/service/implementation/IngredientServiceImpl.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/kotlin/com/cookbyte/backend/service/implementation/RecipeServiceImpl.kt" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/kotlin/com/cookbyte/backend/service/implementation/RecipeServiceImpl.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/kotlin/com/cookbyte/backend/service/implementation/ReviewServiceImpl.kt" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/kotlin/com/cookbyte/backend/service/implementation/ReviewServiceImpl.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/kotlin/com/cookbyte/backend/service/implementation/UserServiceImpl.kt" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/kotlin/com/cookbyte/backend/service/implementation/UserServiceImpl.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/angular.json" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/angular.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/app/app.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/app.module.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/app/components/about-us/about-us.component.css" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/components/about-us/about-us.component.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/app/components/about-us/about-us.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/components/about-us/about-us.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/app/components/all-recipes/all-recipes.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/components/all-recipes/all-recipes.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/app/components/dialog/add-recipe-dialog/add-recipe-dialog.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/components/dialog/add-recipe-dialog/add-recipe-dialog.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/app/components/dialog/add-recipe-dialog/add-recipe-dialog.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/components/dialog/add-recipe-dialog/add-recipe-dialog.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/app/components/recipe-details/recipe-details.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/components/recipe-details/recipe-details.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/app/components/recipe-details/recipe-details.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/components/recipe-details/recipe-details.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/app/components/user-profile/user-profile.component.css" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/components/user-profile/user-profile.component.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/app/components/user-profile/user-profile.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/components/user-profile/user-profile.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/app/components/user-profile/user-profile.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/components/user-profile/user-profile.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/app/services/recipe.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/services/recipe.service.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/app/services/review.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/services/review.service.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/app/components/footer/footer.component.css" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/components/footer/footer.component.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/app/components/homepage/homepage.component.css" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/components/homepage/homepage.component.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/app/components/homepage/homepage.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/components/homepage/homepage.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/app/components/homepage/homepage.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/components/homepage/homepage.component.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/styles.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -221,7 +196,8 @@
       <workItem from="1702406749286" duration="11143000" />
       <workItem from="1702812516832" duration="8865000" />
       <workItem from="1702821502973" duration="15447000" />
-      <workItem from="1703017802749" duration="3078000" />
+      <workItem from="1703017802749" duration="3581000" />
+      <workItem from="1704647498533" duration="8744000" />
     </task>
     <task id="LOCAL-00001" summary="Security on fe">
       <created>1699805016453</created>
@@ -272,7 +248,14 @@
       <option name="project" value="LOCAL" />
       <updated>1702417934609</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="Implemented all functionalities for recipe">
+      <created>1703021371643</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1703021371643</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -297,7 +280,8 @@
     <MESSAGE value="Recipe details component" />
     <MESSAGE value="User profile component (partial)" />
     <MESSAGE value="Add recipe modal" />
-    <option name="LAST_COMMIT_MESSAGE" value="Add recipe modal" />
+    <MESSAGE value="Implemented all functionalities for recipe" />
+    <option name="LAST_COMMIT_MESSAGE" value="Implemented all functionalities for recipe" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
