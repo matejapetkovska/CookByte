@@ -118,8 +118,7 @@ export class RecipeDetailsComponent implements OnInit {
 
   getReviewCount(): number {
     const recipeId = this.recipe?.id || 0;
-    const count = this.recipeRatingMap.get(recipeId)?.count || 0;
-    return count;
+    return this.recipeRatingMap.get(recipeId)?.count || 0;
   }
 
   toggleReview() {
@@ -168,5 +167,11 @@ export class RecipeDetailsComponent implements OnInit {
         this.ratingValue = undefined
       }
     })
+    this.getReviewCount()
   }
+
+  allUsersNotNull(reviews: any[]): boolean {
+    return reviews.every(review => review.user !== null);
+  }
+
 }

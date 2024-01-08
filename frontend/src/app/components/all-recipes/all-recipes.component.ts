@@ -20,31 +20,32 @@ export class AllRecipesComponent implements OnInit {
   ngOnInit(): void {
     this.reviewService.getAllReviews().subscribe({
       next: (reviews) => {
-        this.reviews = reviews
+        this.reviews = reviews;
         const recipeRatingMap = new Map<number, { totalRating: number, count: number }>();
         this.reviews.forEach(review => {
-          const recipeId = review.recipe.id;
+          const recipeId = review.recipe?.id;
           const ratingValue = review.ratingValue;
-          if (recipeRatingMap.has(recipeId)) {
-            const existingData = recipeRatingMap.get(recipeId)!;
-            existingData.totalRating += ratingValue;
-            existingData.count += 1;
-          } else {
-            recipeRatingMap.set(recipeId, { totalRating: ratingValue, count: 1 });
+          if (recipeId && !isNaN(ratingValue)) {
+            if (recipeRatingMap.has(recipeId)) {
+              const existingData = recipeRatingMap.get(recipeId)!;
+              existingData.totalRating += ratingValue;
+              existingData.count += 1;
+            } else {
+              recipeRatingMap.set(recipeId, { totalRating: ratingValue, count: 1 });
+            }
           }
         });
         this.recipes?.forEach((recipe) => {
-          const recipeId = recipe.id;
-          const ratingData = recipeRatingMap.get(recipeId);
-          if(ratingData) {
+          const recipeId = recipe?.id;
+          const ratingData = recipeId ? recipeRatingMap.get(recipeId) : null;
+          if (ratingData) {
             recipe.averageRating = Number((ratingData.totalRating / ratingData.count).toFixed(2));
-          }
-          else {
+          } else {
             recipe.averageRating = 0;
           }
-        })
+        });
       }
-    })
+    });
     this.recipeService.getAllRecipes().subscribe({
       next: (recipes) => {
         this.recipes = recipes

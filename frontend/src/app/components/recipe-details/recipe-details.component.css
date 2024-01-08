@@ -10,7 +10,8 @@ main {
 }
 
 .title {
-  font-size: 1.5rem;
+  font-size: 2.3rem;
+  margin: 10px 0;
 }
 
 .img-description-container {
@@ -28,7 +29,7 @@ main {
   gap: 2rem;
 }
 .description {
-  font-size: 1.5rem;
+  font-size: 1.2rem;
 }
 .category-rating-container {
   display: flex;
@@ -184,19 +185,14 @@ button:hover {
 .add-btn-container {
   position: absolute;
   right: 0;
-  bottom: 10px;
+  bottom: 25px;
   width: 10%;
   display: flex;
   justify-content: center;
 }
 
-.add-btn {
-  border: none;
-  background-color: var(--green);
-  padding: 5px 10px;
-  font-weight: 500;
-  border-radius: 2px;
-  color: white;
+.add-btn-container button {
+  color: var(--green);
 }
 
 .cancel-btn {
@@ -211,4 +207,30 @@ button:hover {
 
 .no-review {
   padding: 0.5rem;
+}
+
+mat-expansion-panel {
+  margin-bottom: 15px;
+}
+
+form {
+  display: flex;
+  gap: 2rem;
+}
+
+#ratingField {
+  width: 10%;
+}
+
+#descriptionField {
+  width: 80%;
+}
+
+mat-form-field {
+  height: 80px;
+}
+
+mat-form-field.mat-focused mat-input-element {
+  border-color: red;
+  box-shadow: 0 0 5px red; /* Optional: Add a box shadow for emphasis */
 }

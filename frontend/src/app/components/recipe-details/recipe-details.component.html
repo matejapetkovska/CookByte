@@ -69,39 +69,50 @@
     <hr/>
     <div class="reviews">
       <div class="reviews-header">
-        <h3>REVIEWS ({{reviews?.length}})</h3>
+        <h3>REVIEWS ({{getReviewCount()}})</h3>
         <button class="add-review-btn" (click)="toggleReview()" *ngIf="user != undefined">
           <i class="fa-solid fa-plus"></i>
         </button>
       </div>
-      <div class="add-review" *ngIf="showReviewContainer && user">
-        <div class="review add-review-container">
-          <div class="user">
-            <img
-              src="{{user.image}}"
-              alt=""
-              class="user-picture"/>
-            {{user.username}}
-          </div>
-          <form enctype="multipart/form-data">
-          <p class="rating">Rating:
-            <select [(ngModel)]="ratingValue" name="ratingValue">
-              <option value="1">1</option>
-              <option value="2">2</option>
-              <option value="3">3</option>
-              <option value="4">4</option>
-              <option value="5">5</option>
-            </select>/5 <i class="fa-solid fa-star"></i></p>
-          <textarea class="review-description" name="reviewDescription" [(ngModel)]="reviewDescription"></textarea>
-          <div class="add-btn-container">
-            <button class="add-btn" (click)="addReview()">Add</button>
-          </div>
-          </form>
-          <button class="cancel-btn" (click)="closeReviewDialog()">&times;</button>
-        </div>
-      </div>
 
-      <div *ngIf="reviews && reviews.length > 0" class="reviews">
+      <mat-expansion-panel [(expanded)]="showReviewContainer" *ngIf="showReviewContainer && user" hideToggle>
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            <div class="user">
+              <img src="{{ user.image }}" alt="" class="user-picture" />
+              {{ user.username }}
+            </div>
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+
+        <form enctype="multipart/form-data">
+          <mat-form-field id="ratingField">
+            <mat-label>Rating</mat-label>
+            <mat-select [(ngModel)]="ratingValue" name="ratingValue">
+              <mat-option value="1">1</mat-option>
+              <mat-option value="2">2</mat-option>
+              <mat-option value="3">3</mat-option>
+              <mat-option value="4">4</mat-option>
+              <mat-option value="5">5</mat-option>
+            </mat-select>
+          </mat-form-field>
+          <mat-form-field id="descriptionField">
+            <mat-label>Review Description</mat-label>
+            <textarea matInput name="reviewDescription" [(ngModel)]="reviewDescription"></textarea>
+          </mat-form-field>
+          <div class="add-btn-container">
+            <button mat-icon-button (click)="addReview()">
+              <mat-icon>send</mat-icon>
+            </button>
+          </div>
+        </form>
+
+        <button mat-button class="cancel-btn" (click)="closeReviewDialog()">
+          <mat-icon>close</mat-icon>
+        </button>
+      </mat-expansion-panel>
+
+      <div *ngIf="reviews && allUsersNotNull(reviews); else noReview" class="reviews">
         <div class="review" *ngFor="let review of reviews">
           <div class="user">
             <img src="{{review.user.image}}" alt="" class="user-picture" />{{review.user.firstName}}
@@ -110,10 +121,9 @@
           <p>{{review.description}}</p>
         </div>
       </div>
-
-<!--      <ng-template #noReview>-->
-<!--        <p class="no-review">No reviews have been posted yet.</p>-->
-<!--      </ng-template>-->
+      <ng-template #noReview>
+        <p class="no-review">No reviews have been posted yet.</p>
+      </ng-template>
     </div>
   </main>
 </section>
