@@ -1,9 +1,10 @@
-import {Component, Input, Output, EventEmitter, OnInit} from '@angular/core';
+import {Component, Input, Output, EventEmitter, OnInit, NgZone} from '@angular/core';
 import {Router} from "@angular/router";
 import {CategoryService} from "../../../services/category.service";
 import {Category} from "../../../interfaces/category";
 import {Ingredient} from "../../../interfaces/ingredient";
 import {RecipeService} from "../../../services/recipe.service";
+import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 
 @Component({
   selector: 'app-add-recipe-dialog',
@@ -30,6 +31,7 @@ export class AddRecipeDialogComponent implements OnInit {
   }
   ingredients: Ingredient[] = []
   imagePreview: string | ArrayBuffer | null = null;
+  addRecipe: FormGroup
 
   closeDialog() {
     this.isVisible = false;
@@ -37,7 +39,27 @@ export class AddRecipeDialogComponent implements OnInit {
   }
 
   constructor(private categoryService: CategoryService, private recipeService: RecipeService,
-              private router: Router) { }
+              private router: Router, private formBuilder: FormBuilder) {
+    this.addRecipe = this.createForm();
+  }
+
+  createForm(): FormGroup {
+    return this.formBuilder.group({
+      title: ['', Validators.required],
+      image: [null],
+      description: ['', Validators.required],
+      ingredientName: [''],
+      ingredients: this.formBuilder.array([]),
+      instructions: ['', Validators.required],
+      cookTime: [null, Validators.required],
+      calories: [null, Validators.required],
+      carbohydrates: [null, Validators.required],
+      fats: [null, Validators.required],
+      proteins: [null, Validators.required],
+      selectedCategoryIds: [[]],
+    });
+  }
+
 
   ngOnInit(): void {
     this.categoryService.getAllCategories()
@@ -51,55 +73,51 @@ export class AddRecipeDialogComponent implements OnInit {
       });
   }
 
-  onFileChange(event: any): void {
-    this.selectedFile = event.target.files[0];
-    if (this.selectedFile) {
-      this.previewImage(this.selectedFile);
-    }
-  }
-  previewImage(file: File): void {
-    const reader = new FileReader();
-    reader.onload = (e) => {
-      this.imagePreview = e.target?.result || null;
-    };
-
-    const container = document.getElementById('image-preview-container');
-    if (container) {
-      container.style.backgroundImage = `url(${this.imagePreview})`;
-      container.classList.add('has-image');
-    }
-    reader.readAsDataURL(file);
+  onFileChange(event: any) {
+    const file = event.target.files[0];
+    this.addRecipe.setValue({
+      image: file
+    });
   }
 
   onAddIngredient() {
-    if (this.ingredient.name != "") {
-      let copyOfIngredient = {...this.ingredient}
-      this.ingredients.push(copyOfIngredient)
-      this.ingredient.name = ''
+    const ingredientName = this.addRecipe.get('ingredientName')?.value;
+    if (ingredientName !== "") {
+      this.ingredients.push({ name: ingredientName });
+      this.addRecipe.get('ingredientName')?.setValue('');
     }
   }
+
 
   createFormData(): FormData {
     const formData = new FormData();
     const token = localStorage.getItem('token');
-    if (this.title != null && this.description != null && this.selectedFile != null &&
-      this.cookTime != undefined && this.calories != undefined && this.carbohydrates != undefined &&
-      this.fats != undefined && this.proteins != undefined && this.instructions != null &&
-      this.selectedCategoryIds != null && this.ingredients != null && token != null) {
-      formData.append('title', this.title.toString());
-      formData.append('description', this.description.toString());
-      formData.append('file', this.selectedFile);
-      formData.append('cookTime', this.cookTime.toString());
-      formData.append('calories', this.calories.toString());
-      formData.append('carbohydrates', this.carbohydrates.toString());
-      formData.append('fats', this.fats.toString());
-      formData.append('proteins', this.proteins.toString());
-      formData.append('instructions', this.instructions.toString());
+    const {
+      title,
+      description,
+      image,
+      instructions,
+      cookTime,
+      calories,
+      carbohydrates,
+      fats,
+      proteins,
+      selectedCategoryIds,
+    } = this.addRecipe.value;
+      formData.append('title', title.toString());
+      formData.append('description', description.toString());
+      formData.append('image', image);
+      formData.append('cookTime', cookTime.toString());
+      formData.append('calories', calories.toString());
+      formData.append('carbohydrates', carbohydrates.toString());
+      formData.append('fats', fats.toString());
+      formData.append('proteins', proteins.toString());
+      formData.append('instructions', instructions.toString());
       formData.append('ingredients',  JSON.stringify(this.ingredients));
-      formData.append('categoryIds', JSON.stringify(this.selectedCategoryIds));
-      formData.append('token', token.toString());
-    }
-    return formData;
+      formData.append('categoryIds', JSON.stringify(selectedCategoryIds));
+      if(token != null)
+        formData.append('token', token.toString());
+      return formData;
   }
 
   onAddRecipe() {
@@ -113,7 +131,7 @@ export class AddRecipeDialogComponent implements OnInit {
           if (error.status === 400) {
             console.log("Error")
           }
-          this.router.navigate(['/login'])
+          this.router.navigate(['/user-profile'])
         }
       });
   }

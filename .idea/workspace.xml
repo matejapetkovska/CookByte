@@ -4,31 +4,46 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="75760713-3ba1-4d79-9cc6-88fff86e4ba7" name="Changes" comment="Animations on home page">
-      <change afterPath="$PROJECT_DIR$/frontend/src/assets/user-uploaded-images/0..9A..Za..z0..9a..zA..Za..z0..9.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/assets/user-uploaded-images/0..9A..Za..zA..Z0..9a..z0..9a..z.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/assets/user-uploaded-images/0..9a..z0..9a..z0..90..90..90..9.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/assets/user-uploaded-images/0..9a..z0..9a..za..zA..ZA..Z0..9.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/assets/user-uploaded-images/0..9a..zA..ZA..Z0..9A..ZA..ZA..Z.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/assets/user-uploaded-images/A..Za..zA..Z0..90..9A..ZA..Z0..9.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/assets/user-uploaded-images/A..Za..zA..Za..z0..9A..Z0..9a..z.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/assets/user-uploaded-images/AresmUMOm.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/assets/user-uploaded-images/a..z0..9A..Za..za..z0..9A..Z0..9.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/assets/user-uploaded-images/a..z0..9a..z0..9A..Za..za..za..z.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/assets/user-uploaded-images/a..zA..Z0..90..90..9A..Z0..90..9.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/assets/user-uploaded-images/a..zA..Z0..9A..Za..z0..90..90..9.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/assets/user-uploaded-images/a..zA..Za..zA..Z0..9A..ZA..Za..z.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/assets/user-uploaded-images/a..zA..Za..zA..ZA..Za..zA..Za..z.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/assets/user-uploaded-images/a..za..zA..Za..z0..90..9A..ZA..Z.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/assets/user-uploaded-images/gJwdrznXq.jpg" afterDir="false" />
+    <list default="true" id="75760713-3ba1-4d79-9cc6-88fff86e4ba7" name="Changes" comment="Changes in styles WIP">
+      <change afterPath="$PROJECT_DIR$/frontend/src/app/components/dialog/delete-dialog/delete-dialog.component.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/app/components/dialog/delete-dialog/delete-dialog.component.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/app/components/dialog/delete-dialog/delete-dialog.component.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/assets/user-uploaded-images/AHYyFZeOx.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/assets/user-uploaded-images/HPBNycRss.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/assets/user-uploaded-images/NFILuscgZ.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/assets/user-uploaded-images/QbvswaYyd.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/assets/user-uploaded-images/default-user-image.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/assets/user-uploaded-images/lCiMOfLAJ.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/assets/user-uploaded-images/qQBeNcjXz.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/assets/user-uploaded-images/wsWjIfsVl.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/assets/user-uploaded-images/znxPPYqLT.jpg" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/kotlin/com/cookbyte/backend/controllers/RecipeController.kt" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/kotlin/com/cookbyte/backend/controllers/RecipeController.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/kotlin/com/cookbyte/backend/domain/User.kt" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/kotlin/com/cookbyte/backend/domain/User.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/kotlin/com/cookbyte/backend/service/implementation/UserServiceImpl.kt" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/kotlin/com/cookbyte/backend/service/implementation/UserServiceImpl.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/app/app.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/app.module.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/app/components/all-recipes/all-recipes.component.css" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/components/all-recipes/all-recipes.component.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/app/components/all-recipes/all-recipes.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/components/all-recipes/all-recipes.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/app/components/all-recipes/all-recipes.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/components/all-recipes/all-recipes.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/app/components/dialog/add-recipe-dialog/add-recipe-dialog.component.css" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/components/dialog/add-recipe-dialog/add-recipe-dialog.component.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/app/components/dialog/add-recipe-dialog/add-recipe-dialog.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/components/dialog/add-recipe-dialog/add-recipe-dialog.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/app/components/dialog/add-recipe-dialog/add-recipe-dialog.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/components/dialog/add-recipe-dialog/add-recipe-dialog.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/app/components/header/header.component.css" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/components/header/header.component.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/app/components/header/header.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/components/header/header.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/app/components/header/header.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/components/header/header.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/app/components/login/login.component.css" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/components/login/login.component.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/app/components/login/login.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/components/login/login.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/app/components/login/login.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/components/login/login.component.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/app/components/recipe-details/recipe-details.component.css" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/components/recipe-details/recipe-details.component.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/app/components/recipe-details/recipe-details.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/components/recipe-details/recipe-details.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/app/components/recipe-details/recipe-details.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/components/recipe-details/recipe-details.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/app/components/register/register.component.css" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/components/register/register.component.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/app/components/register/register.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/components/register/register.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/app/components/register/register.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/components/register/register.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/app/components/user-profile/user-profile.component.css" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/components/user-profile/user-profile.component.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/app/components/user-profile/user-profile.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/components/user-profile/user-profile.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/app/components/user-profile/user-profile.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/components/user-profile/user-profile.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/app/interfaces/user.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/interfaces/user.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/app/services/auth.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/services/auth.service.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/app/services/recipe.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/services/recipe.service.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/styles.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -122,11 +137,11 @@
       <recent name="C:\Users\Mateja\Desktop\CookByte\backend\src\main\resources\static\images" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Mateja\Desktop\CookByte\frontend\src\app" />
+      <recent name="C:\Users\Mateja\Desktop\CookByte\frontend\src\assets\user-uploaded-images" />
       <recent name="C:\Users\Mateja\Desktop\CookByte\frontend\src\assets\images" />
       <recent name="C:\Users\Mateja\Desktop\CookByte\frontend\src\app\components" />
       <recent name="C:\Users\Mateja\Desktop\CookByte\frontend\src" />
-      <recent name="C:\Users\Mateja\Desktop\CookByte\frontend" />
-      <recent name="C:\Users\Mateja\Desktop\CookByte\frontend\src\app\interfaces" />
     </key>
     <key name="MoveKotlinTopLevelDeclarationsDialog.RECENTS_KEY">
       <recent name="com.cookbyte.backend.auth" />
@@ -201,7 +216,12 @@
       <workItem from="1702821502973" duration="15447000" />
       <workItem from="1703017802749" duration="3581000" />
       <workItem from="1704647498533" duration="9156000" />
-      <workItem from="1704714053986" duration="9818000" />
+      <workItem from="1704714053986" duration="14040000" />
+      <workItem from="1705670384812" duration="552000" />
+      <workItem from="1705671275018" duration="13453000" />
+      <workItem from="1705750420864" duration="10913000" />
+      <workItem from="1705951240700" duration="3973000" />
+      <workItem from="1706438705283" duration="14239000" />
     </task>
     <task id="LOCAL-00001" summary="Security on fe">
       <created>1699805016453</created>
@@ -266,7 +286,14 @@
       <option name="project" value="LOCAL" />
       <updated>1704657946207</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="Changes in styles WIP">
+      <created>1704724365741</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1704724365741</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -293,7 +320,8 @@
     <MESSAGE value="Add recipe modal" />
     <MESSAGE value="Implemented all functionalities for recipe" />
     <MESSAGE value="Animations on home page" />
-    <option name="LAST_COMMIT_MESSAGE" value="Animations on home page" />
+    <MESSAGE value="Changes in styles WIP" />
+    <option name="LAST_COMMIT_MESSAGE" value="Changes in styles WIP" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

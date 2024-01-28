@@ -24,7 +24,7 @@ class User(
     @get:JvmName("getPasswordProperty")
     val password: String?,
 
-    val image: String?
+    var image: String?
 ): UserDetails {
     override fun getAuthorities(): MutableCollection<out GrantedAuthority>? {
         return null

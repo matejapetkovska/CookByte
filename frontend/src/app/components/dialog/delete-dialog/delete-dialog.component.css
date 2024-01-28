@@ -1,0 +1,9 @@
+.title {
+  font-weight: bold;
+  color: var(--dark-blue);
+}
+
+.action-buttons {
+  display: flex;
+  justify-content: space-evenly;
+}

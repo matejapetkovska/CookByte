@@ -42,7 +42,6 @@ class UserServiceImpl(val userRepository: UserRepository, val jwtService: JwtSer
             val userToUpdate = existingUser.get()
             userToUpdate.firstName = updatedUser.firstName
             userToUpdate.lastName = updatedUser.lastName
-            userToUpdate.username = updatedUser.username
             return userRepository.save(userToUpdate)
         }
         return null

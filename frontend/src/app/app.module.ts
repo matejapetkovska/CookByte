@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
 import { AppComponent } from './app.component';
 import { HomepageComponent } from './components/homepage/homepage.component';
 import { AppRoutingModule } from './app-routing.module';
@@ -22,6 +21,13 @@ import { MatIconModule } from '@angular/material/icon';
 import {MatExpansionModule} from "@angular/material/expansion";
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
+import {MatChipsModule} from '@angular/material/chips';
+import { ReactiveFormsModule} from '@angular/forms';
+import {MatCardModule} from "@angular/material/card";
+import { NgxMatFileInputModule } from '@angular-material-components/file-input';
+import { DeleteDialogComponent } from './components/dialog/delete-dialog/delete-dialog.component';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatTabsModule } from '@angular/material/tabs';
 
 @NgModule({
   declarations: [
@@ -35,7 +41,8 @@ import { MatButtonModule } from '@angular/material/button';
     RegisterComponent,
     RecipeDetailsComponent,
     UserProfileComponent,
-    AddRecipeDialogComponent
+    AddRecipeDialogComponent,
+    DeleteDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -48,7 +55,13 @@ import { MatButtonModule } from '@angular/material/button';
     MatIconModule,
     MatExpansionModule,
     MatButtonModule,
-    MatInputModule
+    MatInputModule,
+    MatChipsModule,
+    MatCardModule,
+    ReactiveFormsModule,
+    NgxMatFileInputModule,
+    MatDialogModule,
+    MatTabsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

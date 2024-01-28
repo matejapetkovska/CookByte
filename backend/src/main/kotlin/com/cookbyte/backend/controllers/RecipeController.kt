@@ -24,7 +24,7 @@ class RecipeController(val recipeService: RecipeService, val userService: UserSe
 
     @PostMapping("/add")
     fun createRecipe(@RequestParam title: String,
-                     @RequestParam file: MultipartFile,
+                     @RequestParam image: MultipartFile,
                      @RequestParam description: String,
                      @RequestParam cookTime: String,
                      @RequestParam calories: String,
@@ -36,7 +36,7 @@ class RecipeController(val recipeService: RecipeService, val userService: UserSe
                      @RequestParam ingredients: String,
                      @RequestParam token: String): ResponseEntity<Any> {
         val user = userService.getUserFromToken(token) ?: return ResponseEntity.badRequest().body(Error("Error in saving recipe. Please log in first."))
-        val recipe = recipeService.addRecipe(title, user, description, file, cookTime.toLong(), calories, carbohydrates, fats, proteins, instructions, ingredients, categoryIds)
+        val recipe = recipeService.addRecipe(title, user, description, image, cookTime.toLong(), calories, carbohydrates, fats, proteins, instructions, ingredients, categoryIds)
         return ResponseEntity.ok(recipe)
     }
 

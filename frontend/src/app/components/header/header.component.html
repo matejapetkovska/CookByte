@@ -10,7 +10,9 @@
       <img src="{{user.image}}" alt="User Profile Picture" class="nav-profile-picture"/>
       {{ user.username }}
     </a>
-    <button class="log-in-btn" (click)="logout()">Log out</button>
+    <button (click)="logout()">
+      <i class="fa-solid fa-arrow-right-from-bracket" style="color: darkred;"></i>
+    </button>
   </div>
 
   <ng-template #notLoggedIn>

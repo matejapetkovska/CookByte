@@ -27,7 +27,7 @@ main {
   background-color: #fefefe;
   padding: 2rem;
   border: 1px solid #888;
-  width: fit-content;
+  /*width: fit-content;*/
   height: 80%;
   position: relative;
   display: flex;
@@ -169,7 +169,7 @@ td > input {
   position: relative;
 }
 
-#upload-recipe-btn {
+#upload-recipe-btn, #add-ingredients-btn {
   width: fit-content;
 }
 
@@ -181,12 +181,18 @@ td > input {
 }
 
 #ingredientsContainer {
-  display: flex;
-  flex-direction: column;
-  gap: 0.2rem;
+  display: grid;
+  grid-template-columns: 5fr 1fr;
+  align-items: baseline;
+  gap: 1rem;
+  width: 100%;
 }
 
 .nutrients-categories-container {
   display: flex;
   gap: 1rem;
+}
+
+.categories {
+  margin-top: 33px;
 }

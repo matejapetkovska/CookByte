@@ -42,6 +42,6 @@ export class HeaderComponent implements OnInit {
   }
 
   addPathToImage(user: User) {
-    user.image = "../../../assets/images/" + user.image;
+    user.image = "../../../assets/user-uploaded-images/" + user.image;
   }
 }

@@ -47,9 +47,9 @@
     <div class="recipe-details-container">
       <div class="category-rating-container">
         <div class="categories">
-        <span class="category" *ngFor="let category of recipe.categories">
-          #{{category.name}}
-        </span>
+          <mat-chip *ngFor="let category of recipe.categories">
+            {{ '#' + category.name }}
+          </mat-chip>
         </div>
         <div class="rating"><i class="fa-solid fa-star"></i>{{recipe.averageRating}}</div>
       </div>
@@ -127,3 +127,4 @@
     </div>
   </main>
 </section>
+

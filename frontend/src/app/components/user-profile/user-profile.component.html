@@ -1,7 +1,10 @@
 <main>
+  <section class="background-section">
+    <div class="background-image"></div>
+  </section>
   <div class="page-container">
     <div class="profile" *ngIf="!editBtnContainer && user">
-      <img src="{{user.image}}" id="profile-picture"/>
+      <img src="{{user.image}}" class="profile-picture"/>
       <div class="user-details">
         <div class="user-detail">
           <h4>First Name:</h4>
@@ -19,37 +22,34 @@
           <h4>Email:</h4>
           <p id="email">{{user.email}}</p>
         </div>
-        <button id="edit-user-details-btn" (click)="toggleEdit()">Edit</button>
+        <button mat-flat-button id="edit-user-details-btn" (click)="toggleEdit()">
+          <mat-icon>edit</mat-icon>
+          Edit
+        </button>
       </div>
     </div>
     <form id="edit-profile-form" *ngIf="editBtnContainer && user">
       <div class="upload-image-container">
         <img
           src="{{user.image}}"
-          id="profile-picture"/>
+          class="profile-picture"/>
         <div class="overlay">
           <label for="fileInput" class="upload-btn">Choose File</label>
-          <input id="fileInput" class="upload-btn" type="file" style="display: none;" #imageInput (change)="onFileChange($event)"/>
+          <input id="fileInput" class="upload-btn" type="file" style="display: none;" #imageInput
+                 (change)="onFileChange($event)"/>
         </div>
       </div>
       <div class="form-details">
-        <label for="editFirstName"
-        >First Name:
-          <input type="text" id="editFirstName" name="editFirstName" [(ngModel)]="user.firstName"/></label>
-
-        <label for="editLastName"
-        >Last Name:
-          <input type="text" id="editLastName" name="editLastName" [(ngModel)]="user.lastName"/></label>
-
-        <label for="editUsername"
-        >Username:
-          <input type="text" id="editUsername" name="editUsername" [(ngModel)]="user.username"/>
-        </label>
-        <label for="editEmail"
-        >Email:
-          <input type="text" id="editEmail" name="editEmail" [disabled]="true" [(ngModel)]="user.email"/>
-        </label>
+        <mat-form-field appearance="outline">
+          <mat-label>First name</mat-label>
+          <input matInput type="text" id="editFirstName" name="editFirstName" [(ngModel)]="user.firstName"/>
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>Last name</mat-label>
+          <input matInput type="text" id="editLastName" name="editLastName" [(ngModel)]="user.lastName"/>
+        </mat-form-field>
         <button
+          mat-flat-button
           type="button"
           id="save-user-details-btn"
           (click)="editUserProfile()">
@@ -57,41 +57,64 @@
         </button>
       </div>
     </form>
-    <div class="recipes">
-      <h2>Recipes ({{this.totalRecipes}})</h2>
-      <div id="recipeContainer" class="scrollableContainer">
-        <div class="card" *ngFor="let recipe of recipes">
-          <a [routerLink]="['/recipes', recipe.id]">
-            <img src="{{ recipe.imageUrl }}" alt="" class="card-img"/>
-          </a>
-          <div class="category-title-rating">
-            <div class="card-category">
-              <span *ngFor="let category of recipe.categories">#{{ category.name }}</span>
+
+    <h1 class="posts-and-reviews">Recipes and Reviews by <span>{{user?.username}}</span>:</h1>
+    <mat-tab-group>
+      <mat-tab label="Recipes">
+        <div class="recipes">
+          <h2>Recipes ({{ totalRecipes }})</h2>
+          <button mat-raised-button id="create-recipe-btn" (click)="openDialog()">Create recipe</button>
+          <div id="recipeContainer" class="scrollableContainer" *ngIf="totalRecipes > 0 else noRecipes">
+            <div *ngFor="let recipe of recipes">
+              <mat-card class="recipes-card">
+                <mat-card-header>
+                  <mat-card-title-group>
+                    <mat-card-title>
+                      <a [routerLink]="['/recipes', recipe.id]">
+                        {{ recipe.title }}
+                      </a>
+                    </mat-card-title>
+                    <mat-card-subtitle>
+                      {{ recipe.datePublished }}
+                    </mat-card-subtitle>
+                    <img mat-card-sm-image src="{{ recipe.imageUrl }}" alt="{{ recipe.title }}">
+                  </mat-card-title-group>
+                </mat-card-header>
+                <mat-card-content>
+                  <div class="action-buttons">
+                    <mat-icon style="color: var(--blue)">edit</mat-icon>
+                    <mat-icon (click)="deleteRecipe(recipe.id, recipe.title)" color="warn">delete_outline</mat-icon>
+                  </div>
+                </mat-card-content>
+              </mat-card>
             </div>
-            <a [routerLink]="['/recipes', recipe.id]" class="card-title"><h4>{{ recipe.title }}</h4></a>
-            <mat-icon>edit</mat-icon>
-            <mat-icon (click)="deleteRecipe(recipe.id)">delete_outline</mat-icon>
-            <p class="rating" *ngIf="recipe.averageRating > 0; else noRating">
-              <i class="fa-solid fa-star"></i> {{ recipe.averageRating }}
-            </p>
-            <ng-template #noRating>
-              <p class="rating">
-                <i class="fa-regular fa-star"></i> {{ recipe.averageRating }}
-              </p>
-            </ng-template>
           </div>
         </div>
-      </div>
-    </div>
-    <div class="reviews">
-      <h2>Reviews ({{totalReviews}})</h2>
-      <div id="reviewContainer" class="scrollableContainer" *ngIf="reviews">
-        <div *ngFor="let review of reviews">
-          {{review.description}}
+      </mat-tab>
+
+      <mat-tab label="Reviews">
+        <div class="reviews">
+          <h2>Reviews ({{ totalReviews }})</h2>
+          <div id="reviewContainer" class="scrollableContainer" *ngIf="totalReviews > 0 else noReviews">
+            <div *ngFor="let review of reviews">
+              {{ review.description }}
+            </div>
+          </div>
         </div>
+      </mat-tab>
+    </mat-tab-group>
+
+    <ng-template #noReviews>
+      <div class="noRecipesOrReviews">
+        You haven't posted any reviews yet.
       </div>
-    </div>
-    <button id="create-recipe-btn" (click)="openDialog()">Create recipe</button>
+    </ng-template>
+    <ng-template #noRecipes>
+      <div class="noRecipesOrReviews">
+        You haven't posted any recipes yet.
+      </div>
+    </ng-template>
+
     <app-add-recipe-dialog *ngIf="isDialogVisible" (onClose)="isDialogVisible = false"></app-add-recipe-dialog>
   </div>
 </main>

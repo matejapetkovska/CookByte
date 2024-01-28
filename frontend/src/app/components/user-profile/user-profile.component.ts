@@ -7,6 +7,8 @@ import {ReviewService} from "../../services/review.service";
 import {Recipe} from "../../interfaces/recipe";
 import {Review} from "../../interfaces/review";
 import {Router} from "@angular/router";
+import {MatDialog} from "@angular/material/dialog";
+import {DeleteDialogComponent} from "../dialog/delete-dialog/delete-dialog.component";
 
 @Component({
   selector: 'app-user-profile',
@@ -27,7 +29,7 @@ export class UserProfileComponent implements OnInit{
   totalRecipes = 0;
   editedUser: User | undefined
 
-  constructor(private userService: UserService, private recipeService: RecipeService, private reviewService: ReviewService, private router: Router) { }
+  constructor(private userService: UserService, private recipeService: RecipeService, private reviewService: ReviewService, private router: Router, public dialog: MatDialog) { }
 
   ngOnInit(): void {
     const token = localStorage.getItem('token')
@@ -47,7 +49,6 @@ export class UserProfileComponent implements OnInit{
           this.reviewService.getReviewsForUser(this.user.id).subscribe({
             next: (reviews) => {
               this.reviews = reviews
-              console.log(this.reviews)
               this.totalReviews = this.reviews.length
             }
           })
@@ -92,17 +93,17 @@ export class UserProfileComponent implements OnInit{
     }
   }
 
-  deleteRecipe(recipeId: number) {
-    this.recipeService.deleteRecipe(recipeId.toString()).subscribe(
-      {
-        next: () => {
-          this.router.navigate([this.router.url]);
-        },
-        error: (error) => {
-          console.log('Error in deleting recipe:', error);
-        }
+  deleteRecipe(recipeId: number, recipeTitle: string) {
+    this.dialog.open(DeleteDialogComponent, {
+      width: '250px',
+      enterAnimationDuration: '0ms',
+      exitAnimationDuration: '0ms',
+      data: {
+        recipeId: recipeId,
+        recipeTitle: recipeTitle
       }
-    );
+    });
+
   }
 
 
@@ -111,7 +112,7 @@ export class UserProfileComponent implements OnInit{
   }
 
   addPathToImage(user: User) {
-    user.image = "../../../assets/images/" + user.image;
+    user.image = "../../../assets/user-uploaded-images/" + user.image;
   }
 
   addPathToRecipeImages(recipes: Recipe[]) {

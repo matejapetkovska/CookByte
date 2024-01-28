@@ -1,74 +1,53 @@
 <main>
   <div class="background-container"></div>
   <div class="form-img-container">
-    <form class="register-form" enctype="multipart/form-data">
-      <label for="first-name"><input
-        type="text"
-        id="first-name"
-        name="first-name"
-        placeholder="First name"
-        [(ngModel)]="firstName"
-        required/></label>
-      <label for="last-name">
-        <input
-          type="text"
-          id="last-name"
-          name="last-name"
-          placeholder="Last name"
-          [(ngModel)]="lastName"
-          required/>
-      </label>
-      <label for="username">
-        <input
-          type="text"
-          id="username"
-          name="username"
-          placeholder="Username"
-          [(ngModel)]="username"
-          required/>
-      </label>
-      <label for="password">
-        <input
-          type="password"
-          id="password"
-          name="password"
-          placeholder="Password"
-          [(ngModel)]="password"
-          required/>
-      </label>
-      <label for="repeat-password">
-        <input
-          type="password"
-          id="repeat-password"
-          name="repeat-password"
-          placeholder="Repeat password"
-          required/>
-      </label>
-      <label for="email">
-        <input
-          type="email"
-          id="email"
-          name="email"
-          placeholder="Email"
-          [(ngModel)]="email"
-          required/>
-      </label>
-      <label for="image">
-        <input
-          type="file"
-          id="image"
-          name="image"
-          placeholder="Image"
-          accept="image/*"
-          (change)="onFileChange($event)"/>
-      </label>
-
-      <div *ngIf="errorMessage" class="error-message">
-        {{ errorMessage }}
+    <form class="register-form" enctype="multipart/form-data" [formGroup]="registerForm"
+          (ngSubmit)="onSubmit()">
+      <mat-form-field appearance="outline">
+        <mat-label>First name</mat-label>
+        <input matInput formControlName="firstName">
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Last name</mat-label>
+        <input matInput formControlName="lastName">
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Username</mat-label>
+        <input matInput formControlName="username">
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Email</mat-label>
+        <input matInput placeholder="example@example.com" formControlName="email" required>
+        <mat-error *ngIf="registerForm.get('email')?.invalid">{{ getEmailErrorMessage() }}</mat-error>
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Password</mat-label>
+        <input matInput [type]="hidePassword ? 'password' : 'text'" formControlName="password">
+        <button mat-icon-button matSuffix (click)="hidePassword = !hidePassword" [attr.aria-label]="'Hide password'"
+                [attr.aria-pressed]="hidePassword">
+          <mat-icon>{{hidePassword ? 'visibility_off' : 'visibility'}}</mat-icon>
+        </button>
+        <mat-error *ngIf="registerForm.get('password')?.invalid">{{ getPasswordErrorMessage() }}</mat-error>
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Repeat password</mat-label>
+        <input matInput [type]="hideRepeatPassword ? 'password' : 'text'" formControlName="repeatPassword">
+        <button mat-icon-button matSuffix (click)="hideRepeatPassword = !hideRepeatPassword"
+                [attr.aria-label]="'Hide password'"
+                [attr.aria-pressed]="hideRepeatPassword">
+          <mat-icon>{{hideRepeatPassword ? 'visibility_off' : 'visibility'}}</mat-icon>
+        </button>
+        <mat-error *ngIf="registerForm.get('repeatPassword')?.invalid">{{ passwordsMatchValidator() }}</mat-error>
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <ngx-mat-file-input accept="image/*" (change)="onFileChange($event)" formControlName="image">
+        </ngx-mat-file-input>
+      </mat-form-field>
+      <div class="register-buttons">
+        <div>Already have an account? <a href="/login">Login</a></div>
+        <a href="/login"></a>
+        <button type="submit">Register</button>
       </div>
-
-      <p>Already have an account? <a href="/login">Login</a></p>
-      <button type="submit" (click)="onSubmit()">Register</button>
     </form>
     <img src="assets/images/kelnerka.png" alt="" class="kelner"/>
   </div>

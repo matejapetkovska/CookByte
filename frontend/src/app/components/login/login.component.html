@@ -1,29 +1,19 @@
 <main>
   <div class="background-container"></div>
   <div class="form-img-container">
-    <form action="/login.php" method="post" class="login-form">
-      <label for="username">
-        <input
-          type="text"
-          id="username"
-          name="username"
-          placeholder="Username"
-          [(ngModel)] = "request.username"
-          required/>
-      </label>
-
-      <label for="password"><input
-        type="password"
-        id="password"
-        name="password"
-        placeholder="Password"
-        [(ngModel)] = "request.password"
-        required/>
-      </label>
-
-      <div *ngIf="errorMessage" class="error-message">
-        {{ errorMessage }}
-      </div>
+    <form action="/login.php" method="post" class="login-form" [formGroup]="loginForm">
+      <mat-form-field appearance="outline">
+        <mat-label>Username</mat-label>
+        <input matInput formControlName="username">
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Password</mat-label>
+        <input matInput [type]="hidePassword ? 'password' : 'text'" formControlName="password">
+        <button mat-icon-button matSuffix (click)="hidePassword = !hidePassword" [attr.aria-label]="'Hide password'"
+                [attr.aria-pressed]="hidePassword">
+          <mat-icon>{{hidePassword ? 'visibility_off' : 'visibility'}}</mat-icon>
+        </button>
+      </mat-form-field>
 
       <p>Don't have an account yet? <a href="/register">Register</a></p>
       <button type="submit" (click)="onSubmit()">Login</button>
