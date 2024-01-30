@@ -21,11 +21,7 @@ export class UserService {
     return this.http.get<User>(`${this.url}/token?token=${token}`)
   }
 
-  updateUser(user: User | undefined, token: string | null): Observable<User | null> {
-    return this.http.put<User>(`${this.url}/${user?.id}?token=${token}`, {
-      firstName: user?.firstName,
-      lastName: user?.lastName,
-      username: user?.username
-    });
+  updateUser(formData: FormData, userId: number | undefined, token: string | null): Observable<User | null> {
+    return this.http.put<User>(`${this.url}/${userId}?token=${token}`, formData);
   }
 }

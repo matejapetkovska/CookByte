@@ -122,7 +122,6 @@ label {
   overflow-y: auto;
   margin-top: 10px;
   padding: 10px;
-  /*border: 1px solid #BEADFA;*/
   border-radius: 5px;
 }
 #createRecipe {
@@ -155,12 +154,13 @@ label {
 .upload-btn {
   display: none;
   padding: 10px;
-  background-color: var(--blue);
-  color: white;
+  background-color: white;
+  color: black;
 }
 
 .upload-btn:hover {
-  background-color: #2980b9;
+  background-color: var(--dark-blue);
+  color: white;
   cursor: pointer;
 }
 

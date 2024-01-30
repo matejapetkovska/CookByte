@@ -1,5 +1,4 @@
 import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
-import { CommonModule } from '@angular/common';
 import {UserService} from "../../services/user.service";
 import {User} from "../../interfaces/user";
 import {RecipeService} from "../../services/recipe.service";
@@ -20,7 +19,7 @@ export class UserProfileComponent implements OnInit{
   editBtnContainer = false
   @ViewChild('imageInput') imageInput: ElementRef | undefined;
   fileName: string = '';
-  previewUrl: string = '';
+  previewUrl: string | undefined = '';
   isDialogVisible = false;
   user: User | undefined
   recipes: Recipe[] | undefined
@@ -28,6 +27,7 @@ export class UserProfileComponent implements OnInit{
   totalReviews = 0;
   totalRecipes = 0;
   editedUser: User | undefined
+  image: File | undefined
 
   constructor(private userService: UserService, private recipeService: RecipeService, private reviewService: ReviewService, private router: Router, public dialog: MatDialog) { }
 
@@ -38,6 +38,7 @@ export class UserProfileComponent implements OnInit{
         this.user = user
         this.editedUser = user
         this.addPathToImage(this.user)
+        this.previewUrl = user.image
         if(this.user) {
           this.recipeService.getRecipesForUser(this.user.id).subscribe({
             next: (recipes) => {
@@ -59,11 +60,21 @@ export class UserProfileComponent implements OnInit{
 
   editUserProfile(): void {
     this.editBtnContainer = false;
-    const token = localStorage.getItem('token')
-    this.userService.updateUser(this.editedUser, token).subscribe(
+    const token = localStorage.getItem('token');
+    const userId = this.editedUser?.id;
+
+    const formData = new FormData();
+    formData.append('firstName', this.editedUser?.firstName || '');
+    formData.append('lastName', this.editedUser?.lastName || '');
+
+    if (this.image) {
+      formData.append('image', this.image, this.image.name);
+    }
+    this.userService.updateUser(formData, userId, token).subscribe(
       (updatedUser) => {
         if (updatedUser) {
-          this.user = {...this.editedUser};
+          this.user = { ...this.editedUser };
+          window.location.reload()
         }
       },
       (error) => {
@@ -72,12 +83,14 @@ export class UserProfileComponent implements OnInit{
     );
   }
 
+
   toggleEdit() {
     this.editBtnContainer = true;
   }
 
   onFileChange(event: any) {
     const file = event.target.files[0];
+    this.image = file
     const reader = new FileReader();
 
     this.fileName = file ? file.name : '';
@@ -89,7 +102,7 @@ export class UserProfileComponent implements OnInit{
     if (file) {
       reader.readAsDataURL(file);
     } else {
-      this.previewUrl = '';
+      this.previewUrl = this.user?.image;
     }
   }
 

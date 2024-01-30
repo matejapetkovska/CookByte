@@ -4,47 +4,38 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="75760713-3ba1-4d79-9cc6-88fff86e4ba7" name="Changes" comment="Changes in styles WIP">
-      <change afterPath="$PROJECT_DIR$/frontend/src/app/components/dialog/delete-dialog/delete-dialog.component.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/app/components/dialog/delete-dialog/delete-dialog.component.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/app/components/dialog/delete-dialog/delete-dialog.component.ts" afterDir="false" />
+    <list default="true" id="75760713-3ba1-4d79-9cc6-88fff86e4ba7" name="Changes" comment="User profile image fix and review cards">
       <change afterPath="$PROJECT_DIR$/frontend/src/assets/user-uploaded-images/AHYyFZeOx.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/assets/user-uploaded-images/FrtajkNKT.jpg" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/frontend/src/assets/user-uploaded-images/HPBNycRss.jpg" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/frontend/src/assets/user-uploaded-images/NFILuscgZ.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/assets/user-uploaded-images/OfXVluGfH.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/assets/user-uploaded-images/PVqXhgIrm.jpg" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/frontend/src/assets/user-uploaded-images/QbvswaYyd.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/assets/user-uploaded-images/aPutRAZBt.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/assets/user-uploaded-images/aXxPWvcYa.jpg" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/frontend/src/assets/user-uploaded-images/default-user-image.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/assets/user-uploaded-images/jPwcJLjie.jpg" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/frontend/src/assets/user-uploaded-images/lCiMOfLAJ.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/assets/user-uploaded-images/ndHlnzLOH.jpg" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/frontend/src/assets/user-uploaded-images/qQBeNcjXz.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/assets/user-uploaded-images/qaMsDIbuc.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/assets/user-uploaded-images/volUJBZbw.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/assets/user-uploaded-images/wKKTFdeDM.jpg" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/frontend/src/assets/user-uploaded-images/wsWjIfsVl.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/assets/user-uploaded-images/zGyPoTenr.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/assets/user-uploaded-images/zcZSFOraE.jpg" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/frontend/src/assets/user-uploaded-images/znxPPYqLT.jpg" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/kotlin/com/cookbyte/backend/controllers/RecipeController.kt" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/kotlin/com/cookbyte/backend/controllers/RecipeController.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/kotlin/com/cookbyte/backend/domain/User.kt" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/kotlin/com/cookbyte/backend/domain/User.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/kotlin/com/cookbyte/backend/auth/AuthenticationController.kt" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/kotlin/com/cookbyte/backend/auth/AuthenticationController.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/kotlin/com/cookbyte/backend/controllers/UserController.kt" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/kotlin/com/cookbyte/backend/controllers/UserController.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/kotlin/com/cookbyte/backend/service/UserService.kt" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/kotlin/com/cookbyte/backend/service/UserService.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/backend/src/main/kotlin/com/cookbyte/backend/service/implementation/UserServiceImpl.kt" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/kotlin/com/cookbyte/backend/service/implementation/UserServiceImpl.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/app/app.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/app.module.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/app/components/dialog/add-recipe-dialog/add-recipe-dialog.component.css" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/components/dialog/add-recipe-dialog/add-recipe-dialog.component.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/app/components/dialog/add-recipe-dialog/add-recipe-dialog.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/components/dialog/add-recipe-dialog/add-recipe-dialog.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/app/components/dialog/add-recipe-dialog/add-recipe-dialog.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/components/dialog/add-recipe-dialog/add-recipe-dialog.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/app/components/header/header.component.css" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/components/header/header.component.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/app/components/header/header.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/components/header/header.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/app/components/header/header.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/components/header/header.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/app/components/login/login.component.css" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/components/login/login.component.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/app/components/login/login.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/components/login/login.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/app/components/login/login.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/components/login/login.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/app/components/recipe-details/recipe-details.component.css" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/components/recipe-details/recipe-details.component.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/app/components/recipe-details/recipe-details.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/components/recipe-details/recipe-details.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/app/components/register/register.component.css" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/components/register/register.component.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/app/components/register/register.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/components/register/register.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/app/components/register/register.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/components/register/register.component.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/app/components/user-profile/user-profile.component.css" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/components/user-profile/user-profile.component.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/app/components/user-profile/user-profile.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/components/user-profile/user-profile.component.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/app/components/user-profile/user-profile.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/components/user-profile/user-profile.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/app/interfaces/user.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/interfaces/user.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/app/services/auth.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/services/auth.service.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/app/services/recipe.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/services/recipe.service.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/styles.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/app/services/user.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/services/user.service.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -221,7 +212,8 @@
       <workItem from="1705671275018" duration="13453000" />
       <workItem from="1705750420864" duration="10913000" />
       <workItem from="1705951240700" duration="3973000" />
-      <workItem from="1706438705283" duration="14239000" />
+      <workItem from="1706438705283" duration="14465000" />
+      <workItem from="1706640045171" duration="5112000" />
     </task>
     <task id="LOCAL-00001" summary="Security on fe">
       <created>1699805016453</created>
@@ -293,7 +285,14 @@
       <option name="project" value="LOCAL" />
       <updated>1704724365741</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="User profile styles">
+      <created>1706455860996</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1706455860996</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -321,7 +320,18 @@
     <MESSAGE value="Implemented all functionalities for recipe" />
     <MESSAGE value="Animations on home page" />
     <MESSAGE value="Changes in styles WIP" />
-    <option name="LAST_COMMIT_MESSAGE" value="Changes in styles WIP" />
+    <MESSAGE value="User profile styles" />
+    <MESSAGE value="User profile image fix and review cards" />
+    <option name="LAST_COMMIT_MESSAGE" value="User profile image fix and review cards" />
+  </component>
+  <component name="XDebuggerManager">
+    <watches-manager>
+      <configuration name="GradleRunConfiguration">
+        <watch expression="userToUpdate.image = image?.let { createUserImage(it) }" language="kotlin" />
+        <watch expression="userToUpdate.image = image?.let { createUserImage(it) }" language="kotlin" />
+        <watch expression="userToUpdate.image = image?.let { createUserImage(it) }" language="kotlin" />
+      </configuration>
+    </watches-manager>
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

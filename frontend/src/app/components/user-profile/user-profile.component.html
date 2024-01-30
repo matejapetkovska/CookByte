@@ -31,7 +31,7 @@
     <form id="edit-profile-form" *ngIf="editBtnContainer && user">
       <div class="upload-image-container">
         <img
-          src="{{user.image}}"
+          [src]="previewUrl"
           class="profile-picture"/>
         <div class="overlay">
           <label for="fileInput" class="upload-btn">Choose File</label>
@@ -97,7 +97,25 @@
           <h2>Reviews ({{ totalReviews }})</h2>
           <div id="reviewContainer" class="scrollableContainer" *ngIf="totalReviews > 0 else noReviews">
             <div *ngFor="let review of reviews">
-              {{ review.description }}
+              <mat-card class="recipes-card">
+                <mat-card-header>
+                  <mat-card-title-group>
+                    <mat-card-title>
+                      <a [routerLink]="['/recipes', review.recipe.id]">
+                        {{ review.recipe.title }}
+                      </a>
+                    </mat-card-title>
+                    <mat-card-subtitle>
+                      <i class="fa-solid fa-star"></i> {{ review.ratingValue }}
+                      <br>
+                      {{ review.description }}
+                    </mat-card-subtitle>
+                    <img mat-card-sm-image src="{{ review.recipe.imageUrl }}" alt="{{ review.recipe.title }}">
+                  </mat-card-title-group>
+                </mat-card-header>
+                <mat-card-content>
+                </mat-card-content>
+              </mat-card>
             </div>
           </div>
         </div>

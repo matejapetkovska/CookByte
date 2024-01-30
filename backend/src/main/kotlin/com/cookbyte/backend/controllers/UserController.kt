@@ -4,6 +4,7 @@ import com.cookbyte.backend.domain.User
 import com.cookbyte.backend.service.UserService
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
+import org.springframework.web.multipart.MultipartFile
 
 @RestController
 @RequestMapping("/auth/user")
@@ -15,8 +16,14 @@ class UserController(private val userService: UserService) {
     }
 
     @PutMapping("/{id}")
-    fun editUserProfile(@PathVariable id: Long, @RequestBody updatedUser: User): ResponseEntity<User> {
-        val user = userService.updateUser(id, updatedUser)
+    fun editUserProfile(
+        @PathVariable id: Long,
+        @RequestParam token: String?,
+        @RequestParam firstName: String?,
+        @RequestParam lastName: String?,
+        @RequestParam(required = false) image: MultipartFile?
+    ): ResponseEntity<User> {
+        val user = userService.updateUser(id, firstName, lastName, image)
         return ResponseEntity.ok(user)
     }
 }

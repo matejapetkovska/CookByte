@@ -40,11 +40,6 @@ class AuthenticationController(private val authenticationService: Authentication
                 return ResponseEntity.badRequest().body(ErrorResponse(errorMessage))
             }
 
-//            if (!authenticationService.isValidPassword(password)) {
-//                val errorMessage =
-//                    "Password must contain at least one lowercase letter, one uppercase letter, one digit, one special character, and a minimum length of 8 characters."
-//                return ResponseEntity.badRequest().body(ErrorResponse(errorMessage))
-//            }
 
             if (authenticationService.usernameAlreadyExists(username)) {
                 val errorMessage = "Username already exists."

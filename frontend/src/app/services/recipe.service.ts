@@ -28,7 +28,6 @@ export class RecipeService {
   }
 
   addRecipe(formData: FormData): Observable<any> {
-    console.log(formData)
     return this.httpClient.post<FormData>(`${this.url}/add`, formData);
   }
 

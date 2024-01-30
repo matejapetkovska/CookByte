@@ -36,12 +36,18 @@ class UserServiceImpl(val userRepository: UserRepository, val jwtService: JwtSer
         return userRepository.findByUsername(jwtService.extractUsername(token))
     }
 
-    override fun updateUser(userId: Long, updatedUser: User): User? {
+    override fun updateUser(userId: Long, firstName: String?, lastName: String?, image: MultipartFile?): User? {
         val existingUser = userRepository.findById(userId)
         if (existingUser.isPresent) {
             val userToUpdate = existingUser.get()
-            userToUpdate.firstName = updatedUser.firstName
-            userToUpdate.lastName = updatedUser.lastName
+            if (firstName != null) {
+                userToUpdate.firstName = firstName
+            }
+            userToUpdate.lastName = lastName
+            if (image != null && !image.isEmpty) {
+                userToUpdate.image = createUserImage(image)
+            } else
+                userToUpdate.image = userToUpdate.image
             return userRepository.save(userToUpdate)
         }
         return null
