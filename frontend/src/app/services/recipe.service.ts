@@ -31,7 +31,7 @@ export class RecipeService {
     return this.httpClient.post<FormData>(`${this.url}/add`, formData);
   }
 
-  editRecipe(recipeId: string | null, formData: FormData): Observable<any> {
+  editRecipe(recipeId: number | null, formData: FormData): Observable<any> {
     return this.httpClient.put<FormData>(`${this.url}/edit/${recipeId}`, formData);
   }
 

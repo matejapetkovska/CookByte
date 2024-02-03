@@ -27,16 +27,16 @@ interface RecipeService {
     ): Recipe?
 
     fun editRecipe(
-        id: Long, title: String, user: User, datePublished: String,
-        description: String,
-        image: MultipartFile,
-        cookTime: Long, calories: String,
-        carbohydrates: String,
-        fats: String,
-        proteins: String,
-        instructions: String,
-        ingredientIds: List<Long>,
-        categoryIds: List<Long>
+        id: Long, title: String?, datePublished: String,
+        description: String?,
+        image: MultipartFile?,
+        cookTime: Long?, calories: String?,
+        carbohydrates: String?,
+        fats: String?,
+        proteins: String?,
+        instructions: String?,
+        ingredientIds: String?,
+        categoryIds: String?
     ): Recipe?
 
     fun deleteRecipe(recipeId: Long)

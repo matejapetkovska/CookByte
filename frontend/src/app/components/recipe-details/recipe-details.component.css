@@ -46,6 +46,10 @@ mat-chip {
   background-color: var(--blue) !important;
 }
 
+::ng-deep .mdc-evolution-chip__text-label {
+  color: white !important;
+}
+
 .categories,
 .rating {
   font-size: 1rem;
@@ -73,11 +77,10 @@ mat-chip {
   width: fit-content;
   display: flex;
   align-items: center;
-  gap: 0.2rem;
+  gap: 0.5rem;
 }
 .user-picture {
-  width: 30px;
-  height: 20px;
+  height: 30px;
   object-fit: cover;
   object-position: center;
   border-radius: 50%;
@@ -138,6 +141,7 @@ li {
   border: 1px solid orange;
   border-radius: 5px;
   padding: 0.5rem;
+  text-align: justify;
 }
 .review {
   border: 1px solid #ddd;
@@ -228,4 +232,14 @@ form {
 
 mat-form-field {
   height: 80px;
+}
+
+.delete-review {
+  cursor: pointer;
+  position: absolute;
+  right: 20px;
+}
+
+.fa-star {
+  color: #f39c12;
 }

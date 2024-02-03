@@ -32,4 +32,8 @@ export class ReviewService {
     headers.set('Content-Type', 'multipart/form-data');
     return this.httpClient.post<any>(`${this.url}/addReview`, formData)
   }
+
+  deleteReview(reviewId: number): Observable<any> {
+    return this.httpClient.delete(`${this.url}/delete/${reviewId}`)
+  }
 }

@@ -1,11 +1,13 @@
 package com.cookbyte.backend.domain
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties
 import jakarta.persistence.*
 import org.springframework.security.core.GrantedAuthority
 import org.springframework.security.core.userdetails.UserDetails
 
 @Entity
 @Table(name = "cookbyte_user")
+@JsonIgnoreProperties(ignoreUnknown = true)
 class User(
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

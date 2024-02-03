@@ -82,7 +82,7 @@
                 </mat-card-header>
                 <mat-card-content>
                   <div class="action-buttons">
-                    <mat-icon style="color: var(--blue)">edit</mat-icon>
+                    <mat-icon (click)="editRecipe(recipe.id)" style="color: var(--blue)">edit</mat-icon>
                     <mat-icon (click)="deleteRecipe(recipe.id, recipe.title)" color="warn">delete_outline</mat-icon>
                   </div>
                 </mat-card-content>

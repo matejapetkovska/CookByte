@@ -66,6 +66,5 @@ export class AllRecipesComponent implements OnInit {
 
   addPathToRecipeImages(recipes: Recipe) {
     recipes.imageUrl = "../../../assets/user-uploaded-images/" + recipes.imageUrl;
-    console.log(recipes.imageUrl)
   }
 }

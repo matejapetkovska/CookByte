@@ -28,6 +28,7 @@ import { NgxMatFileInputModule } from '@angular-material-components/file-input';
 import { DeleteDialogComponent } from './components/dialog/delete-dialog/delete-dialog.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatTabsModule } from '@angular/material/tabs';
+import { EditRecipeDialogComponent } from './components/dialog/edit-recipe-dialog/edit-recipe-dialog.component';
 
 @NgModule({
   declarations: [
@@ -42,7 +43,8 @@ import { MatTabsModule } from '@angular/material/tabs';
     RecipeDetailsComponent,
     UserProfileComponent,
     AddRecipeDialogComponent,
-    DeleteDialogComponent
+    DeleteDialogComponent,
+    EditRecipeDialogComponent
   ],
   imports: [
     BrowserModule,

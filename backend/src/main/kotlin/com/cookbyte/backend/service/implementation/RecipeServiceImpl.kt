@@ -30,7 +30,6 @@ class RecipeServiceImpl(
     val categoryService: CategoryService,
     val ingredientService: IngredientService,
     val reviewService: ReviewService,
-//    val ingredientRepository: IngredientRepository,
     val reviewRepository: ReviewRepository
 ) : RecipeService {
 
@@ -83,7 +82,6 @@ class RecipeServiceImpl(
     ): Recipe? {
         val categoryList: List<Long> = objectMapper.readValue(categoryIds, object : TypeReference<List<Long>>() {})
         val categories: Set<Category> = categoryService.findAllByIds(categoryList).orEmpty().toSet()
-        categories.forEach { category -> println(category.name) }
         val imagePath = generateRandomName() + ".jpg"
         val imagePathWithDirectory = Paths.get(uploadDirectory, imagePath)
         Files.copy(image.inputStream, imagePathWithDirectory)
@@ -110,60 +108,43 @@ class RecipeServiceImpl(
 
 
     override fun editRecipe(
-        id: Long,
-        title: String,
-        user: User,
-        datePublished: String,
-        description: String,
-        image: MultipartFile,
-        cookTime: Long,
-        calories: String,
-        carbohydrates: String,
-        fats: String,
-        proteins: String,
-        instructions: String,
-        ingredientIds: List<Long>,
-        categoryIds: List<Long>
+        id: Long, title: String?, datePublished: String,
+        description: String?,
+        image: MultipartFile?,
+        cookTime: Long?, calories: String?,
+        carbohydrates: String?,
+        fats: String?,
+        proteins: String?,
+        instructions: String?,
+        ingredientIds: String?,
+        categoryIds: String?
     ): Recipe? {
-        val recipe = this.findRecipeById(id)
-        if (recipe != null) {
-            recipe.title = title
-            recipe.description = description
+        val recipe = this.findRecipeById(id) ?: return null
+        recipe.title = title ?: recipe.title
+        recipe.description = description ?: recipe.description
+        if (image != null) {
             val imagePath = generateRandomName() + ".jpg"
             val imagePathWithDirectory = Paths.get(uploadDirectory, imagePath)
             Files.copy(image.inputStream, imagePathWithDirectory)
             recipe.imageUrl = imagePath
-            recipe.cookTime = cookTime
-            recipe.calories = calories
-            recipe.carbohydrates = carbohydrates
-            recipe.fats = fats
-            recipe.proteins = proteins
-            recipe.instructions = instructions
-
-            val categories = recipe.categories.toMutableSet()
-            val existingCategories = categories.map { it.id }.toSet()
-            val addedCategories = categoryIds.filter { it !in existingCategories }
-            val removedCategories = existingCategories.filter { it !in categoryIds }
-            categories.addAll(categoryService.findAllByIds(addedCategories).orEmpty())
-            categories.removeAll { it.id in removedCategories }
-
-            val ingredients = ingredientService.findByRecipeId(id)
-            if (ingredients != null) {
-                val existingIngredients = ingredients.map { it.id }.toMutableList()
-                val addedIngredients = ingredientIds.filter { it !in existingIngredients }
-                val removedIngredients = existingIngredients.filter { it !in ingredientIds }
-                for (ingredientId in addedIngredients) {
-                    val ingredient = ingredientService.findById(ingredientId)
-                    ingredient?.recipe = recipe
-                    ingredient?.name?.let { ingredientService.addIngredient(it, recipe) }
-                }
-                for (ingredientId in removedIngredients) {
-                    ingredientService.deleteById(ingredientId)
-                }
-            }
-            return recipeRepository.save(recipe)
         }
-        return null
+        recipe.cookTime = cookTime ?: recipe.cookTime
+        recipe.calories = calories ?: recipe.calories
+        recipe.carbohydrates = carbohydrates ?: recipe.calories
+        recipe.fats = fats ?: recipe.fats
+        recipe.proteins = proteins ?: recipe.proteins
+        recipe.instructions = instructions ?: recipe.instructions
+
+        if (categoryIds != null) {
+            val categoryList: List<Long> = objectMapper.readValue(categoryIds, object : TypeReference<List<Long>>() {})
+            val categories: Set<Category> = categoryService.findAllByIds(categoryList).orEmpty().toSet()
+            recipe.categories = categories
+        }
+        if (ingredientIds != null) {
+            val ingredientsList: List<Ingredient> = objectMapper.readValue(ingredientIds)
+            ingredientService.addIngredients(ingredientsList, recipe)
+        }
+        return recipeRepository.save(recipe)
     }
 
     @Transactional

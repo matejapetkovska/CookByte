@@ -8,6 +8,7 @@ import {Review} from "../../interfaces/review";
 import {Router} from "@angular/router";
 import {MatDialog} from "@angular/material/dialog";
 import {DeleteDialogComponent} from "../dialog/delete-dialog/delete-dialog.component";
+import {EditRecipeDialogComponent} from "../dialog/edit-recipe-dialog/edit-recipe-dialog.component";
 
 @Component({
   selector: 'app-user-profile',
@@ -50,6 +51,7 @@ export class UserProfileComponent implements OnInit{
           this.reviewService.getReviewsForUser(this.user.id).subscribe({
             next: (reviews) => {
               this.reviews = reviews
+              this.addPathToRecipeImagesFromReviews(this.reviews)
               this.totalReviews = this.reviews.length
             }
           })
@@ -119,7 +121,16 @@ export class UserProfileComponent implements OnInit{
 
   }
 
-
+  editRecipe(recipeId: number) {
+    this.dialog.open(EditRecipeDialogComponent, {
+      width: '250px',
+      enterAnimationDuration: '0ms',
+      exitAnimationDuration: '0ms',
+      data: {
+        recipeId: recipeId,
+      }
+    });
+  }
   openDialog() {
     this.isDialogVisible = true
   }
@@ -131,6 +142,17 @@ export class UserProfileComponent implements OnInit{
   addPathToRecipeImages(recipes: Recipe[]) {
     for (let i = 0; i < recipes.length; i++) {
       recipes[i].imageUrl = "../../../assets/user-uploaded-images/" + recipes[i].imageUrl;
+    }
+  }
+
+  addPathToRecipeImagesFromReviews(reviews: Review[]) {
+    if (reviews != undefined) {
+      for (let i = 0; i < reviews.length; i++) {
+        // @ts-ignore
+        if (!this.reviews[i].recipe.imageUrl.startsWith('http://') && !this.reviews[i].recipe.imageUrl.startsWith('https://')) {
+          reviews[i].recipe.imageUrl = "../../../assets/user-uploaded-images/" + reviews[i].recipe.imageUrl;
+        }
+      }
     }
   }
 }

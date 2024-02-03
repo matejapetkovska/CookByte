@@ -58,7 +58,7 @@ export class RecipeDetailsComponent implements OnInit {
         this.addPathToUserImagesFromRecipes(this.recipe)
         if (this.recipe && this.recipe.datePublished) {
           const originalDate = new Date(this.recipe.datePublished);
-          this.recipe.datePublished = originalDate.toLocaleDateString('en-US', {
+          this.recipe.datePublished = originalDate.toLocaleDateString('en-GB', {
             year: 'numeric',
             month: '2-digit',
             day: '2-digit',
@@ -67,12 +67,12 @@ export class RecipeDetailsComponent implements OnInit {
         this.ingredientService.getIngredientsForRecipe(recipeId).subscribe({
           next: (ingredients) => {
             this.ingredients = ingredients
+            console.log(this.ingredients)
           }
         })
         this.reviewService.getReviewForRecipe(recipeId).subscribe({
           next: (reviews) => {
             this.reviews = reviews
-            console.log(this.reviews)
             this.addPathToUserImagesFromReviews(this.reviews)
             this.reviews.forEach(review => {
               const recipeId = review.recipe.id;
@@ -131,18 +131,26 @@ export class RecipeDetailsComponent implements OnInit {
     this.showReviewContainer = false
   }
 
+  deleteReview(reviewId: number) {
+    this.reviewService.deleteReview(reviewId).subscribe({
+      next: () => {
+        window.location.reload()
+      }
+    })
+  }
+
   addPathToUserImagesFromRecipes(recipe: Recipe) {
     recipe.user.image = "../../../assets/images/" + recipe.user.image;
   }
 
   addPathToUserImagesFromReviews(reviews: Review[]) {
     for (let i = 0; i < reviews.length; i++) {
-      reviews[i].user.image = "../../../assets/images/" + reviews[i].user.image;
+      reviews[i].user.image = "../../../assets/user-uploaded-images/" + reviews[i].user.image;
     }
   }
 
   addPathToUserImage(user: User) {
-    user.image = "../../../assets/images/" + user.image;
+    user.image = "../../../assets/user-uploaded-images/" + user.image;
   }
 
   addPathToRecipeImages(recipes: Recipe) {

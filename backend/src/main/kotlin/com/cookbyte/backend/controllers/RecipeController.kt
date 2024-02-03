@@ -3,9 +3,11 @@ package com.cookbyte.backend.controllers
 import com.cookbyte.backend.domain.Recipe
 import com.cookbyte.backend.service.RecipeService
 import com.cookbyte.backend.service.UserService
+import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
 import org.springframework.web.multipart.MultipartFile
+
 
 @RestController
 @RequestMapping("/recipes")
@@ -42,4 +44,28 @@ class RecipeController(val recipeService: RecipeService, val userService: UserSe
 
     @DeleteMapping("/delete/{recipeId}")
     fun deleteRecipe(@PathVariable recipeId: Long) = recipeService.deleteRecipe(recipeId)
+
+    @PutMapping("/edit/{id}")
+    fun editRecipe(
+        @PathVariable id: Long,
+        @RequestParam title: String?,
+        @RequestParam datePublished: String,
+        @RequestParam description: String?,
+        @RequestParam image: MultipartFile?,
+        @RequestParam cookTime: Long?,
+        @RequestParam calories: String?,
+        @RequestParam carbohydrates: String?,
+        @RequestParam fats: String?,
+        @RequestParam proteins: String?,
+        @RequestParam instructions: String?,
+        @RequestParam ingredientIds: String?,
+        @RequestParam categoryIds: String?
+    ): ResponseEntity<Recipe?>? {
+        val recipe = recipeService.editRecipe(
+                id, title, datePublished, description, image,
+                cookTime, calories, carbohydrates, fats, proteins, instructions,
+                ingredientIds, categoryIds
+            )
+        return ResponseEntity.ok(recipe)
+    }
 }

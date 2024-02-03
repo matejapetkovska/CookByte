@@ -9,4 +9,5 @@ interface ReviewService {
     fun getReviewByRecipeId(recipeId: Long): List<Review>?
     fun getReviewsByUserId(userId: Long): List<Review>?
     fun addReview(description: String, user: User, recipe: Recipe, ratingValue: Int): Review?
+    fun deleteReview(reviewId: Long)
 }

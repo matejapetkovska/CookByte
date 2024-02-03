@@ -51,7 +51,7 @@
             {{ '#' + category.name }}
           </mat-chip>
         </div>
-        <div class="rating"><i class="fa-solid fa-star"></i>{{recipe.averageRating}}</div>
+        <div class="rating">{{recipe.averageRating}} <i class="fa-solid fa-star"></i></div>
       </div>
     </div>
 
@@ -119,6 +119,9 @@
           </div>
           <p class="rating">Rating: {{review.ratingValue}}/5 <i class="fa-solid fa-star"></i></p>
           <p>{{review.description}}</p>
+          <div *ngIf="review.user.id == this.user?.id" class="delete-review">
+            <mat-icon (click)="deleteReview(review.id)" color="warn">delete_outline</mat-icon>
+          </div>
         </div>
       </div>
       <ng-template #noReview>

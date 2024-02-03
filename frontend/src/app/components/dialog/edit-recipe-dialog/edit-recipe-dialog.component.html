@@ -2,7 +2,7 @@
   <div id="recipeModal" class="modal">
     <div class="modal-content">
       <span class="close" id="closeModalBtn" (click)="closeDialog()">&times;</span>
-      <h2 id="modal-title">Upload Recipe</h2>
+      <h2 id="modal-title">Edit Recipe</h2>
       <br/>
 
       <form id="recipeForm" [formGroup]="addRecipe">
@@ -13,7 +13,8 @@
 
 
         <mat-form-field appearance="outline">
-          <ngx-mat-file-input accept="image/*" (change)="onFileChange($event)" formControlName="image"></ngx-mat-file-input>
+          <ngx-mat-file-input accept="image/*" (change)="onFileChange($event)"
+                              formControlName="image"></ngx-mat-file-input>
         </mat-form-field>
 
         <mat-form-field appearance="outline">
@@ -101,7 +102,7 @@
           </div>
         </div>
 
-        <button mat-raised-button id="upload-recipe-btn" type="submit" (click)="onAddRecipe()">Upload recipe</button>
+        <button mat-raised-button id="upload-recipe-btn" type="submit" (click)="onEditRecipe()">Edit recipe</button>
       </form>
     </div>
   </div>

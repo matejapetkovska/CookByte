@@ -35,4 +35,6 @@ class ReviewController(private val reviewService: ReviewService, private val use
         return ResponseEntity.ok(review)
     }
 
+    @DeleteMapping("/delete/{reviewId}")
+    fun deleteRecipe(@PathVariable reviewId: Long) = reviewService.deleteReview(reviewId)
 }
