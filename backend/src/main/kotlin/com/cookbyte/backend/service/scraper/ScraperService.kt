@@ -23,7 +23,7 @@ class ScraperService(
     val categoryRepository: CategoryRepository
 ) {
 
-    private val MAX_RECIPE_LIMIT = 50
+    private val MAX_RECIPE_LIMIT = 100
 
     @Scheduled(cron = "0 0 1 * * ?")
     fun getSimpleRecipes() {

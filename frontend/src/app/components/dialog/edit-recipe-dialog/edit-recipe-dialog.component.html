@@ -1,36 +1,36 @@
 <main>
-  <div id="recipeModal" class="modal">
+  <div class="modal" id="recipeModal">
     <div class="modal-content">
-      <span class="close" id="closeModalBtn" (click)="closeDialog()">&times;</span>
+      <span (click)="closeDialog()" class="close" id="closeModalBtn">&times;</span>
       <h2 id="modal-title">Edit Recipe</h2>
       <br/>
 
-      <form id="recipeForm" [formGroup]="addRecipe">
+      <form [formGroup]="addRecipe" id="recipeForm">
         <mat-form-field appearance="outline">
           <mat-label>Title</mat-label>
-          <input matInput type="text" id="title" name="title" placeholder="Title" required formControlName="title"/>
+          <input formControlName="title" id="title" matInput name="title" placeholder="Title" required type="text"/>
         </mat-form-field>
 
-
         <mat-form-field appearance="outline">
-          <ngx-mat-file-input accept="image/*" (change)="onFileChange($event)"
-                              formControlName="image"></ngx-mat-file-input>
+          <ngx-mat-file-input (change)="onFileChange($event)" accept="image/*"
+                              formControlName="image"
+                              placeholder="Choose a new file (optional)"></ngx-mat-file-input>
         </mat-form-field>
 
         <mat-form-field appearance="outline">
           <mat-label>Description</mat-label>
-          <textarea matInput id="description" name="description" rows="3" cols="1" placeholder="Description" required
-                    formControlName="description"></textarea>
+          <textarea cols="1" formControlName="description" id="description" matInput name="description" placeholder="Description" required
+                    rows="3"></textarea>
         </mat-form-field>
 
         <label>Ingredients:</label>
         <div id="ingredientsContainer">
           <mat-form-field appearance="outline">
             <mat-label>Add ingredient</mat-label>
-            <input matInput type="text" id="ingredientInput" placeholder="Add ingredient" name="ingredientName"
-                   formControlName="ingredientName"/>
+            <input formControlName="ingredientName" id="ingredientInput" matInput name="ingredientName" placeholder="Add ingredient"
+                   type="text"/>
           </mat-form-field>
-          <button mat-raised-button id="add-ingredients-btn" type="button" (click)="onAddIngredient()">Add</button>
+          <button (click)="onAddIngredient()" id="add-ingredients-btn" mat-raised-button type="button">Add</button>
           <ol id="ingredientsList">
             <li *ngFor="let ingredient of ingredients">{{ ingredient.name }}</li>
           </ol>
@@ -38,14 +38,14 @@
 
         <mat-form-field appearance="outline">
           <mat-label>Instructions</mat-label>
-          <textarea matInput id="instructions" name="instructions" rows="3" placeholder="Instructions" required
-                    formControlName="instructions"></textarea>
+          <textarea formControlName="instructions" id="instructions" matInput name="instructions" placeholder="Instructions" required
+                    rows="3"></textarea>
         </mat-form-field>
 
         <mat-form-field appearance="outline">
           <mat-label>Cook time (minutes)</mat-label>
-          <input matInput type="number" id="cookTime" name="cookTime" placeholder="Cook time (minutes)" required
-                 formControlName="cookTime"/>
+          <input formControlName="cookTime" id="cookTime" matInput name="cookTime" placeholder="Cook time (minutes)" required
+                 type="number"/>
         </mat-form-field>
 
         <div class="nutrients-categories-container">
@@ -58,8 +58,8 @@
               <td>
                 <mat-form-field appearance="outline">
                   <mat-label>Calories (kcal)</mat-label>
-                  <input matInput type="number" placeholder="Calories (kcal)" id="calories" name="calories" required
-                         formControlName="calories"/>
+                  <input formControlName="calories" id="calories" matInput name="calories" placeholder="Calories (kcal)" required
+                         type="number"/>
                 </mat-form-field>
               </td>
             </tr>
@@ -67,8 +67,8 @@
               <td>
                 <mat-form-field appearance="outline">
                   <mat-label>Carbs (g)</mat-label>
-                  <input matInput type="number" placeholder="Carbs (g)" id="carbs" name="carbohydrates" required
-                         formControlName="carbohydrates"/>
+                  <input formControlName="carbohydrates" id="carbs" matInput name="carbohydrates" placeholder="Carbs (g)" required
+                         type="number"/>
                 </mat-form-field>
               </td>
             </tr>
@@ -76,8 +76,8 @@
               <td>
                 <mat-form-field appearance="outline">
                   <mat-label>Fats (g)</mat-label>
-                  <input matInput type="number" placeholder="Fats (g)" id="fats" name="fats" required
-                         formControlName="fats"/>
+                  <input formControlName="fats" id="fats" matInput name="fats" placeholder="Fats (g)" required
+                         type="number"/>
                 </mat-form-field>
               </td>
             </tr>
@@ -85,8 +85,8 @@
               <td>
                 <mat-form-field appearance="outline">
                   <mat-label>Proteins (g)</mat-label>
-                  <input matInput type="number" placeholder="Proteins (g)" id="proteins" name="proteins" required
-                         formControlName="proteins"/>
+                  <input formControlName="proteins" id="proteins" matInput name="proteins" placeholder="Proteins (g)" required
+                         type="number"/>
                 </mat-form-field>
               </td>
             </tr>
@@ -95,14 +95,14 @@
           <div class="categories">
             <mat-form-field appearance="outline">
               <mat-label>Categories</mat-label>
-              <mat-select placeholder="Select.." name="categories" formControlName="selectedCategoryIds" multiple>
+              <mat-select formControlName="selectedCategoryIds" multiple name="categories" placeholder="Select..">
                 <mat-option *ngFor="let category of categories" [value]="category.id">{{category.name}}</mat-option>
               </mat-select>
             </mat-form-field>
           </div>
         </div>
 
-        <button mat-raised-button id="upload-recipe-btn" type="submit" (click)="onEditRecipe()">Edit recipe</button>
+        <button (click)="onEditRecipe()" id="upload-recipe-btn" mat-raised-button type="submit">Edit recipe</button>
       </form>
     </div>
   </div>

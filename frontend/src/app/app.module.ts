@@ -29,6 +29,7 @@ import { DeleteDialogComponent } from './components/dialog/delete-dialog/delete-
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatTabsModule } from '@angular/material/tabs';
 import { EditRecipeDialogComponent } from './components/dialog/edit-recipe-dialog/edit-recipe-dialog.component';
+import { MatListModule } from '@angular/material/list';
 
 @NgModule({
   declarations: [
@@ -63,7 +64,8 @@ import { EditRecipeDialogComponent } from './components/dialog/edit-recipe-dialo
     ReactiveFormsModule,
     NgxMatFileInputModule,
     MatDialogModule,
-    MatTabsModule
+    MatTabsModule,
+    MatListModule
   ],
   providers: [],
   bootstrap: [AppComponent]

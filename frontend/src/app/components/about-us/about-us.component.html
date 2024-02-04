@@ -1,17 +1,37 @@
 <body>
 <main>
   <div class="container overlay">
+    <section class="background-section">
+      <div class="background-image"></div>
+    </section>
     <div class="about">
-      <h2 mat-display-2>About CookByte</h2>
+      <h1>About CookByte</h1>
       <p>
-        Welcome to CookByte, your ultimate destination for sharing and discovering mouthwatering recipes from around
-        the world. We're passionate about cooking and believe that everyone, regardless of their culinary expertise,
-        should have access to an ever-growing library of delicious, tried-and-tested recipes. CookByte was born out of
-        this passion, and we're here to make your cooking journey a delightful and flavorsome experience.
+        Welcome to CookByte, your ultimate destination for discovering and sharing mouthwatering recipes from around the
+        world. Our passion for cooking led us to believe that everyone, regardless of their culinary expertise, should
+        have access to an ever-growing library of delicious, tried-and-tested recipes. What sets CookByte apart is our
+        commitment to bringing together the best from three distinct recipe sites you can see mentioned below. We've
+        curated a diverse range of
+        culinary delights, ensuring that you have easy access to a comprehensive collection of recipes. Whether you're a
+        seasoned chef or just starting your culinary adventure, CookByte is here to make your cooking journey delightful
+        and flavorsome.
       </p>
     </div>
+    <h1>Honorable Mentions</h1>
+    <div class="sites">
+      <mat-card class="card-sites">
+        <img mat-card-image src="https://upload.wikimedia.org/wikipedia/commons/6/6d/Simply_Recipes_Logo_-_2021.png">
+      </mat-card>
+      <mat-card class="card-sites">
+        <img mat-card-image src="https://i.pinimg.com/originals/88/63/49/886349188b7159a7ced0111eda0b943a.png">
+      </mat-card>
+      <mat-card class="card-sites">
+        <img mat-card-image
+             src="https://upload.wikimedia.org/wikipedia/en/thumb/c/cd/AllRecipes-Logo.svg/220px-AllRecipes-Logo.svg.png">
+      </mat-card>
+    </div>
     <div class="mission">
-      <h2 mat-display-2>Our Mission</h2>
+      <h1>Our Mission</h1>
       <p>
         At CookByte, our mission is to inspire and empower home cooks, food enthusiasts, and culinary adventurers to
         explore the world of flavors, one recipe at a time. We aim to foster a vibrant and diverse community where
@@ -20,7 +40,7 @@
     </div>
 
     <div class="what-we-offer">
-      <h2 mat-display-2>What We Offer</h2>
+      <h1>What We Offer</h1>
       <ul>
         <li mat-subheader>Recipe Sharing</li>
         <li mat-subheader>Recipe Discovery</li>
@@ -30,7 +50,7 @@
     </div>
 
     <div class="why-cookbyte">
-      <h2 mat-display-2>Why CookByte?</h2>
+      <h1>Why CookByte?</h1>
       <ul>
         <li mat-subheader>Diversity</li>
         <li mat-subheader>User-Friendly</li>
@@ -39,10 +59,31 @@
       </ul>
     </div>
 
+    <mat-card class="example-card">
+      <mat-card-header>
+        <mat-card-title-group>
+          <mat-card-title>Meet the owner 👩🏽‍🍳</mat-card-title>
+          <mat-card-subtitle>
+            CookByte was founded by Mateja, a passionate cooking enthusiast with a vision to simplify the
+            culinary journey for cooking lovers around the globe. Fueled by the idea of bringing together a diverse
+            range of recipes from various websites into one centralized platform, Mateja embarked on a mission
+            to make cooking more accessible and enjoyable for everyone.
+            Recognizing the challenges of navigating multiple sources for recipes, Mateja envisioned CookByte as
+            the ultimate destination where cooking enthusiasts could effortlessly discover, share, and explore
+            mouthwatering recipes. The platform is a testament to Mateja's dedication to fostering a vibrant
+            community of food lovers and creating a space where culinary creativity knows no bounds.
+          </mat-card-subtitle>
+          <img mat-card-xl-image src="../../../assets/images/girl chef.jpg"/>
+        </mat-card-title-group>
+      </mat-card-header>
+      <mat-card-content>
+      </mat-card-content>
+    </mat-card>
+
     <div class="get-cooking" mat-elevation-z4>
       <p>
         Get ready to create, connect, and celebrate the art of cooking. Your next culinary masterpiece is just a click
-        away.
+        <a href="/recipes">away</a>!
       </p>
     </div>
   </div>
