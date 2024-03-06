@@ -162,6 +162,10 @@ class RecipeServiceImpl(
         recipeRepository.deleteById(recipeId)
     }
 
+    override fun searchRecipes(searchTerm: String): List<Recipe>? {
+        return recipeRepository.searchAllByTitleAndCategories(searchTerm)
+    }
+
     fun generateRandomName(): String {
         val sb = StringBuilder()
         for (i in 0..8) {

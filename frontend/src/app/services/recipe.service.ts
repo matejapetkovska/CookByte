@@ -47,4 +47,11 @@ export class RecipeService {
       .replace(/&amp;/g, '&')
       .replace(/&#34;/g, '"');
   }
+
+  searchRecipes(term: string): Observable<Recipe[]> {
+    if (!term.trim()) {
+      return this.getAllRecipes();
+    }
+    return this.httpClient.get<Recipe[]>(`${this.url}?searchTerm=${term}`);
+  }
 }

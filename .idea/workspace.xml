@@ -4,8 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="75760713-3ba1-4d79-9cc6-88fff86e4ba7" name="Changes" comment="Implemented deleting review and editing recipe">
-      <change afterPath="$PROJECT_DIR$/frontend/src/assets/images/girl chef.jpg" afterDir="false" />
+    <list default="true" id="75760713-3ba1-4d79-9cc6-88fff86e4ba7" name="Changes" comment="Final version">
       <change afterPath="$PROJECT_DIR$/frontend/src/assets/user-uploaded-images/AHYyFZeOx.jpg" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/frontend/src/assets/user-uploaded-images/CFkVFCAtR.jpg" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/frontend/src/assets/user-uploaded-images/CzQcsdWxA.jpg" afterDir="false" />
@@ -33,16 +32,15 @@
       <change afterPath="$PROJECT_DIR$/frontend/src/assets/user-uploaded-images/zGyPoTenr.jpg" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/frontend/src/assets/user-uploaded-images/zcZSFOraE.jpg" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/frontend/src/assets/user-uploaded-images/znxPPYqLT.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/kotlin/com/cookbyte/backend/configurations/SecurityConfig.kt" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/kotlin/com/cookbyte/backend/configurations/SecurityConfig.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/kotlin/com/cookbyte/backend/service/scraper/ScraperService.kt" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/kotlin/com/cookbyte/backend/service/scraper/ScraperService.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/app/app.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/app.module.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/app/components/about-us/about-us.component.css" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/components/about-us/about-us.component.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/app/components/about-us/about-us.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/components/about-us/about-us.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/app/components/dialog/edit-recipe-dialog/edit-recipe-dialog.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/components/dialog/edit-recipe-dialog/edit-recipe-dialog.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/app/components/footer/footer.component.css" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/components/footer/footer.component.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/app/components/footer/footer.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/components/footer/footer.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/kotlin/com/cookbyte/backend/controllers/RecipeController.kt" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/kotlin/com/cookbyte/backend/controllers/RecipeController.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/kotlin/com/cookbyte/backend/repository/RecipeRepository.kt" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/kotlin/com/cookbyte/backend/repository/RecipeRepository.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/kotlin/com/cookbyte/backend/service/RecipeService.kt" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/kotlin/com/cookbyte/backend/service/RecipeService.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/kotlin/com/cookbyte/backend/service/implementation/RecipeServiceImpl.kt" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/kotlin/com/cookbyte/backend/service/implementation/RecipeServiceImpl.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/app/components/all-recipes/all-recipes.component.css" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/components/all-recipes/all-recipes.component.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/app/components/all-recipes/all-recipes.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/components/all-recipes/all-recipes.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/app/components/all-recipes/all-recipes.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/components/all-recipes/all-recipes.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/app/services/recipe.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/services/recipe.service.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -226,7 +224,15 @@
       <workItem from="1706730758003" duration="6690000" />
       <workItem from="1706978642513" duration="4178000" />
       <workItem from="1706983941769" duration="5931000" />
-      <workItem from="1707049696224" duration="11639000" />
+      <workItem from="1707049696224" duration="12194000" />
+      <workItem from="1707076196196" duration="2012000" />
+      <workItem from="1707820579917" duration="127000" />
+      <workItem from="1707820755787" duration="1432000" />
+      <workItem from="1708546304986" duration="2951000" />
+      <workItem from="1708795612399" duration="8733000" />
+      <workItem from="1708971335767" duration="2133000" />
+      <workItem from="1709058291997" duration="732000" />
+      <workItem from="1709743975627" duration="8866000" />
     </task>
     <task id="LOCAL-00001" summary="Security on fe">
       <created>1699805016453</created>
@@ -319,7 +325,21 @@
       <option name="project" value="LOCAL" />
       <updated>1706989961386</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="Fixed db, completed about us page, and footer">
+      <created>1707063496045</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1707063496045</updated>
+    </task>
+    <task id="LOCAL-00015" summary="Final version">
+      <created>1707078221411</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1707078221412</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -350,7 +370,9 @@
     <MESSAGE value="User profile styles" />
     <MESSAGE value="User profile image fix and review cards" />
     <MESSAGE value="Implemented deleting review and editing recipe" />
-    <option name="LAST_COMMIT_MESSAGE" value="Implemented deleting review and editing recipe" />
+    <MESSAGE value="Fixed db, completed about us page, and footer" />
+    <MESSAGE value="Final version" />
+    <option name="LAST_COMMIT_MESSAGE" value="Final version" />
   </component>
   <component name="XDebuggerManager">
     <watches-manager>

@@ -40,4 +40,5 @@ interface RecipeService {
     ): Recipe?
 
     fun deleteRecipe(recipeId: Long)
+    fun searchRecipes(searchTerm: String): List<Recipe>?
 }

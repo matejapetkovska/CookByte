@@ -25,20 +25,36 @@ class RecipeController(val recipeService: RecipeService, val userService: UserSe
     fun findAllRecipesByUser(@PathVariable userId: Long): List<Recipe>? = recipeService.findAllRecipesByUser(userId)
 
     @PostMapping("/add")
-    fun createRecipe(@RequestParam title: String,
-                     @RequestParam image: MultipartFile,
-                     @RequestParam description: String,
-                     @RequestParam cookTime: String,
-                     @RequestParam calories: String,
-                     @RequestParam carbohydrates: String,
-                     @RequestParam fats: String,
-                     @RequestParam proteins: String,
-                     @RequestParam instructions: String,
-                     @RequestParam categoryIds: String,
-                     @RequestParam ingredients: String,
-                     @RequestParam token: String): ResponseEntity<Any> {
-        val user = userService.getUserFromToken(token) ?: return ResponseEntity.badRequest().body(Error("Error in saving recipe. Please log in first."))
-        val recipe = recipeService.addRecipe(title, user, description, image, cookTime.toLong(), calories, carbohydrates, fats, proteins, instructions, ingredients, categoryIds)
+    fun createRecipe(
+        @RequestParam title: String,
+        @RequestParam image: MultipartFile,
+        @RequestParam description: String,
+        @RequestParam cookTime: String,
+        @RequestParam calories: String,
+        @RequestParam carbohydrates: String,
+        @RequestParam fats: String,
+        @RequestParam proteins: String,
+        @RequestParam instructions: String,
+        @RequestParam categoryIds: String,
+        @RequestParam ingredients: String,
+        @RequestParam token: String
+    ): ResponseEntity<Any> {
+        val user = userService.getUserFromToken(token) ?: return ResponseEntity.badRequest()
+            .body(Error("Error in saving recipe. Please log in first."))
+        val recipe = recipeService.addRecipe(
+            title,
+            user,
+            description,
+            image,
+            cookTime.toLong(),
+            calories,
+            carbohydrates,
+            fats,
+            proteins,
+            instructions,
+            ingredients,
+            categoryIds
+        )
         return ResponseEntity.ok(recipe)
     }
 
@@ -62,10 +78,13 @@ class RecipeController(val recipeService: RecipeService, val userService: UserSe
         @RequestParam categoryIds: String?
     ): ResponseEntity<Recipe?>? {
         val recipe = recipeService.editRecipe(
-                id, title, datePublished, description, image,
-                cookTime, calories, carbohydrates, fats, proteins, instructions,
-                ingredientIds, categoryIds
-            )
+            id, title, datePublished, description, image,
+            cookTime, calories, carbohydrates, fats, proteins, instructions,
+            ingredientIds, categoryIds
+        )
         return ResponseEntity.ok(recipe)
     }
+
+    @GetMapping(params = ["searchTerm"])
+    fun searchRecipe(@RequestParam searchTerm: String): List<Recipe>? = recipeService.searchRecipes(searchTerm)
 }

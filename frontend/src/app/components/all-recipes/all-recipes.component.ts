@@ -3,6 +3,7 @@ import {RecipeService} from "../../services/recipe.service";
 import {Recipe} from "../../interfaces/recipe";
 import {ReviewService} from "../../services/review.service";
 import {Review} from "../../interfaces/review";
+import {debounceTime, distinctUntilChanged} from "rxjs";
 
 @Component({
   selector: 'app-all-recipes',
@@ -14,6 +15,9 @@ export class AllRecipesComponent implements OnInit {
   recipes: Recipe[] | undefined
   randomRecipe: Recipe | undefined
   reviews: Review[] | undefined
+  searchTerm: string = '';
+  showSearch: boolean = false;
+  allRecipes: Recipe[] | undefined
 
   constructor(private recipeService: RecipeService, private reviewService: ReviewService) { }
 
@@ -49,7 +53,9 @@ export class AllRecipesComponent implements OnInit {
     this.recipeService.getAllRecipes().subscribe({
       next: (recipes) => {
         this.recipes = recipes
-        this.recipes.forEach(recipe => {
+        this.allRecipes = recipes
+        const allRecipesList = [...this.recipes, ...this.allRecipes];
+        allRecipesList.forEach(recipe => {
           if (!recipe.imageUrl.startsWith('http://') && !recipe.imageUrl.startsWith('https://')) {
             this.addPathToRecipeImages(recipe);
           }
@@ -66,5 +72,34 @@ export class AllRecipesComponent implements OnInit {
 
   addPathToRecipeImages(recipes: Recipe) {
     recipes.imageUrl = "../../../assets/user-uploaded-images/" + recipes.imageUrl;
+  }
+
+
+  toggleSearch(): void {
+    this.showSearch = !this.showSearch;
+    if (!this.showSearch) {
+      this.searchTerm = ''
+      this.onSearch();
+    }
+  }
+
+  onSearch(): void {
+    this.recipeService.searchRecipes(this.searchTerm).pipe(
+      debounceTime(400),
+      distinctUntilChanged(),
+    ).subscribe(
+      (results: any[]) => {
+        console.log(results)
+        this.recipes = results;
+      },
+      (error: any) => {
+        console.error('Error searching recipes:', error);
+      }
+    );
+  }
+
+  clearSearch(): void {
+    this.searchTerm = '';
+    this.recipes = this.allRecipes;
   }
 }

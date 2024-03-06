@@ -60,15 +60,19 @@ main {
 .category-title-rating {
   padding: 0.5rem;
 }
+
 .fa-star {
   color: #f39c12;
 }
+
 .card-category {
   font-size: 1rem;
   color: var(--blue);
-  display: inline-block;
+  display: inline-flex;
   margin-right: 0.5rem;
   height: 25px;
+  margin-bottom: 1.5rem;
+  flex-wrap: wrap;
 }
 
 .card-category > span {
@@ -112,7 +116,6 @@ main {
   margin: 0 80px;
   justify-content: center;
   align-items: center;
-  /*width: 80%;*/
 }
 
 .big-card {
@@ -165,4 +168,26 @@ main {
   font-size: 120px;
   text-align: center;
   line-height: normal;
+}
+
+.search-recipes {
+  display: flex;
+  margin-left: 100px;
+  gap: 0.5rem;
+}
+
+.search-recipes-btn {
+  border: none;
+  background-color: transparent;
+}
+
+#search-icon {
+  color: #f39c12;
+  font-size: 40px;
+  height: 50px !important;
+  width: 50px !important;
+}
+
+mat-form-field {
+  width: 300px;
 }
