@@ -74,22 +74,12 @@ export class AllRecipesComponent implements OnInit {
     recipes.imageUrl = "../../../assets/user-uploaded-images/" + recipes.imageUrl;
   }
 
-
-  toggleSearch(): void {
-    this.showSearch = !this.showSearch;
-    if (!this.showSearch) {
-      this.searchTerm = ''
-      this.onSearch();
-    }
-  }
-
   onSearch(): void {
     this.recipeService.searchRecipes(this.searchTerm).pipe(
       debounceTime(400),
       distinctUntilChanged(),
     ).subscribe(
       (results: any[]) => {
-        console.log(results)
         this.recipes = results;
       },
       (error: any) => {
